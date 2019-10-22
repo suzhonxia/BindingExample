@@ -1,0 +1,131 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    useLibrary 'org.apache.http.legacy'// 使用 httpclient
+
+    defaultConfig {
+        applicationId "com.sun.binding"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true // 开启混淆
+            zipAlignEnabled true // 开启Zipalign 优化
+            shrinkResources true // 移除无用的resource 文件
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false // 开启混淆
+            zipAlignEnabled false // 开启Zipalign 优化
+            shrinkResources false // 移除无用的resource 文件
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 源文件路径设置
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+            jniLibs.srcDirs = ['libs', 'jniLibs']
+        }
+    }
+
+    // dex 配置
+    dexOptions {
+        jumboMode true
+        dexInProcess true
+        preDexLibraries true
+        javaMaxHeapSize "4g"
+        maxProcessCount 6
+        keepRuntimeAnnotatedClasses false
+    }
+
+    // DataBinding 开启
+    dataBinding {
+        enabled true
+    }
+
+    lintOptions {
+        abortOnError false // 出现错误不终止编译
+    }
+
+    // 配置 APK 输出路径
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "sample_${variant.flavorName}_${variant.buildType.name}_v${versionName}.apk"
+        }
+    }
+}
+
+dependencies {
+    // Test
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // .jar .aar 包
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+
+    // Kotlin jdk
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // ktx
+    implementation 'androidx.core:core-ktx:1.1.0'
+    // Kotlin 协程
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
+
+    // v4
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    // v7
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    // design
+    implementation 'com.google.android.material:material:1.1.0-beta01'
+    // RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-beta05'
+    // 约束性布局
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+
+    // Lifecycle 拓展
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+
+    // Koin
+    implementation 'org.koin:koin-android:2.0.1'
+    implementation 'org.koin:koin-android-scope:2.0.1'
+    implementation 'org.koin:koin-android-viewmodel:2.0.1'
+    testImplementation 'org.koin:koin-test:2.0.1'
+
+    // livedatabus
+    implementation 'com.jeremyliao:live-event-bus-x:1.5.1'
+
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.1.0'
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+
+    // MMKV 数据存储
+    implementation 'com.tencent:mmkv:1.0.23'
+
+    // SmartRefreshLayout
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
+
+    // Tablayout
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+
+    // UtilCode
+    implementation 'com.blankj:utilcodex:1.25.9'
+}

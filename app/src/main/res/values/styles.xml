@@ -1,0 +1,86 @@
+<resources>
+
+    <!-- 基本主题 -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 应用主色调，ActionBar、Toolbar 等默认颜色 -->
+        <item name="colorPrimary">@color/app_colorPrimary</item>
+        <!-- 应用主要暗色调，StatusBar 默认颜色 -->
+        <item name="colorPrimaryDark">@color/app_colorPrimaryDark</item>
+        <!-- 应用中控件选中默认色调 -->
+        <item name="colorAccent">@color/app_colorAccent</item>
+
+        <!-- 窗口背景 -->
+        <item name="android:windowBackground">@color/app_window_bg</item>
+    </style>
+
+    <!-- 全屏主题 -->
+    <style name="AppTheme.FullScreen">
+        <!-- 全屏显示 -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- 欢迎界面主题 -->
+    <style name="AppTheme.FullScreen.Splash">
+        <!-- 半透明虚拟导航栏且布局延伸到导航栏下面 -->
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!-- 半透明状态栏且布局延伸到状态栏下面 -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- 窗口背景 -->
+        <item name="android:windowBackground">@drawable/app_layer_list_splash_bg</item>
+    </style>
+
+    <!-- 白色状态栏主题 -->
+    <style name="AppTheme.WhiteStatusBar">
+        <item name="colorPrimaryDark">@color/app_white</item>
+    </style>
+
+    <!-- Toolber 样式 -->
+    <style name="app_toolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="actionMenuTextColor">@color/app_colorAccent</item>
+        <!-- 字体大小 -->
+        <item name="android:textSize">14sp</item>
+        <!--ToolBar 字体颜色 -->
+        <item name="titleTextColor">@color/app_text_color_white</item>
+        <!-- 溢出菜单图标颜色 -->
+        <item name="colorControlNormal">@android:color/white</item>
+        <!-- 右侧溢出菜单图标自定义 -->
+        <!--        <item name="actionOverflowButtonStyle">@style/ActionButton.Overflow</item>-->
+        <!-- 是否覆盖锚点，默认为true，即盖住 Toolbar -->
+        <item name="overlapAnchor">false</item>
+        <!-- 弹出层背景颜色 -->
+        <item name="android:colorBackground">@color/app_white</item>
+        <!-- 设置弹出菜单文字颜色 -->
+        <item name="android:textColor">@color/app_text_color_black</item>
+        <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->
+        <item name="android:dropDownVerticalOffset">0dp</item>
+        <!-- 弹出层水平方向上的偏移，即距离屏幕左边的距离，负值会导致右边出现空隙 -->
+        <item name="android:dropDownHorizontalOffset">0dp</item>
+    </style>
+
+    <!-- 分隔线样式 -->
+    <style name="app_dividing">
+        <item name="android:background">@color/app_dividing_bg</item>
+    </style>
+
+    <style name="app_dividing.vertical">
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="app_dividing.horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+    </style>
+
+    <!-- 进度条弹窗主题 -->
+    <style name="app_progress_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+</resources>

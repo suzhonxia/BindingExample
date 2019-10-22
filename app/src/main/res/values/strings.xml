@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BindingExample</string>
+
+    <string name="app_in_request">请求中…</string>
+</resources>
