@@ -1,3 +1,5 @@
+@file:JvmName("ContextExt")
+
 package com.sun.binding.tools.ext
 
 import android.app.ActivityManager

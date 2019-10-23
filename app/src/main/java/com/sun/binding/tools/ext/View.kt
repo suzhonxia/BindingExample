@@ -1,3 +1,5 @@
+@file:JvmName("ViewExt")
+
 package com.sun.binding.tools.ext
 
 import android.content.Context

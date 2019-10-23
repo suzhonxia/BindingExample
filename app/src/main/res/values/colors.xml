@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 应用主色调 -->
-    <color name="app_colorPrimary">#3C83FC</color>
-    <!-- 应用主要暗色调 -->
-    <color name="app_colorPrimaryDark">#3C83FC</color>
-    <!-- 控件选中默认颜色 -->
-    <color name="app_colorAccent">#D81B60</color>
+    <!-- 主题颜色 -->
+    <color name="app_color_main">#FFC613</color>
+    <color name="app_colorPrimary">@color/app_color_main</color>
+    <color name="app_colorPrimaryDark">@color/app_color_main</color>
+    <color name="app_colorAccent">@color/app_color_main</color>
 
     <color name="app_white">#FFFFFF</color>
-    <color name="app_gray">#999999</color>
+    <color name="app_black">#000000</color>
     <color name="app_transparent">#00FFFFFF</color>
 
     <!-- 窗口默认背景色 -->
-    <color name="app_window_bg">#FFFFFFFF</color>
+    <color name="app_window_bg">#F8F8F8</color>
     <!-- 欢迎界面背景色 -->
     <color name="app_welcome_bg">#FFFFFF</color>
     <!-- 分隔线颜色 -->
@@ -28,8 +27,4 @@
     <color name="app_text_color_gray_light">#999999</color>
     <!-- 字体颜色 - 白色 -->
     <color name="app_text_color_white">#FFFFFF</color>
-    <!-- 字体颜色 - 红色 -->
-    <color name="app_text_color_red">#A71201</color>
-    <!-- 字体颜色 - 蓝色 -->
-    <color name="app_text_color_blue">#3C83FC</color>
 </resources>

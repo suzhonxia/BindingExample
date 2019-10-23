@@ -1,3 +1,5 @@
+@file:JvmName("ThreadExt")
+
 package com.sun.binding.tools.ext
 
 import android.os.Looper

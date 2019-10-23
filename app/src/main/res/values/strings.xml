@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">BindingExample</string>
 
+    <string name="home_tab">首页</string>
+    <string name="educ_tab">亲职教育</string>
+    <string name="circle_tab">同学圈</string>
+    <string name="mine_tab">我的</string>
+
+    <string name="app_press_again_to_exit">再次返回退出</string>
     <string name="app_in_request">请求中…</string>
 </resources>

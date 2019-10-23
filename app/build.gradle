@@ -93,7 +93,7 @@ dependencies {
     // RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.1.0-beta05'
     // 约束性布局
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
 
     // Lifecycle 拓展
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
@@ -118,6 +118,9 @@ dependencies {
 
     // MMKV 数据存储
     implementation 'com.tencent:mmkv:1.0.23'
+
+    // BottomNavigationViewEx
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
 
     // SmartRefreshLayout
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeTab"
+        android:checked="true"
+        android:icon="@drawable/main_home_tab"
+        android:title="@string/home_tab" />
+
+    <item
+        android:id="@+id/educTab"
+        android:checked="true"
+        android:icon="@drawable/main_educ_tab"
+        android:title="@string/educ_tab" />
+
+    <item
+        android:id="@+id/emptyTab"
+        android:title="" />
+
+    <item
+        android:id="@+id/circleTab"
+        android:checked="true"
+        android:icon="@drawable/main_circle_tab"
+        android:title="@string/circle_tab" />
+
+    <item
+        android:id="@+id/mineTab"
+        android:checked="true"
+        android:icon="@drawable/main_mine_tab"
+        android:title="@string/mine_tab" />
+</menu>

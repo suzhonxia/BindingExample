@@ -1,3 +1,5 @@
+@file:JvmName("ThrowableExt")
+
 package com.sun.binding.tools.ext
 
 import java.io.PrintWriter
