@@ -16,6 +16,7 @@ import kotlin.system.exitProcess
  * - 用于 Activity 管理和应用程序退出
  * - 强烈建议在 Application$onCreate 方法中调用 register 方法注册，否则会导致 Activity 管理不完整
  */
+@Suppress("unused")
 object AppManager {
 
     /** Application 对象 */
@@ -358,5 +359,22 @@ object AppManager {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    /**
+     * 获取当前进程的进程名
+     *
+     * @return 进程名
+     */
+    fun getCurProcessName(context: Context): String {
+        val pid = android.os.Process.myPid()
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+
+        for (appProcess in activityManager.runningAppProcesses) {
+            if (appProcess.pid == pid) {
+                return appProcess.processName
+            }
+        }
+        return ""
     }
 }
