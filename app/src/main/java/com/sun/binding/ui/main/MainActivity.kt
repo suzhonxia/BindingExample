@@ -6,7 +6,6 @@ import com.sun.binding.R
 import com.sun.binding.constants.MAIN_BACK_PRESS_INTERVAL_MS
 import com.sun.binding.databinding.MainActivityBinding
 import com.sun.binding.model.main.MainViewModel
-import com.sun.binding.tools.ext.toSnackbarMsg
 import com.sun.binding.tools.ext.toToastMsg
 import com.sun.binding.tools.tool.FragVpAdapter
 import com.sun.binding.tools.tool.getString
@@ -14,7 +13,6 @@ import com.sun.binding.ui.base.BaseActivity
 import com.tencent.mmkv.MMKV
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.math.absoluteValue
-import kotlin.system.exitProcess
 
 class MainActivity : BaseActivity<MainViewModel, MainActivityBinding>() {
     override val viewModel: MainViewModel by viewModel()

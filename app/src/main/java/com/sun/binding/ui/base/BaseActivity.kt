@@ -38,11 +38,11 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
     }
 
     override fun startAnim() {
-        overridePendingTransition(R.anim.app_anim_right_in, R.anim.app_anim_alpha_out)
+        overridePendingTransition(R.anim.app_anim_left_in, R.anim.app_anim_right_out)
     }
 
     override fun finishAnim() {
-        overridePendingTransition(R.anim.app_anim_alpha_in, R.anim.app_anim_right_out)
+        overridePendingTransition(R.anim.app_anim_right_in, R.anim.app_anim_left_out)
     }
 
     /**
