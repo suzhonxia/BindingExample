@@ -17,10 +17,7 @@ import com.sun.binding.tools.ext.condition
  * @param bnv [BottomNavigationViewEx] 对象
  * @param enableAnimation 启用或禁用点击项目动画
  */
-@BindingAdapter(
-    "android:bind_bnv_enable_animation",
-    requireAll = false
-)
+@BindingAdapter("android:bind_bnv_enable_animation")
 fun setNavigationAnimation(bnv: BottomNavigationViewEx, enableAnimation: Boolean) {
     bnv.enableAnimation(enableAnimation.condition)
 }

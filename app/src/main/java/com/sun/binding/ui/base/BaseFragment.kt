@@ -1,49 +1,77 @@
 package com.sun.binding.ui.base
 
-import android.content.res.Resources
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ToastUtils
 import com.google.android.material.snackbar.Snackbar
-import com.sun.binding.R
 import com.sun.binding.mvvm.BaseViewModel
 import com.sun.binding.tools.helper.ProgressDialogHelper
 import com.sun.binding.tools.helper.XPopupDialogHelper
 
 /**
- * Activity 基类
+ * Fragment 基类
+ * - 添加 [lazyInitView] 方法进行页面懒加载
+ * - 维护 [isSwiftLoad] : 是否开启懒加载
  */
-abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseBindingActivity<VM, DB>() {
+abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseBindingFragment<VM, DB>() {
+
+    /** 数据是否初始化 */
+    private var isInitData: Boolean = false
+
+    /** Fragment 是否可见 */
+    private var isVisibleToUser: Boolean = false
+
+    /** View 是否加载完成 */
+    private var isPrepareView: Boolean = false
+
+    /** 是否直接加载(不适用懒加载) */
+    protected var isSwiftLoad: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         observeData()
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        isPrepareView = true
+        if (isSwiftLoad) {
+            isVisibleToUser = true
+
+            // 初始化布局
+            lazyInitView()
+        }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        lazyInitView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        isVisibleToUser = true
+        lazyInitView()
+    }
+
     override fun onPause() {
         super.onPause()
-        ProgressDialogHelper.dismiss()
+        isVisibleToUser = false
+        lazyInitView()
     }
 
-    override fun getResources(): Resources {
-        // 禁止App 字体大小随系统字体大小调节
-        val resources = super.getResources()
-        if (resources != null && resources.configuration.fontScale != 1.0F) {
-            val configuration = resources.configuration
-            configuration.fontScale = 1.0F
-            createConfigurationContext(configuration)
+    /**
+     * 懒加载方法
+     */
+    private fun lazyInitView() {
+        if (!isInitData && isVisibleToUser && isPrepareView) {
+            isInitData = true
+            initView()
         }
-        return resources
-    }
-
-    override fun startAnim() {
-        overridePendingTransition(R.anim.app_anim_left_in, R.anim.app_anim_right_out)
-    }
-
-    override fun finishAnim() {
-        overridePendingTransition(R.anim.app_anim_right_in, R.anim.app_anim_left_out)
     }
 
     /**
@@ -74,7 +102,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
             snackBar.show()
         })
         viewModel.progressData.observe(this, Observer { progress ->
-            if (progress == null || progress.show) {
+            if (progress == null || !progress.show) {
                 ProgressDialogHelper.dismiss()
             } else {
                 ProgressDialogHelper.show(mContext, progress)
@@ -82,8 +110,8 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
         })
         viewModel.uiCloseData.observe(this, Observer { close ->
             close?.let { model ->
-                setResult(model.resultCode, model.result)
-                finish()
+                mContext.setResult(model.resultCode, model.result)
+                mContext.finish()
             }
         })
         viewModel.toastData.observe(this, Observer { toast ->

@@ -7,6 +7,7 @@ import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.RelativeLayout
 
 /**
  * 当前 View 是否被覆盖
@@ -74,3 +75,11 @@ fun View?.hideSoftKeyboard() {
             .hideSoftInputFromWindow(this.windowToken, 0)
 }
 
+/**
+ * 构造一个居中的相对布局 Params
+ */
+fun createCenterRelativeLayoutParams(width: Int = ViewGroup.LayoutParams.WRAP_CONTENT, height: Int = ViewGroup.LayoutParams.WRAP_CONTENT): RelativeLayout.LayoutParams {
+    val params = RelativeLayout.LayoutParams(width, height)
+    params.addRule(RelativeLayout.CENTER_IN_PARENT)
+    return params
+}

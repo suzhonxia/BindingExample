@@ -1,5 +1,6 @@
 package com.sun.binding.application
 
+import com.sun.binding.model.home.HomeViewModel
 import com.sun.binding.model.main.MainViewModel
 import com.sun.binding.model.main.SplashViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -27,4 +28,5 @@ val adapterModule : Module = module {  }
 val viewModelModule: Module = module {
     viewModel { SplashViewModel() }
     viewModel { MainViewModel() }
+    viewModel { HomeViewModel() }
 }

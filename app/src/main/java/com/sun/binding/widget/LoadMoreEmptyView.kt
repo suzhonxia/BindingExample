@@ -14,6 +14,7 @@ import com.sun.binding.R
 import com.sun.binding.databinding.AppSmartRefreshFooterBinding
 import com.sun.binding.tools.ext.createCenterRelativeLayoutParams
 import com.sun.binding.tools.tool.getColor
+import com.sun.binding.tools.tool.getString
 
 /**
  * 自定义的上拉加载更对界面(支持 noMore 显示)
@@ -34,7 +35,7 @@ class LoadMoreEmptyView(context: Context?) : RelativeLayout(context), RefreshFoo
         if (this.noMoreData != noMoreData) {
             this.noMoreData = noMoreData
             if (noMoreData) {
-                binding.tvTip.text = R.string.app_smart_no_more.toString()
+                binding.tvTip.text = R.string.app_smart_no_more.getString()
                 binding.tvTip.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.app_smart_no_more, 0, 0, 0)
                 binding.tvGap.visibility = View.VISIBLE
             } else {

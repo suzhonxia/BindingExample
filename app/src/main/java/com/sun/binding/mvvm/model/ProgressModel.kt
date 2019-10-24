@@ -9,8 +9,10 @@ data class ProgressModel
  *
  * @param show 是否显示
  * @param cancelable 能否取消
+ * @param loadingMessage loading 文本
  */
 constructor(
-        var show: Boolean = true,
-        var cancelable: Boolean = true
+    var show: Boolean = true,
+    var cancelable: Boolean = true,
+    var loadingMessage: String? = null
 )

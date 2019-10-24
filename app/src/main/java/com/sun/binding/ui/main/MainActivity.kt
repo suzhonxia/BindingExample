@@ -10,6 +10,10 @@ import com.sun.binding.tools.ext.toToastMsg
 import com.sun.binding.tools.tool.FragVpAdapter
 import com.sun.binding.tools.tool.getString
 import com.sun.binding.ui.base.BaseActivity
+import com.sun.binding.ui.circle.CircleFragment
+import com.sun.binding.ui.educ.EducFragment
+import com.sun.binding.ui.home.HomeFragment
+import com.sun.binding.ui.mine.MineFragment
 import com.tencent.mmkv.MMKV
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.math.absoluteValue
@@ -32,7 +36,10 @@ class MainActivity : BaseActivity<MainViewModel, MainActivityBinding>() {
             .manager(supportFragmentManager)
             .frags(
                 arrayListOf(
-
+                    HomeFragment.newInstance(),
+                    EducFragment.newInstance(),
+                    CircleFragment.newInstance(),
+                    MineFragment.newInstance()
                 )
             )
             .build()

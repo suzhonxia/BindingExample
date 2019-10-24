@@ -14,6 +14,6 @@ data class UiCloseModel
  * @param result 返回数据 默认 null
  */
 constructor(
-        var resultCode: Int = Activity.RESULT_CANCELED,
-        var result: Intent? = null
+    var resultCode: Int = Activity.RESULT_CANCELED,
+    var result: Intent? = null
 )
