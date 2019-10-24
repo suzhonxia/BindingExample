@@ -4,8 +4,12 @@ import android.annotation.SuppressLint
 import android.app.Application
 import com.blankj.utilcode.util.LogUtils
 import com.jeremyliao.liveeventbus.LiveEventBus
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.sun.binding.BuildConfig
+import com.sun.binding.R
 import com.sun.binding.tools.manager.AppManager
+import com.sun.binding.widget.LoadMoreEmptyView
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -14,6 +18,23 @@ import org.koin.core.context.startKoin
  * Application 初始化逻辑
  */
 class ApplicationSolver(private val app: Application) : Runnable {
+    companion object {
+        init {
+            SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, _ ->
+                ClassicsHeader(context)
+                    .setTextSizeTime(10F)
+                    .setTextSizeTitle(11F)
+                    .setPrimaryColorId(R.color.app_color_main)
+            }
+
+            SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->
+                layout.setEnableLoadMoreWhenContentNotFull(true)
+                layout.setEnableFooterFollowWhenNoMoreData(true)
+                LoadMoreEmptyView(context)
+            }
+        }
+    }
+
     override fun run() {
         initAppInfo()
     }

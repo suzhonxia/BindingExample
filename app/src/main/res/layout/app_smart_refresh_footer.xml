@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/app_window_bg"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/tvGap"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center_vertical"
+            android:background="#DDDDDD"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/app_window_bg"
+            android:gravity="center_horizontal">
+
+            <ProgressBar
+                android:id="@+id/footerBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvTip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_toEndOf="@+id/footerBar"
+                android:drawableStart="@drawable/app_smart_no_more"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/app_smart_no_more"
+                android:textColor="#6F6F6F"
+                android:textSize="15sp"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </FrameLayout>
+</layout>
+
+
