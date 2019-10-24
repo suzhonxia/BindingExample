@@ -21,10 +21,7 @@ class ApplicationSolver(private val app: Application) : Runnable {
     companion object {
         init {
             SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, _ ->
-                ClassicsHeader(context)
-                    .setTextSizeTime(10F)
-                    .setTextSizeTitle(11F)
-                    .setPrimaryColorId(R.color.app_color_main)
+                ClassicsHeader(context).setPrimaryColorId(R.color.app_window_bg)
             }
 
             SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->
