@@ -22,11 +22,6 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
         observeData()
     }
 
-    override fun onPause() {
-        super.onPause()
-        ProgressDialogHelper.dismiss()
-    }
-
     override fun getResources(): Resources {
         // 禁止App 字体大小随系统字体大小调节
         val resources = super.getResources()

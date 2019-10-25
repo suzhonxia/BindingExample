@@ -1,11 +1,16 @@
 package com.sun.binding.ui.main
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.LogUtils
 import com.sun.binding.R
 import com.sun.binding.constants.MAIN_BACK_PRESS_INTERVAL_MS
 import com.sun.binding.databinding.MainActivityBinding
 import com.sun.binding.model.main.MainViewModel
+import com.sun.binding.tools.ext.setMainColorStatusBar
+import com.sun.binding.tools.ext.setWhiteStatusBar
 import com.sun.binding.tools.ext.toToastMsg
 import com.sun.binding.tools.tool.FragVpAdapter
 import com.sun.binding.tools.tool.getString
@@ -43,6 +48,16 @@ class MainActivity : BaseActivity<MainViewModel, MainActivityBinding>() {
                 )
             )
             .build()
+    }
+
+    override fun initObserve() {
+        viewModel.navTabIndex.observe(this, Observer { tabIndex ->
+            if (tabIndex == 3) {
+                setMainColorStatusBar()
+            } else {
+                setWhiteStatusBar()
+            }
+        })
     }
 
     override fun onBackPressed() {

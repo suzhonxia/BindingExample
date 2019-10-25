@@ -1,6 +1,7 @@
 package com.sun.binding.model.main
 
 import android.view.MenuItem
+import androidx.lifecycle.MutableLiveData
 import com.sun.binding.R
 import com.sun.binding.constants.TAB_MAIN_BOTTOM_CIRCLE
 import com.sun.binding.constants.TAB_MAIN_BOTTOM_EDUC
@@ -18,6 +19,9 @@ class MainViewModel : BaseViewModel() {
     /** ViewPager 当前位置 */
     val currentItem: BindingField<Int> = BindingField(TAB_MAIN_BOTTOM_HOMEPAGE)
 
+    /** BottomNavigationView Tab 位置 */
+    val navTabIndex = MutableLiveData<Int>(currentItem.get())
+
     /** 底部 Tab 选中回调 */
     val itemSelectedListener: (MenuItem) -> Boolean = { menuItem ->
         if (menuItem.itemId == R.id.emptyTab) {
@@ -32,6 +36,7 @@ class MainViewModel : BaseViewModel() {
             }
             if (currentItem.get() != targetPosition) {
                 currentItem.set(targetPosition)
+                navTabIndex.postValue(currentItem.get())
             }
             true
         }
