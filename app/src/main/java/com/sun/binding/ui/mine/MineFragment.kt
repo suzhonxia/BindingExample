@@ -1,16 +1,15 @@
 package com.sun.binding.ui.mine
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.sun.binding.R
+import com.sun.binding.databinding.MineFragmentBinding
+import com.sun.binding.model.mine.MineViewModel
+import com.sun.binding.ui.base.BaseFragment
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * 主界面 - 我的 Tab
  */
-class MineFragment : Fragment() {
+class MineFragment : BaseFragment<MineViewModel, MineFragmentBinding>() {
     companion object {
         /**
          * 创建 Fragment
@@ -22,7 +21,11 @@ class MineFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.mine_fragment, container, false)
+    override val viewModel: MineViewModel by viewModel()
+
+    override val layoutResId: Int = R.layout.mine_fragment
+
+    override fun initView() {
+
     }
 }

@@ -22,6 +22,7 @@ abstract class BaseBindingActivity<VM : BaseMvvmViewModel, DB : ViewDataBinding>
     override fun setContentView(layoutResID: Int) {
         // 初始化 DataBinding
         mBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), layoutResID, null, false)
+        mBinding.root.fitsSystemWindows = true
 
         // 绑定 ViewModel
         mBinding.setVariable(BR.viewModel, viewModel)

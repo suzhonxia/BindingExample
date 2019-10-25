@@ -26,6 +26,26 @@ import com.sun.binding.tools.ext.orTrue
  * @param click 点击回调
  * @param throttle 点击筛选时间，单位 ms
  */
+@BindingAdapter("android:bind_view_click", "android:bind_onClick_throttle", requireAll = false)
+fun setViewClick(v: View, click: ((View) -> Unit)?, throttle: Int?) {
+    val interval = throttle ?: 1000
+    v.setOnClickListener {
+        val lastTime = (v.getTag(R.id.data_binding_view_click_tag) as? Long) ?: 0L
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - lastTime > interval) {
+            click?.invoke(v)
+            v.setTag(R.id.data_binding_view_click_tag, currentTime)
+        }
+    }
+}
+
+/**
+ * 设置点击事件
+ *
+ * @param v [View] 对象
+ * @param click 点击回调
+ * @param throttle 点击筛选时间，单位 ms
+ */
 @BindingAdapter("android:bind_onClick", "android:bind_onClick_throttle", requireAll = false)
 fun setViewOnClick(v: View, click: ((View) -> Unit)?, throttle: Int?) {
     val interval = throttle ?: 1000

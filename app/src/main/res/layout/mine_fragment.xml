@@ -1,19 +1,319 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.sun.binding.model.mine.MineViewModel" />
+
+        <variable
+            name="mineConstant"
+            type="com.sun.binding.constants.MineConstant" />
     </data>
 
-    <LinearLayout
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:bind_smart_loadMore_enable="@{false}"
+        android:bind_smart_onRefresh="@{viewModel.onRefresh}"
+        android:bind_smart_refresh_enable="@{true}"
+        android:bind_smart_refreshing="@={viewModel.refreshing}">
 
-        <TextView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/mine_tab" />
-    </LinearLayout>
+            android:background="@color/app_white"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_color_main"
+                    android:paddingBottom="20dp">
+
+                    <ImageView
+                        android:id="@+id/ivUserAvatar"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="25dp"
+                        android:bind_iv_img_circle="@{true}"
+                        android:bind_iv_img_default="@{@drawable/app_user_default_avatar}"
+                        android:bind_iv_img_url="@{viewModel.userInfoData.avatar}"
+                        android:bind_view_click="@{viewModel.onUserInfoClick}"
+                        android:contentDescription="@null"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/app_user_default_avatar" />
+
+                    <ImageView
+                        android:id="@+id/ivUserGender"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:bind_visibility="@{(viewModel.userInfoData.gender == 1 || viewModel.userInfoData.gender == 2)}"
+                        android:contentDescription="@null"
+                        android:src="@{viewModel.userInfoData.gender == 1 ? @drawable/app_user_boy_white : @drawable/app_user_girl_white}"
+                        app:layout_constraintBottom_toBottomOf="@id/ivUserAvatar"
+                        app:layout_constraintRight_toRightOf="@id/ivUserAvatar"
+                        tools:src="@drawable/app_user_boy_white" />
+
+                    <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{viewModel.userInfoData.nickname}"
+                        android:textColor="@color/app_text_color_black_light"
+                        android:textSize="17sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ivUserGender"
+                        tools:text="王小明" />
+
+                    <TextView
+                        android:id="@+id/tvUserIdentity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@{`学院ID：` + viewModel.userInfoData.user_id}"
+                        android:textColor="@color/app_text_color_black_light"
+                        android:textSize="13sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvUserName"
+                        tools:text="学院ID：13097" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:minWidth="210dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvUserIdentity">
+
+                        <TextView
+                            android:id="@+id/tvUserFocus"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/mine_focus_shape"
+                            android:bind_view_click="@{viewModel.onUserInfoClick}"
+                            android:gravity="center"
+                            android:text="@{viewModel.userInfoData.focus_num + ` 关注`}"
+                            android:textColor="@color/app_text_color_black_light"
+                            android:textSize="15sp"
+                            tools:text="12 关注" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/tvUserFans"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/mine_fans_shape"
+                            android:bind_view_click="@{viewModel.onUserInfoClick}"
+                            android:gravity="center"
+                            android:text="@{viewModel.userInfoData.fans_num + ` 粉丝`}"
+                            android:textColor="@color/app_text_color_black_light"
+                            android:textSize="15sp"
+                            tools:text="36 粉丝" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvUserInfoEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:bind_view_click="@{viewModel.onUserInfoClick}"
+                        android:drawableStart="@drawable/mine_user_info_edit"
+                        android:drawablePadding="4dp"
+                        android:padding="15dp"
+                        android:text="编辑资料"
+                        android:textColor="@color/app_text_color_black_light"
+                        android:textSize="15sp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="HardcodedText" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_window_bg"
+                    android:bind_visibility="@{viewModel.userInfoData.shop != null &amp;&amp; viewModel.userInfoData.shop.isShow == 1}"
+                    android:paddingBottom="16dp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:background="@color/app_color_main" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/mine_shop_shape"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/app_right_arrow_gray"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="10dp"
+                            android:singleLine="true"
+                            android:text="@{viewModel.userInfoData.nickname + `的店铺`}"
+                            android:textColor="@color/app_text_color_black"
+                            android:textSize="16sp"
+                            tools:text="XXX的店铺" />
+
+                        <LinearLayout
+                            android:id="@+id/shopNavContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:bind_view_click="@{viewModel.onMenuClick}"
+                        android:drawableTop="@drawable/mine_icon_collected"
+                        android:drawablePadding="6dp"
+                        android:gravity="center"
+                        android:paddingTop="18dp"
+                        android:paddingBottom="18dp"
+                        android:tag="@{mineConstant.MINE_COLLECTED_MENU}"
+                        android:text="收藏的课程"
+                        android:textColor="@color/app_text_color_black_light"
+                        android:textSize="15sp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:bind_view_click="@{viewModel.onMenuClick}"
+                        android:drawableTop="@drawable/mine_icon_product"
+                        android:drawablePadding="6dp"
+                        android:gravity="center"
+                        android:paddingTop="18dp"
+                        android:paddingBottom="18dp"
+                        android:tag="@{mineConstant.MINE_PRODUCT_MENU}"
+                        android:text="我的作品"
+                        android:textColor="@color/app_text_color_black_light"
+                        android:textSize="15sp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:bind_view_click="@{viewModel.onMenuClick}"
+                        android:drawableTop="@drawable/mine_icon_asset"
+                        android:drawablePadding="6dp"
+                        android:gravity="center"
+                        android:paddingTop="18dp"
+                        android:paddingBottom="18dp"
+                        android:tag="@{mineConstant.MINE_ASSET_MENU}"
+                        android:text="我的教具"
+                        android:textColor="@color/app_text_color_black_light"
+                        android:textSize="15sp"
+                        tools:ignore="HardcodedText" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:background="@color/app_window_bg" />
+
+                <com.sun.binding.widget.CustomItemView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:bind_visibility="@{viewModel.userInfoData.award != null}"
+                    app:iconRes="@drawable/mine_icon_bounty"
+                    app:labelText="我的学习奖励金"
+                    app:lineMargin="true"
+                    app:showTip="true"
+                    app:tipColor="@color/app_text_color_gray_light"
+                    app:tipText="@{viewModel.userInfoData.award != null ? viewModel.userInfoData.award.amt : ``}" />
+
+                <com.sun.binding.widget.CustomItemView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconRes="@drawable/mine_icon_course"
+                    app:labelText="老用户课程通道"
+                    app:lineMargin="true" />
+
+                <LinearLayout
+                    android:id="@+id/menuContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <com.sun.binding.widget.CustomItemView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconRes="@drawable/mine_icon_ticket"
+                    app:labelText="我的余额券"
+                    app:lineMargin="true" />
+
+                <com.sun.binding.widget.CustomItemView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconRes="@drawable/mine_icon_info"
+                    app:labelText="信息补充"
+                    app:lineMargin="true" />
+
+                <com.sun.binding.widget.CustomItemView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconRes="@drawable/mine_icon_about"
+                    app:labelText="关于我们"
+                    app:lineMargin="true" />
+
+                <com.sun.binding.widget.CustomItemView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconRes="@drawable/mine_icon_setup"
+                    app:labelText="设置"
+                    app:showLine="false" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </layout>

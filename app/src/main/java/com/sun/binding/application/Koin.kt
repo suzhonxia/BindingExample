@@ -3,6 +3,7 @@ package com.sun.binding.application
 import com.sun.binding.model.home.HomeViewModel
 import com.sun.binding.model.main.MainViewModel
 import com.sun.binding.model.main.SplashViewModel
+import com.sun.binding.model.mine.MineViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -29,4 +30,5 @@ val viewModelModule: Module = module {
     viewModel { SplashViewModel() }
     viewModel { MainViewModel() }
     viewModel { HomeViewModel() }
+    viewModel { MineViewModel() }
 }
