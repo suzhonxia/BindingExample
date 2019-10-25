@@ -2,16 +2,22 @@ package com.sun.binding.model.mine
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import com.blankj.utilcode.util.LogUtils
 import com.sun.binding.R
+import com.sun.binding.constants.SP_KEY_TOKEN
 import com.sun.binding.entity.UserInfoEntity
 import com.sun.binding.mvvm.BaseViewModel
 import com.sun.binding.mvvm.binding.BindingField
+import com.sun.binding.mvvm.model.SnackbarModel
+import com.sun.binding.net.repository.UserRepository
+import com.sun.binding.tools.ext.getStackTraceString
 import com.sun.binding.tools.ext.toToastMsg
+import com.sun.binding.tools.helper.MMKVHelper
 import com.sun.binding.ui.base.tagableScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MineViewModel : BaseViewModel() {
+class MineViewModel(private val userRepository: UserRepository) : BaseViewModel() {
 
     /** 标记 - 是否正在刷新 */
     val refreshing: BindingField<Boolean> = BindingField(false)
@@ -41,8 +47,17 @@ class MineViewModel : BaseViewModel() {
      */
     private fun getUserPrivateData() {
         tagableScope.launch {
-            delay(1000)
-            refreshing.set(false)
+            try {
+                val userInfo = userRepository.getUserInfo()
+                if (userInfo.success()) {
+                    MMKVHelper.saveString(SP_KEY_TOKEN, userInfo.data!!.token)
+                }
+                LogUtils.d("getUserPrivateData userInfo = $userInfo")
+            } catch (throwable: Throwable) {
+                snackbarData.postValue(SnackbarModel(throwable.getStackTraceString()))
+            } finally {
+                refreshing.set(false)
+            }
         }
     }
 }
