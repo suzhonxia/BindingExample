@@ -34,18 +34,20 @@ object ProgressDialogHelper {
 
         // 加载布局
         val binding = AppDialogProgressBinding.inflate(LayoutInflater.from(activity), null, false)
-        binding.message = progress.loadingMessage ?: R.string.app_in_request.getString()
+        binding.message = if (progress.loadingMessage.isNullOrEmpty()) R.string.app_in_request.getString() else progress.loadingMessage
 
         // 初始化 Dialog
         mDialog = Dialog(activity, R.style.app_progress_dialog)
-        // 设置能否取消
-        mDialog!!.setCancelable(progress.cancelable)
-        // 设置点击弹窗外不能取消
-        mDialog!!.setCanceledOnTouchOutside(false)
-        // 设置弹窗布局
-        mDialog!!.setContentView(binding.root)
-        // 显示
-        mDialog!!.show()
+        mDialog?.let {
+            // 设置能否取消
+            it.setCancelable(progress.cancelable)
+            // 设置点击弹窗外不能取消
+            it.setCanceledOnTouchOutside(false)
+            // 设置弹窗布局
+            it.setContentView(binding.root)
+            // 显示
+            it.show()
+        }
     }
 
     private fun dismissDialog() {
