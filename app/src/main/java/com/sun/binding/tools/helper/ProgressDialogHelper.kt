@@ -10,7 +10,7 @@ import com.sun.binding.mvvm.model.ProgressModel
 import com.sun.binding.tools.ext.getStackTraceString
 import com.sun.binding.tools.ext.isMainProcess
 import com.sun.binding.tools.ext.runOnMainThread
-import com.sun.binding.tools.manager.AppManager
+import com.sun.binding.tools.manager.AppStackManager
 import com.sun.binding.tools.manager.MainThreadManager
 import com.sun.binding.tools.tool.getString
 
@@ -71,7 +71,7 @@ object ProgressDialogHelper {
      * @param progress Progress 配置 Model
      */
     fun show(activity: Activity, progress: ProgressModel) {
-        if (AppManager.getContext().isMainProcess) {
+        if (AppStackManager.getContext().isMainProcess) {
             // 主线程
             showDialog(activity, progress)
         } else {
@@ -86,7 +86,7 @@ object ProgressDialogHelper {
      * 隐藏弹窗
      */
     fun dismiss() {
-        if (AppManager.getContext().isMainProcess) {
+        if (AppStackManager.getContext().isMainProcess) {
             // 主线程
             dismissDialog()
         } else {

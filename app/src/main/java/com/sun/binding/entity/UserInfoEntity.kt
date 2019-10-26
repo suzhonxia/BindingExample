@@ -31,7 +31,18 @@ constructor(
     var shop: UserShopEntity? = null,
     var award: UserAwardEntity? = null,
     var menu_list: List<UserMenuEntity>? = arrayListOf()
-)
+) {
+    companion object {
+        fun defaultInstance(): UserInfoEntity {
+            val entity = UserInfoEntity()
+            entity.user_id = ""
+            entity.nickname = ""
+            entity.focus_num = ""
+            entity.fans_num = ""
+            return entity
+        }
+    }
+}
 
 /**
  * 用户商城数据
@@ -46,7 +57,7 @@ data class UserShopEntity
  */
 constructor(
     var isShow: Int = 0,
-    var url: String = "",
+    var url: String? = "",
     var nav: List<UserShopNavEntity>? = arrayListOf()
 )
 
@@ -81,4 +92,6 @@ constructor(
     var url: String? = "",
     var icon: String? = "",
     var tips: String? = ""
-)
+) {
+    fun shouldShow() = is_show == 1
+}

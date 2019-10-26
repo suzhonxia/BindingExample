@@ -3,7 +3,6 @@ package com.sun.binding.ui.home
 import com.sun.binding.R
 import com.sun.binding.databinding.HomeFragmentBinding
 import com.sun.binding.model.home.HomeViewModel
-import com.sun.binding.mvvm.model.ProgressModel
 import com.sun.binding.ui.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -35,7 +34,7 @@ class HomeFragment : BaseFragment<HomeViewModel, HomeFragmentBinding>() {
     }
 
     override fun initView() {
-        viewModel.progressData.postValue(ProgressModel(true))
+
     }
 
     override fun initObserve() {

@@ -1,12 +1,10 @@
 package com.sun.binding.application
 
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
 import com.sun.binding.BuildConfig
 import com.sun.binding.constants.NET_CACHE_FILE_SIZE
 import com.sun.binding.constants.NET_TIMEOUT_MS
 import com.sun.binding.constants.SP_KEY_COOKIES
-import com.sun.binding.constants.SP_KEY_TOKEN
 import com.sun.binding.entity.CookieEntity
 import com.sun.binding.model.home.HomeViewModel
 import com.sun.binding.model.main.MainViewModel
@@ -15,9 +13,9 @@ import com.sun.binding.model.mine.MineViewModel
 import com.sun.binding.net.UrlDefinition
 import com.sun.binding.net.WebService
 import com.sun.binding.net.repository.UserRepository
-import com.sun.binding.tools.ext.toJson
 import com.sun.binding.tools.helper.MMKVHelper
-import com.tencent.mmkv.MMKV
+import com.sun.binding.tools.manager.AppUserManager
+import com.sun.binding.tools.util.showLog
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.viewmodel.dsl.viewModel
@@ -36,8 +34,7 @@ val netModule: Module = module {
             .retryOnConnectionFailure(true)
             .cookieJar(object : CookieJar {
                 override fun loadForRequest(url: HttpUrl): List<Cookie> {
-                    val cookieEntity = MMKVHelper.getObject(SP_KEY_COOKIES, CookieEntity::class.java)
-                    return cookieEntity?.cookies.orEmpty()
+                    return MMKVHelper.getObject(SP_KEY_COOKIES, CookieEntity::class.java)?.cookies.orEmpty()
                 }
 
                 override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
@@ -45,20 +42,20 @@ val netModule: Module = module {
                         val ls = arrayListOf<Cookie>()
                         ls.addAll(cookies)
                         val cookieEntity = CookieEntity(ls)
-                        MMKVHelper.saveString(SP_KEY_COOKIES, cookieEntity.toJson())
+                        MMKVHelper.saveObject(SP_KEY_COOKIES, cookieEntity)
                     }
                 }
             })
-            .addNetworkInterceptor(HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
+            .addInterceptor(HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
                 override fun log(message: String) {
-                    if (BuildConfig.DEBUG) {
-                        LogUtils.d("Net", message)
-                    }
+                    showLog("OkHttp", message)
                 }
-            }))
+            }).apply {
+                this.level = HttpLoggingInterceptor.Level.BODY
+            })
             .addInterceptor(object : Interceptor {
                 private val appKey: String = "dajlkdjakldajkdl"
-                private val token: String = MMKVHelper.getString(SP_KEY_TOKEN, "")
+                private val token: String = if (AppUserManager.getToken().isNullOrEmpty()) "3d11d203-b845-4d70-9c3d-f7d3c15fa736" else AppUserManager.getToken()!!
                 private val userAgent: String = "JBKK/2019(Android ${BuildConfig.VERSION_NAME})/${BuildConfig.VERSION_CODE}"
 
                 override fun intercept(chain: Interceptor.Chain): Response {

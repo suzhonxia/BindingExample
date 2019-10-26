@@ -20,3 +20,6 @@ const val NET_CACHE_FILE_SIZE = 8L * 1024 * 1024
 
 /** 网络请求响应码 - 成功 */
 const val NET_RESPONSE_CODE_SUCCESS = 1
+
+/** 网络请求响应码 - Token 失效 */
+const val NET_RESPONSE_CODE_TOKEN_INVALID = 401

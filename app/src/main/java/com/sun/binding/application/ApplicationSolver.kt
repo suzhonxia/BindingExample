@@ -8,7 +8,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.sun.binding.BuildConfig
 import com.sun.binding.R
-import com.sun.binding.tools.manager.AppManager
+import com.sun.binding.tools.manager.AppStackManager
 import com.sun.binding.widget.LoadMoreEmptyView
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -37,7 +37,7 @@ class ApplicationSolver(private val app: Application) : Runnable {
     }
 
     fun init() {
-        if (app.packageName != AppManager.getCurProcessName(app)) {
+        if (app.packageName != AppStackManager.getCurProcessName(app)) {
             return
         }
 
@@ -47,7 +47,7 @@ class ApplicationSolver(private val app: Application) : Runnable {
 
     private fun initAppInfo() {
         // 注册 Activity 管理类
-        AppManager.register(app)
+        AppStackManager.register(app)
 
         // 初始化 Koin
         startKoin {

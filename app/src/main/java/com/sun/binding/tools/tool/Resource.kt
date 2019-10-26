@@ -9,7 +9,7 @@ import android.graphics.drawable.Drawable
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
 import com.blankj.utilcode.util.LogUtils
-import com.sun.binding.tools.manager.AppManager
+import com.sun.binding.tools.manager.AppStackManager
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
@@ -26,7 +26,7 @@ import java.io.InputStreamReader
  */
 @ColorInt
 fun Int.getColor(): Int {
-    return getColor(AppManager.getContext())
+    return getColor(AppStackManager.getContext())
 }
 
 /**
@@ -72,7 +72,7 @@ fun color(context: Context, @ColorRes resId: Int): Int {
  * @return 字符串
  */
 fun Int.getString(): String {
-    return getString(AppManager.getContext())
+    return getString(AppStackManager.getContext())
 }
 
 /**
@@ -115,7 +115,7 @@ fun string(context: Context, @StringRes resId: Int): String {
  * @return [Drawable] 对象
  */
 fun Int.getDrawable(): Drawable? {
-    return getDrawable(AppManager.getContext())
+    return getDrawable(AppStackManager.getContext())
 }
 
 /**
@@ -158,7 +158,7 @@ fun drawable(context: Context, @DrawableRes resId: Int): Drawable? {
  * @return 长度 px
  */
 fun Int.getDimension(): Float {
-    return getDimension(AppManager.getContext())
+    return getDimension(AppStackManager.getContext())
 }
 
 /**
@@ -201,7 +201,7 @@ fun dimension(context: Context, @DimenRes resId: Int): Float {
  * @return 长度 px
  */
 fun Int.getDimensionPixelOffset(): Int {
-    return getDimensionPixelOffset(AppManager.getContext())
+    return getDimensionPixelOffset(AppStackManager.getContext())
 }
 
 /**
@@ -246,7 +246,7 @@ fun dimensionPixelOffset(context: Context, @DimenRes resId: Int): Int {
  * @return 资源 id
  */
 fun String.getIdentifier(defType: String): Int {
-    return this.getIdentifier(AppManager.getContext(), defType)
+    return this.getIdentifier(AppStackManager.getContext(), defType)
 }
 
 /**

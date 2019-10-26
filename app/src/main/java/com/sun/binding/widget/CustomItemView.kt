@@ -10,6 +10,9 @@ import android.widget.TextView
 import com.blankj.utilcode.util.SizeUtils
 import com.sun.binding.R
 import com.sun.binding.databinding.AppLayoutCustomItemViewBinding
+import com.sun.binding.entity.UserMenuEntity
+import com.sun.binding.tools.helper.GlideHelper
+import com.sun.binding.tools.tool.getColor
 
 /**
  * 自定义 ItemView
@@ -92,5 +95,13 @@ class CustomItemView @JvmOverloads constructor(context: Context, attrs: Attribut
     fun showLineMargin() {
         lineMargin = true
         (mBinding.line.layoutParams as MarginLayoutParams).setMargins(SizeUtils.dp2px(15f), 0, SizeUtils.dp2px(15f), 0)
+    }
+
+    fun loadData(menu: UserMenuEntity) {
+        GlideHelper.loadImage(mBinding.ivIcon, menu.icon)
+        showLineMargin()
+        mBinding.tvLabel.text = menu.title
+        setTipTextAndShow(menu.tips ?: "")
+        mBinding.tvTip.setTextColor(R.color.app_text_color_gray_light.getColor())
     }
 }

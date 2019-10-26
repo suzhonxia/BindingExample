@@ -17,7 +17,7 @@ import kotlin.system.exitProcess
  * - 强烈建议在 Application$onCreate 方法中调用 register 方法注册，否则会导致 Activity 管理不完整
  */
 @Suppress("unused")
-object AppManager {
+object AppStackManager {
 
     /** Application 对象 */
     private var mApplication: Application? = null
@@ -36,34 +36,34 @@ object AppManager {
 
         override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
             onCreate(activity)
-            LogUtils.i("AppManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityCreated")
+            LogUtils.i("AppStackManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityCreated")
         }
 
         override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
-            LogUtils.i("AppManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivitySaveInstanceState")
+            LogUtils.i("AppStackManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivitySaveInstanceState")
         }
 
         override fun onActivityStarted(activity: Activity?) {
             foregroundCount++
-            LogUtils.i("AppManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityStarted")
+            LogUtils.i("AppStackManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityStarted")
         }
 
         override fun onActivityResumed(activity: Activity?) {
-            LogUtils.i("AppManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityResumed")
+            LogUtils.i("AppStackManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityResumed")
         }
 
         override fun onActivityPaused(activity: Activity?) {
-            LogUtils.i("AppManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityPaused")
+            LogUtils.i("AppStackManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityPaused")
         }
 
         override fun onActivityStopped(activity: Activity?) {
             foregroundCount--
-            LogUtils.i("AppManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityStopped")
+            LogUtils.i("AppStackManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityStopped")
         }
 
         override fun onActivityDestroyed(activity: Activity?) {
             onDestroy(activity)
-            LogUtils.i("AppManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityDestroyed")
+            LogUtils.i("AppStackManager", "Activity: ${activity?.javaClass?.simpleName} ----> onActivityDestroyed")
         }
     }
 
@@ -117,7 +117,7 @@ object AppManager {
         if (mApplication == null) {
             register(getApplicationByReflect())
             if (mApplication == null) {
-                throw NullPointerException("Application must not be null! Please register AppManager in your Application start！")
+                throw NullPointerException("Application must not be null! Please register AppStackManager in your Application start！")
             }
         }
         return mApplication!!
@@ -148,7 +148,7 @@ object AppManager {
                     ?: throw NullPointerException("u should init first")
             return app as Application
         } catch (e: Exception) {
-            LogUtils.e("AppManager", "getApplicationByReflect", e)
+            LogUtils.e("AppStackManager", "getApplicationByReflect", e)
         }
         throw NullPointerException("u should init first")
     }

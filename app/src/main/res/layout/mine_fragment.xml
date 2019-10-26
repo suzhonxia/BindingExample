@@ -181,6 +181,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:bind_onClick="@{viewModel.onShopClick}"
                             android:drawableEnd="@drawable/app_right_arrow_gray"
                             android:ellipsize="end"
                             android:maxLines="1"
@@ -199,6 +200,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:bind_mine_shop_nav="@{viewModel.userInfoData.shop == null ? null : viewModel.userInfoData.shop.nav}"
                             android:orientation="horizontal" />
                     </LinearLayout>
                 </FrameLayout>
@@ -265,7 +267,7 @@
                 <com.sun.binding.widget.CustomItemView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:bind_visibility="@{viewModel.userInfoData.award != null}"
+                    android:bind_visibility="@{viewModel.userInfoData.award != null &amp;&amp; !viewModel.userInfoData.award.amt.equals(`none`)}"
                     app:iconRes="@drawable/mine_icon_bounty"
                     app:labelText="我的学习奖励金"
                     app:lineMargin="true"
@@ -284,6 +286,7 @@
                     android:id="@+id/menuContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:bind_mine_menu="@{viewModel.userInfoData.menu_list}"
                     android:orientation="vertical" />
 
                 <com.sun.binding.widget.CustomItemView

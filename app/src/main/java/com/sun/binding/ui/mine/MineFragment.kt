@@ -26,6 +26,6 @@ class MineFragment : BaseFragment<MineViewModel, MineFragmentBinding>() {
     override val layoutResId: Int = R.layout.mine_fragment
 
     override fun initView() {
-
+        viewModel.refreshing.set(true)
     }
 }

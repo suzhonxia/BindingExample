@@ -15,7 +15,7 @@ object XPopupDialogHelper {
      * @param dialogModel Dialog 配置 Model
      */
     fun show(activity: Activity, dialogModel: DialogModel) {
-//        if (AppManager.getContext().isMainProcess) {
+//        if (AppStackManager.getContext().isMainProcess) {
 //            // 主线程
 //            ProgressDialogHelper.showDialog(activity, cancelable)
 //        } else {
@@ -32,7 +32,7 @@ object XPopupDialogHelper {
      * @param dialogModel Dialog 配置 Model
      */
     fun dismiss(dialogModel: DialogModel) {
-//        if (AppManager.getContext().isMainProcess) {
+//        if (AppStackManager.getContext().isMainProcess) {
 //            // 主线程
 //            ProgressDialogHelper.dismissDialog()
 //        } else {

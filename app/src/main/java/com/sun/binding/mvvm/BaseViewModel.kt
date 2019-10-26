@@ -18,6 +18,6 @@ abstract class BaseViewModel : BaseMvvmViewModel(), KoinComponent {
     /** 控制 UI 组件关闭 */
     val uiCloseData = MutableLiveData<UiCloseModel>()
 
-    /** 控制 Toase 显示 */
+    /** 控制 Toast 显示 */
     val toastData = MutableLiveData<ToastModel>()
 }

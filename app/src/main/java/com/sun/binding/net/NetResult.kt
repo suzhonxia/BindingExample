@@ -1,7 +1,8 @@
 package com.sun.binding.net
 
 import com.sun.binding.constants.NET_RESPONSE_CODE_SUCCESS
-import com.sun.binding.mvvm.model.SnackbarModel
+import com.sun.binding.constants.NET_RESPONSE_CODE_TOKEN_INVALID
+import com.sun.binding.tools.ext.showToast
 
 /**
  * 网络请求返回数据基本框架
@@ -19,21 +20,34 @@ constructor(
     var msg: String? = "",
     var data: T? = null
 ) {
+
     /**
      * 检查返回结果
      *
+     * @param showMsgTip 是否进行默认的 Toast 提示
      * @return 请求是否成功
      */
-    fun success(): Boolean {
-        // TODO:处理异常的返回 Code
-//        if (code == NET_RESPONSE_CODE_LOGIN_FAILED) {
-//            // 登录失败，需要重新登录
-//            LoginActivity.actionStart(fromNet = true)
-//        }
-        return code == NET_RESPONSE_CODE_SUCCESS
+    fun checkResponseCode(showMsgTip: Boolean = true): Boolean {
+        if (code == NET_RESPONSE_CODE_SUCCESS) return true
+        return if (handleErrorCode(code)) {
+            false
+        } else {
+            if (showMsgTip) msg.orEmpty().showToast()
+            false
+        }
     }
 
-    fun toError(): SnackbarModel {
-        return SnackbarModel(msg.orEmpty())
+    /**
+     * 处理错误 code
+     *
+     * @return true 有异常，并处理了, false 没有异常
+     */
+    private fun handleErrorCode(code: Int): Boolean {
+        // TODO:处理异常的返回 Code
+        if (code == NET_RESPONSE_CODE_TOKEN_INVALID) {
+            // Token 失效
+            return true
+        }
+        return false
     }
 }
