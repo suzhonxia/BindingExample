@@ -159,6 +159,7 @@ class HomeFragment : BaseFragment<HomeViewModel, HomeFragmentBinding>() {
         mBinding.tvNewsMore.visibility = View.VISIBLE
         mBinding.tvNewsLabel.text = "学院活动"
         mBinding.tvNewsMore.text = "更多"
+        mBinding.tvNewsMore.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.app_right_arrow_gray, 0)
         mBinding.tvNewsMore.setOnClickListener { "学院活动more".showToast() }
         if (newsList.isNullOrEmpty()) {
             mBinding.rvNews.visibility = View.VISIBLE

@@ -218,11 +218,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end|center_vertical"
-                            android:drawableEnd="@drawable/app_right_arrow_gray"
                             android:drawablePadding="2dp"
                             android:padding="15dp"
                             android:textColor="@color/app_text_color_gray_light"
                             android:textSize="15sp"
+                            tools:drawableEnd="@drawable/app_right_arrow_gray"
                             tools:text="更多" />
                     </FrameLayout>
 
@@ -234,6 +234,20 @@
                         android:layout_marginEnd="15dp"
                         android:overScrollMode="never"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:bind_visibility="@{viewModel.homeData != null}"
+                        android:drawableStart="@drawable/app_smart_no_more"
+                        android:drawablePadding="10dp"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="@string/app_smart_no_more"
+                        android:textColor="@color/app_text_color_gray_light"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
