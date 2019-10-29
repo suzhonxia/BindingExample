@@ -28,7 +28,8 @@
             android:bind_smart_loadMore_enable="@{false}"
             android:bind_smart_onRefresh="@{viewModel.onRefresh}"
             android:bind_smart_refresh_enable="@{true}"
-            android:bind_smart_refreshing="@={viewModel.refreshing}">
+            android:bind_smart_refreshing="@={viewModel.refreshing}"
+            app:srlEnableOverScrollDrag="true">
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
