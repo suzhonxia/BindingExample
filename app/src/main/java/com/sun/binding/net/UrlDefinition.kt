@@ -19,4 +19,7 @@ object UrlDefinition {
 
     /** 获取个人信息 */
     const val API_USER_INFO = "/api/user/index"
+
+    /** 首页聚合数据 */
+    const val API_HOME_DATA = "/v2/index/index"
 }

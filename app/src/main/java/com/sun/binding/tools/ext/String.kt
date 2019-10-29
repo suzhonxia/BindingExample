@@ -15,5 +15,7 @@ fun String?.toSnackbarMsg(): SnackbarModel {
 }
 
 fun String?.showToast() {
-    this?.let { ToastUtils.showShort(it) }
+    if (!this.isNullOrEmpty()) {
+        ToastUtils.showShort(this)
+    }
 }

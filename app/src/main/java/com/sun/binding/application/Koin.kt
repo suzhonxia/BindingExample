@@ -12,6 +12,7 @@ import com.sun.binding.model.main.SplashViewModel
 import com.sun.binding.model.mine.MineViewModel
 import com.sun.binding.net.UrlDefinition
 import com.sun.binding.net.WebService
+import com.sun.binding.net.repository.HomeRepository
 import com.sun.binding.net.repository.UserRepository
 import com.sun.binding.tools.helper.MMKVHelper
 import com.sun.binding.tools.manager.AppUserManager
@@ -94,6 +95,7 @@ val netModule: Module = module {
  */
 val repositoryModule: Module = module {
     single { UserRepository() }
+    single { HomeRepository() }
 }
 
 /**
@@ -107,6 +109,6 @@ val adapterModule: Module = module { }
 val viewModelModule: Module = module {
     viewModel { SplashViewModel() }
     viewModel { MainViewModel() }
-    viewModel { HomeViewModel() }
+    viewModel { HomeViewModel(get()) }
     viewModel { MineViewModel(get()) }
 }

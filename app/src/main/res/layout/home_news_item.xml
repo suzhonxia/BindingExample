@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:background="@color/app_white"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ivNewsCover"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_corner_radius="5dp" />
+
+        <TextView
+            android:id="@+id/tvNewsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:ellipsize="end"
+            android:lineSpacingMultiplier="1.2"
+            android:maxLines="3"
+            android:textColor="@color/app_text_color_black_light"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toRightOf="@id/ivNewsCover"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="首页新闻标题首页新闻标题首页新闻标题首页新闻标题首页新闻标题首页新闻标题" />
+
+        <TextView
+            android:id="@+id/tvNewsDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:drawableStart="@drawable/app_icon_date"
+            android:drawablePadding="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/app_text_color_gray_light"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivNewsCover"
+            app:layout_constraintLeft_toRightOf="@id/ivNewsCover"
+            app:layout_constraintRight_toRightOf="@id/tvNewsNum"
+            tools:text="2019-09-16" />
+
+        <TextView
+            android:id="@+id/tvNewsNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/app_icon_read"
+            android:drawablePadding="2dp"
+            android:gravity="center"
+            android:textColor="@color/app_text_color_gray_light"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="120" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

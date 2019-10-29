@@ -20,7 +20,7 @@ class MineViewModel(private val userRepository: UserRepository) : BaseViewModel(
     val refreshing: BindingField<Boolean> = BindingField(false)
 
     /** 刷新回调 */
-    val onRefresh: () -> Unit = { getUserPrivateData() }
+    val onRefresh: () -> Unit = { requestUserPrivateData() }
 
     /** 用户信息数据 */
     val userInfoData: BindingField<UserInfoEntity> = BindingField(AppUserManager.getUserInfo() ?: UserInfoEntity.defaultInstance())
@@ -47,7 +47,7 @@ class MineViewModel(private val userRepository: UserRepository) : BaseViewModel(
     /**
      * 获取用户隐私信息
      */
-    private fun getUserPrivateData() {
+    private fun requestUserPrivateData() {
         tagableScope.launch {
             try {
                 val userInfo = userRepository.getUserInfo()
