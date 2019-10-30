@@ -3,8 +3,6 @@ package com.sun.binding.ui.main
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.LogUtils
 import com.sun.binding.R
 import com.sun.binding.constants.MAIN_BACK_PRESS_INTERVAL_MS
 import com.sun.binding.databinding.MainActivityBinding

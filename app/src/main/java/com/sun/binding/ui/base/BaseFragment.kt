@@ -9,6 +9,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.google.android.material.snackbar.Snackbar
 import com.sun.binding.mvvm.BaseViewModel
 import com.sun.binding.tools.helper.ProgressDialogHelper
+import com.sun.binding.tools.helper.SnackbarHelper
 import com.sun.binding.tools.helper.XPopupDialogHelper
 
 /**
@@ -86,20 +87,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
             }
         })
         viewModel.snackbarData.observe(this, Observer {
-            if (it.content.isNullOrBlank()) {
-                return@Observer
-            }
-            val snackBar = Snackbar.make(mBinding.root, it.content.orEmpty(), it.duration)
-            snackBar.setTextColor(it.contentColor)
-            snackBar.setBackgroundTint(it.contentBgColor)
-            if (it.actionText != null && it.onAction != null) {
-                snackBar.setAction(it.actionText, it.onAction)
-                snackBar.setActionTextColor(it.actionColor)
-            }
-            if (it.onCallback != null) {
-                snackBar.addCallback(it.onCallback)
-            }
-            snackBar.show()
+            SnackbarHelper.show(mBinding.root, it)
         })
         viewModel.progressData.observe(this, Observer { progress ->
             if (progress == null || !progress.show) {

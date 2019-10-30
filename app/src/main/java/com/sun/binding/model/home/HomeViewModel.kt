@@ -5,7 +5,6 @@ import com.sun.binding.R
 import com.sun.binding.entity.HomeEntity
 import com.sun.binding.mvvm.BaseViewModel
 import com.sun.binding.mvvm.binding.BindingField
-import com.sun.binding.mvvm.model.ProgressModel
 import com.sun.binding.mvvm.model.SnackbarModel
 import com.sun.binding.net.repository.HomeRepository
 import com.sun.binding.tools.ext.getStackTraceString
