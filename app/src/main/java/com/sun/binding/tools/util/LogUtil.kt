@@ -4,7 +4,7 @@ import android.util.Log
 import com.blankj.utilcode.util.LogUtils
 import com.sun.binding.BuildConfig
 
-const val commonTag = "HttpExample"
+const val commonTag = "BindingExample"
 val isShow: Boolean = BuildConfig.DEBUG
 
 fun showLog(tag: String = commonTag, msg: String) {
@@ -58,5 +58,11 @@ fun showWarning(tag: String = commonTag, msg: String) {
 fun showError(tag: String = commonTag, msg: String) {
     if (isShow) {
         LogUtils.e(tag, msg)
+    }
+}
+
+fun showJson(tag: String = commonTag, json: String) {
+    if (isShow) {
+        LogUtils.json(tag, json)
     }
 }

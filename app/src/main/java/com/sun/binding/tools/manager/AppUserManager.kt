@@ -25,10 +25,12 @@ object AppUserManager {
     @JvmStatic
     fun saveUserInfo(entity: UserInfoEntity?) = MMKVHelper.saveObject(SP_KEY_USER_INFO, entity ?: "")
 
+    @JvmStatic
     fun getToken(): String? = MMKVHelper.getString(SP_KEY_TOKEN, "")
 
     @JvmStatic
     fun saveToken(token: String?) = MMKVHelper.saveString(SP_KEY_TOKEN, token ?: "")
 
+    @JvmStatic
     fun hasLogin(): Boolean = getUserInfo() != null && !getToken().isNullOrEmpty()
 }

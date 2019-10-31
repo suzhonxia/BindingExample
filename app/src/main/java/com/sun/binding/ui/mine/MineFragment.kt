@@ -31,6 +31,5 @@ class MineFragment : BaseFragment<MineViewModel, MineFragmentBinding>() {
     }
 
     override fun initView() {
-        viewModel.onRefresh.invoke()
     }
 }

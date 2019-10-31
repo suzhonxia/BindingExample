@@ -23,7 +23,7 @@ class MineViewModel(private val userRepository: UserRepository) : BaseViewModel(
     val onRefresh: () -> Unit = { requestUserPrivateData() }
 
     /** 用户信息数据 */
-    val userInfoData: BindingField<UserInfoEntity> = BindingField(AppUserManager.getUserInfo() ?: UserInfoEntity.defaultInstance())
+    val userInfoData: BindingField<UserInfoEntity> = BindingField(AppUserManager.getUserInfo())
 
     /** 用户信息布局点击事件 */
     val onUserInfoClick: (View) -> Unit = { v ->
@@ -36,7 +36,7 @@ class MineViewModel(private val userRepository: UserRepository) : BaseViewModel(
 
     /** 店铺点击事件 */
     val onShopClick: () -> Unit = {
-        userInfoData.get()?.shop?.let { if (!it.url.isNullOrEmpty()) "跳转到店铺H5页面".showToast() }
+        userInfoData.get()?.shop?.let { if (!it.url.isEmpty()) "跳转到店铺H5页面".showToast() }
     }
 
     /** 菜单栏点击事件 */

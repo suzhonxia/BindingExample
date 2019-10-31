@@ -2,6 +2,7 @@ package com.sun.binding.net
 
 import com.sun.binding.entity.HomeEntity
 import com.sun.binding.entity.UserInfoEntity
+import kotlinx.coroutines.Deferred
 import retrofit2.http.POST
 
 /**

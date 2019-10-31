@@ -1,8 +1,13 @@
 package com.sun.binding.entity
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 /**
  * 用户信息数据
  */
+@Entity(tableName = "userInfo")
 data class UserInfoEntity
 /**
  * 构造方法
@@ -20,6 +25,8 @@ data class UserInfoEntity
  * @param menu_list 扩展菜单列表
  */
 constructor(
+    @PrimaryKey
+    @ColumnInfo(name = "userId")
     var user_id: String = "",
     var token: String = "",
     var nickname: String = "",
@@ -28,21 +35,10 @@ constructor(
     var gender: Int = 0,
     var focus_num: String = "",
     var fans_num: String = "",
-    var shop: UserShopEntity? = null,
-    var award: UserAwardEntity? = null,
-    var menu_list: List<UserMenuEntity>? = arrayListOf()
-) {
-    companion object {
-        fun defaultInstance(): UserInfoEntity {
-            val entity = UserInfoEntity()
-            entity.user_id = ""
-            entity.nickname = ""
-            entity.focus_num = ""
-            entity.fans_num = ""
-            return entity
-        }
-    }
-}
+    var shop: UserShopEntity,
+    var award: UserAwardEntity,
+    var menu_list: List<UserMenuEntity> = arrayListOf()
+)
 
 /**
  * 用户商城数据
@@ -57,8 +53,8 @@ data class UserShopEntity
  */
 constructor(
     var isShow: Int = 0,
-    var url: String? = "",
-    var nav: List<UserShopNavEntity>? = arrayListOf()
+    var url: String = "",
+    var nav: List<UserShopNavEntity> = arrayListOf()
 )
 
 /**
@@ -66,10 +62,10 @@ constructor(
  */
 data class UserShopNavEntity
 constructor(
-    var txt: String? = "",
-    var num: String? = "",
-    var unit: String? = "",
-    var url: String? = ""
+    var txt: String = "",
+    var num: String = "",
+    var unit: String = "",
+    var url: String = ""
 )
 
 /**
@@ -77,9 +73,9 @@ constructor(
  */
 data class UserAwardEntity
 constructor(
-    var amt: String? = "",
-    var url: String? = "",
-    var wxappid: String? = ""
+    var amt: String = "",
+    var url: String = "",
+    var wxappid: String = ""
 )
 
 /**
@@ -88,10 +84,10 @@ constructor(
 data class UserMenuEntity
 constructor(
     var is_show: Int = 0,
-    var title: String? = "",
-    var url: String? = "",
-    var icon: String? = "",
-    var tips: String? = ""
+    var title: String = "",
+    var url: String = "",
+    var icon: String = "",
+    var tips: String = ""
 ) {
     fun shouldShow() = is_show == 1
 }

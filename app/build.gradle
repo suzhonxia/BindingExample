@@ -121,6 +121,10 @@ dependencies {
 
     // MMKV 数据存储
     implementation 'com.tencent:mmkv:1.0.23'
+    // Room
+    implementation 'androidx.room:room-ktx:2.2.1'
+    implementation 'androidx.room:room-runtime:2.2.1'
+    kapt  'androidx.room:room-compiler:2.2.1'
 
     // BottomNavigationViewEx
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'

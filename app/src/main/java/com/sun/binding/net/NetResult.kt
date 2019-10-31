@@ -1,8 +1,10 @@
 package com.sun.binding.net
 
+import com.blankj.utilcode.util.GsonUtils
 import com.sun.binding.constants.NET_RESPONSE_CODE_SUCCESS
 import com.sun.binding.constants.NET_RESPONSE_CODE_TOKEN_INVALID
 import com.sun.binding.tools.ext.showToast
+import com.sun.binding.tools.util.showJson
 
 /**
  * 网络请求返回数据基本框架
@@ -17,8 +19,8 @@ data class NetResult<T>
  */
 constructor(
     var code: Int = -1,
-    var msg: String? = "",
-    var data: T? = null
+    var msg: String = "",
+    var data: T
 ) {
 
     /**
@@ -28,11 +30,12 @@ constructor(
      * @return 请求是否成功
      */
     fun checkResponseCode(showMsgTip: Boolean = true): Boolean {
+        showJson("NetResult", GsonUtils.toJson(this))
         if (code == NET_RESPONSE_CODE_SUCCESS) return true
         return if (handleErrorCode(code)) {
             false
         } else {
-            if (showMsgTip) msg.orEmpty().showToast()
+            if (showMsgTip) msg.showToast()
             false
         }
     }
