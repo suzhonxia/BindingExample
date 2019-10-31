@@ -1,6 +1,7 @@
 package com.sun.binding.model.mine
 
 import android.view.View
+import androidx.lifecycle.viewModelScope
 import com.sun.binding.R
 import com.sun.binding.entity.UserInfoEntity
 import com.sun.binding.mvvm.BaseViewModel
@@ -11,7 +12,6 @@ import com.sun.binding.tools.ext.getStackTraceString
 import com.sun.binding.tools.ext.showToast
 import com.sun.binding.tools.ext.toToastMsg
 import com.sun.binding.tools.manager.AppUserManager
-import com.sun.binding.ui.base.tagableScope
 import kotlinx.coroutines.launch
 
 class MineViewModel(private val userRepository: UserRepository) : BaseViewModel() {
@@ -48,7 +48,7 @@ class MineViewModel(private val userRepository: UserRepository) : BaseViewModel(
      * 获取用户隐私信息
      */
     private fun requestUserPrivateData() {
-        tagableScope.launch {
+        viewModelScope.launch {
             try {
                 val userInfo = userRepository.getUserInfo()
                 if (userInfo.checkResponseCode()) {

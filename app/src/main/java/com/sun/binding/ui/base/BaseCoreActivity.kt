@@ -7,7 +7,6 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.sun.binding.tools.ext.hideSoftKeyboard
 import com.sun.binding.tools.tool.shouldHideInput
-import java.util.*
 
 /**
  * Activity 基类
@@ -15,11 +14,7 @@ import java.util.*
  * - 维护 [touchToHideInput]：是否在点击 [EditText] 以外的地方隐藏软键盘
  * - 添加 [startAnim]、[finishAnim] 方法，统一处理界面跳转动画效果
  */
-abstract class BaseCoreActivity : AppCompatActivity(), Tagable {
-
-    override val mTagMaps: HashMap<String, Any> = hashMapOf()
-
-    override var mClosed: Boolean = false
+abstract class BaseCoreActivity : AppCompatActivity() {
 
     /** 当前界面 Context 对象 */
     protected lateinit var mContext: AppCompatActivity
@@ -38,12 +33,6 @@ abstract class BaseCoreActivity : AppCompatActivity(), Tagable {
         super.onPause()
         // 移除当前获取焦点控件的焦点，防止下个界面软键盘顶起布局
         currentFocus?.clearFocus()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // 清理所有的 Closeable(异步操作)
-        clearTags()
     }
 
     override fun startActivityForResult(intent: Intent?, requestCode: Int, options: Bundle?) {
