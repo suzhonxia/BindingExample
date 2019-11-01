@@ -19,7 +19,7 @@ class UserInfoTypeConverter {
     fun shopNavToString(shopNav: List<UserShopNavEntity>): String = GsonUtils.toJson(shopNav)
 
     @TypeConverter
-    fun stringToShopNav(json: String): List<UserShopNavEntity> = GsonUtils.fromJson(json, GsonUtils.getType(UserShopNavEntity::class.java, GsonUtils.getListType(UserShopNavEntity::class.java)))
+    fun stringToShopNav(json: String): List<UserShopNavEntity> = GsonUtils.fromJson(json, GsonUtils.getListType(UserShopNavEntity::class.java))
 
     @TypeConverter
     fun awardToString(award: UserAwardEntity): String = GsonUtils.toJson(award)
@@ -31,5 +31,5 @@ class UserInfoTypeConverter {
     fun menuToString(menu: List<UserMenuEntity>): String = GsonUtils.toJson(menu)
 
     @TypeConverter
-    fun stringToMenu(json: String): List<UserMenuEntity> = GsonUtils.fromJson(json, GsonUtils.getType(UserMenuEntity::class.java, GsonUtils.getListType(UserMenuEntity::class.java)))
+    fun stringToMenu(json: String): List<UserMenuEntity> = GsonUtils.fromJson(json, GsonUtils.getListType(UserMenuEntity::class.java))
 }

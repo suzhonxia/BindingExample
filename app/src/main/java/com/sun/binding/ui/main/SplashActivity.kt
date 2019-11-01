@@ -4,14 +4,10 @@ import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import com.sun.binding.R
-import com.sun.binding.constants.SPLASH_DELAY_MS
 import com.sun.binding.databinding.SplashActivityBinding
+import com.sun.binding.model.main.SplashViewModel
 import com.sun.binding.tools.ext.start
 import com.sun.binding.ui.base.BaseActivity
-import com.sun.binding.ui.base.tagableScope
-import com.sun.binding.model.main.SplashViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>() {
@@ -26,8 +22,7 @@ class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>() {
         }
         setContentView(R.layout.splash_activity)
 
-        tagableScope.launch {
-            delay(SPLASH_DELAY_MS)
+        viewModel.delay {
             start(MainActivity::class.java, isFinished = true)
         }
     }

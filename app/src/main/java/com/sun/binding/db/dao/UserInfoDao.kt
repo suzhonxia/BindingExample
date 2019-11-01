@@ -16,16 +16,10 @@ interface UserInfoDao {
     fun insertUserInfo(userInfo: UserInfoEntity)
 
     /**
-     * Delete a userInfo by id.
-     */
-    @Query("DELETE FROM userInfo WHERE userId = :userId")
-    fun deleteUserInfoById(userId: String)
-
-    /**
      * Delete all userInfo.
      */
     @Query("DELETE FROM userInfo")
-    fun deleteAllUserInfo()
+    fun deleteUserInfo()
 
     /**
      * Update a userInfo
@@ -34,8 +28,8 @@ interface UserInfoDao {
     fun updateUserInfo(userInfo: UserInfoEntity)
 
     /**
-     * Select a userInfo by id.
+     * Select a userInfo.
      */
-    @Query("SELECT * FROM userInfo WHERE userId = :userId")
-    fun getUserInfoById(userId: String): UserInfoEntity?
+    @Query("SELECT * FROM userInfo limit 1")
+    fun getUserInfo(): UserInfoEntity?
 }

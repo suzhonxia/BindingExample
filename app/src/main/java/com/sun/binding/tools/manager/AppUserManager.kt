@@ -1,10 +1,8 @@
 package com.sun.binding.tools.manager
 
 import com.sun.binding.constants.SP_KEY_TOKEN
-import com.sun.binding.constants.SP_KEY_USER_INFO
+import com.sun.binding.db.BindingDatabase
 import com.sun.binding.entity.UserInfoEntity
-import com.sun.binding.tools.ext.toEntity
-import com.sun.binding.tools.ext.toJson
 import com.sun.binding.tools.helper.MMKVHelper
 
 /**
@@ -14,16 +12,24 @@ import com.sun.binding.tools.helper.MMKVHelper
 object AppUserManager {
 
     @JvmStatic
-    fun saveUserData(entity: UserInfoEntity?) {
+    fun saveUserData(entity: UserInfoEntity) {
         saveUserInfo(entity)
-        saveToken(entity?.token)
+        saveToken(entity.token)
     }
 
     @JvmStatic
-    fun getUserInfo(): UserInfoEntity? = MMKVHelper.getObject(SP_KEY_USER_INFO, UserInfoEntity::class.java)
+    fun clearUserData() {
+        saveToken("")
+    }
 
     @JvmStatic
-    fun saveUserInfo(entity: UserInfoEntity?) = MMKVHelper.saveObject(SP_KEY_USER_INFO, entity ?: "")
+    fun getUserInfo(): UserInfoEntity? = BindingDatabase.getInstance().getUserInfoDao().getUserInfo()
+
+    @JvmStatic
+    fun saveUserInfo(entity: UserInfoEntity) = BindingDatabase.getInstance().getUserInfoDao().insertUserInfo(entity)
+
+    @JvmStatic
+    fun clearUserInfo() = BindingDatabase.getInstance().getUserInfoDao().deleteUserInfo()
 
     @JvmStatic
     fun getToken(): String? = MMKVHelper.getString(SP_KEY_TOKEN, "")
