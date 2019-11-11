@@ -1,7 +1,6 @@
 package com.sun.binding.model.home
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.sun.binding.R
 import com.sun.binding.entity.HomeEntity
 import com.sun.binding.mvvm.BaseViewModel
@@ -9,7 +8,7 @@ import com.sun.binding.mvvm.binding.BindingField
 import com.sun.binding.mvvm.model.SnackbarModel
 import com.sun.binding.net.repository.HomeRepository
 import com.sun.binding.tools.ext.getStackTraceString
-import kotlinx.coroutines.launch
+import java.lang.RuntimeException
 
 class HomeViewModel(private val homeRepository: HomeRepository) : BaseViewModel() {
 
@@ -43,15 +42,17 @@ class HomeViewModel(private val homeRepository: HomeRepository) : BaseViewModel(
      * 获取首页聚合数据
      */
     private fun requestHomeData() {
-        viewModelScope.launch {
-            try {
+        launchOnIO {
+            tryBlock {
                 val result = homeRepository.getHomeData()
                 if (result.checkResponseCode()) {
                     homeData.postValue(result.data)
                 }
-            } catch (throwable: Throwable) {
-                snackbarData.postValue(SnackbarModel(throwable.getStackTraceString()))
-            } finally {
+            }
+            catchBlock { e ->
+                snackbarData.postValue(SnackbarModel(e.getStackTraceString()))
+            }
+            finallyBlock {
                 refreshing.set(false)
             }
         }
