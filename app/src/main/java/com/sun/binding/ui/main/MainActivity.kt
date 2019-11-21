@@ -12,6 +12,7 @@ import com.sun.binding.tools.ext.setWhiteStatusBar
 import com.sun.binding.tools.ext.toToastMsg
 import com.sun.binding.tools.tool.FragVpAdapter
 import com.sun.binding.tools.tool.getString
+import com.sun.binding.tools.util.event.EventObserver
 import com.sun.binding.ui.base.BaseActivity
 import com.sun.binding.ui.circle.CircleFragment
 import com.sun.binding.ui.educ.EducFragment
@@ -49,13 +50,19 @@ class MainActivity : BaseActivity<MainViewModel, MainActivityBinding>() {
     }
 
     override fun initObserve() {
-        viewModel.navTabIndex.observe(this, Observer { tabIndex ->
-            if (tabIndex == 3) {
-                setMainColorStatusBar()
-            } else {
-                setWhiteStatusBar()
-            }
-        })
+        viewModel.apply {
+            navTabIndex.observe(this@MainActivity, Observer { tabIndex ->
+                if (tabIndex == 3) {
+                    setMainColorStatusBar()
+                } else {
+                    setWhiteStatusBar()
+                }
+            })
+
+            submitTarget.observe(this@MainActivity, EventObserver {
+                toastData.postValue("跳转到发布页面".toToastMsg())
+            })
+        }
     }
 
     override fun onBackPressed() {

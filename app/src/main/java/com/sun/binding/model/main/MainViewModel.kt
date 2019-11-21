@@ -1,6 +1,7 @@
 package com.sun.binding.model.main
 
 import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.sun.binding.R
 import com.sun.binding.constants.TAB_MAIN_BOTTOM_CIRCLE
@@ -9,7 +10,7 @@ import com.sun.binding.constants.TAB_MAIN_BOTTOM_HOMEPAGE
 import com.sun.binding.constants.TAB_MAIN_BOTTOM_MINE
 import com.sun.binding.mvvm.BaseViewModel
 import com.sun.binding.mvvm.binding.BindingField
-import com.sun.binding.tools.ext.toToastMsg
+import com.sun.binding.tools.util.event.Event
 
 /**
  * 主界面 ViewModel
@@ -21,6 +22,9 @@ class MainViewModel : BaseViewModel() {
 
     /** BottomNavigationView Tab 位置 */
     val navTabIndex = MutableLiveData<Int>(currentItem.get())
+
+    /** 发布按钮点击事件 */
+    val submitTarget = MutableLiveData<Event<Unit>>()
 
     /** 底部 Tab 选中回调 */
     val itemSelectedListener: (MenuItem) -> Boolean = { menuItem ->
@@ -44,6 +48,6 @@ class MainViewModel : BaseViewModel() {
 
     /** 发布按钮点击 */
     val onSubmitTabClick = {
-        toastData.postValue("跳转到发布页面".toToastMsg())
+        submitTarget.postValue(Event(Unit))
     }
 }

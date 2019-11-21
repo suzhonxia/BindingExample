@@ -3,7 +3,6 @@ package com.sun.binding.application
 import android.annotation.SuppressLint
 import android.app.Application
 import com.blankj.utilcode.util.LogUtils
-import com.jeremyliao.liveeventbus.LiveEventBus
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.sun.binding.BuildConfig
@@ -55,9 +54,6 @@ class ApplicationSolver(private val app: Application) : Runnable {
             androidContext(app)
             modules(listOf(netModule, repositoryModule, adapterModule, viewModelModule))
         }
-
-        // 初始化LiveDataBus
-        LiveEventBus.config().lifecycleObserverAlwaysActive(true).autoClear(false)
 
         // 初始化输出日志
         LogUtils.getConfig().isLogSwitch = BuildConfig.DEBUG

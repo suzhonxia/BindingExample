@@ -16,6 +16,15 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
     }
 
     buildTypes {
@@ -66,6 +75,8 @@ android {
             outputFileName = "sample_${variant.flavorName}_${variant.buildType.name}_v${versionName}.apk"
         }
     }
+
+
 }
 
 dependencies {
