@@ -21,6 +21,7 @@ import com.sun.binding.tools.manager.AppUserManager
 import com.sun.binding.tools.tool.getDrawable
 import com.sun.binding.ui.base.BaseFragment
 import com.sun.binding.widget.decoration.GridSpaceItemDecoration
+import kotlinx.android.synthetic.main.home_layout_asset_percent.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
