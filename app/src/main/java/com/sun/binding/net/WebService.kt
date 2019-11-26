@@ -1,5 +1,6 @@
 package com.sun.binding.net
 
+import com.sun.binding.entity.EducEntity
 import com.sun.binding.entity.HomeEntity
 import com.sun.binding.entity.UserInfoEntity
 import retrofit2.http.POST
@@ -14,6 +15,9 @@ interface WebService {
     @POST(UrlDefinition.API_USER_INFO)
     suspend fun getUserInfo(): NetResult<UserInfoEntity>
 
-    @POST(UrlDefinition.API_HOME_DATA)
-    suspend fun getHomeData(): NetResult<HomeEntity>
+    @POST(UrlDefinition.API_HOME_INDEX)
+    suspend fun getHomeIndex(): NetResult<HomeEntity>
+
+    @POST(UrlDefinition.API_COURSE_INDEX)
+    suspend fun getEducIndex(): NetResult<List<EducEntity>>
 }

@@ -8,7 +8,6 @@ import com.sun.binding.mvvm.binding.BindingField
 import com.sun.binding.mvvm.model.SnackbarModel
 import com.sun.binding.net.repository.HomeRepository
 import com.sun.binding.tools.ext.getStackTraceString
-import java.lang.RuntimeException
 
 class HomeViewModel(private val homeRepository: HomeRepository) : BaseViewModel() {
 
@@ -44,7 +43,7 @@ class HomeViewModel(private val homeRepository: HomeRepository) : BaseViewModel(
     private fun requestHomeData() {
         launchOnIO {
             tryBlock {
-                val result = homeRepository.getHomeData()
+                val result = homeRepository.getHomeIndex()
                 if (result.checkResponseCode()) {
                     homeData.postValue(result.data)
                 }

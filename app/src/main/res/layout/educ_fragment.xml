@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.sun.binding.model.educ.EducViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.sun.binding.ui.educ.EducAdapter" />
+
+        <variable
+            name="itemDecoration"
+            type="com.sun.binding.widget.decoration.EducIndexItemDecoration" />
     </data>
 
     <LinearLayout
@@ -12,8 +24,29 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/dp_46"
+            android:background="@color/app_white"
             android:gravity="center"
-            android:text="@string/educ_tab" />
+            android:text="@string/educ_tab"
+            android:textColor="@color/app_text_color_black_light"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold" />
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:bind_smart_loadMore_enable="@{false}"
+            android:bind_smart_onRefresh="@{viewModel.onRefresh}"
+            android:bind_smart_refresh_enable="@{true}"
+            android:bind_smart_refreshing="@={viewModel.refreshing}"
+            app:srlEnableOverScrollDrag="true">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:bind_rv_adapter="@{adapter}"
+                android:bind_rv_item_decoration="@{itemDecoration}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
     </LinearLayout>
 </layout>

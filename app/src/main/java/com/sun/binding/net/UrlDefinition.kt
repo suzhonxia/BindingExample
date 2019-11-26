@@ -21,5 +21,8 @@ object UrlDefinition {
     const val API_USER_INFO = "/api/user/index"
 
     /** 首页聚合数据 */
-    const val API_HOME_DATA = "/v2/index/index"
+    const val API_HOME_INDEX = "/v2/index/index"
+
+    /** 亲职教育分类 */
+    const val API_COURSE_INDEX = "/v2/qinzhi/index"
 }

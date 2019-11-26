@@ -6,16 +6,12 @@ import kotlinx.coroutines.withContext
 import org.koin.core.inject
 
 /**
- * 首页相关数据仓库
+ * 课程相关数据仓库
  */
-class HomeRepository : BaseRepository() {
-
+class CourseRepository : BaseRepository() {
     override val mWebService: WebService by inject()
 
-    /**
-     * 获取用户信息
-     */
-    suspend fun getHomeIndex() = withContext(Dispatchers.IO) {
-        mWebService.getHomeIndex()
+    suspend fun getEducIndex() = withContext(Dispatchers.IO) {
+        mWebService.getEducIndex()
     }
 }

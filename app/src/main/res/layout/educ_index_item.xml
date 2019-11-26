@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_100"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ivBackdrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/educ_index_item_backdrop"
+        tools:ignore="ContentDescription" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/ivEducCover"
+        android:layout_width="@dimen/dp_42"
+        android:layout_height="@dimen/dp_42"
+        android:layout_marginStart="@dimen/dp_15"
+        android:scaleType="centerCrop"
+        android:src="@drawable/app_user_default_avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvEducTitle"
+        style="@style/app_single_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:textColor="@color/app_text_color_black_light"
+        android:textSize="@dimen/sp_16"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/ivEducCover"
+        app:layout_constraintTop_toTopOf="@id/ivEducCover"
+        tools:text="磁力片亲职教育" />
+
+    <TextView
+        android:id="@+id/tvEducDesc"
+        style="@style/app_single_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:textColor="@color/app_text_color_black_light"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintBottom_toBottomOf="@id/ivEducCover"
+        app:layout_constraintLeft_toRightOf="@id/ivEducCover"
+        tools:text="让孩子获得不一样的创造" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,12 +6,14 @@ import com.sun.binding.constants.NET_CACHE_FILE_SIZE
 import com.sun.binding.constants.NET_TIMEOUT_MS
 import com.sun.binding.constants.SP_KEY_COOKIES
 import com.sun.binding.entity.CookieEntity
+import com.sun.binding.model.educ.EducViewModel
 import com.sun.binding.model.home.HomeViewModel
 import com.sun.binding.model.main.MainViewModel
 import com.sun.binding.model.main.SplashViewModel
 import com.sun.binding.model.mine.MineViewModel
 import com.sun.binding.net.UrlDefinition
 import com.sun.binding.net.WebService
+import com.sun.binding.net.repository.CourseRepository
 import com.sun.binding.net.repository.HomeRepository
 import com.sun.binding.net.repository.UserRepository
 import com.sun.binding.tools.helper.MMKVHelper
@@ -96,6 +98,7 @@ val netModule: Module = module {
 val repositoryModule: Module = module {
     single { UserRepository() }
     single { HomeRepository() }
+    single { CourseRepository() }
 }
 
 /**
@@ -111,4 +114,5 @@ val viewModelModule: Module = module {
     viewModel { MainViewModel() }
     viewModel { HomeViewModel(get()) }
     viewModel { MineViewModel(get()) }
+    viewModel { EducViewModel(get()) }
 }
