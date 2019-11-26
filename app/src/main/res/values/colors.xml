@@ -14,6 +14,8 @@
     <color name="app_window_bg">#F8F8F8</color>
     <!-- 欢迎界面背景色 -->
     <color name="app_welcome_bg">#FFFFFF</color>
+    <!-- 搜索输入框背景色 -->
+    <color name="app_search_bg">#F1F1F1</color>
     <!-- 分隔线颜色 -->
     <color name="app_dividing_bg">#EBEBEB</color>
     <!-- 点击水波纹颜色 -->

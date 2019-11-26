@@ -1,13 +1,12 @@
 package com.sun.binding.model.main
 
 import android.view.MenuItem
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.sun.binding.R
-import com.sun.binding.constants.TAB_MAIN_BOTTOM_CIRCLE
-import com.sun.binding.constants.TAB_MAIN_BOTTOM_EDUC
-import com.sun.binding.constants.TAB_MAIN_BOTTOM_HOMEPAGE
-import com.sun.binding.constants.TAB_MAIN_BOTTOM_MINE
+import com.sun.binding.constants.MainTab.TAB_MAIN_BOTTOM_CIRCLE
+import com.sun.binding.constants.MainTab.TAB_MAIN_BOTTOM_EDUC
+import com.sun.binding.constants.MainTab.TAB_MAIN_BOTTOM_HOMEPAGE
+import com.sun.binding.constants.MainTab.TAB_MAIN_BOTTOM_MINE
 import com.sun.binding.mvvm.BaseViewModel
 import com.sun.binding.mvvm.binding.BindingField
 import com.sun.binding.tools.util.event.Event
