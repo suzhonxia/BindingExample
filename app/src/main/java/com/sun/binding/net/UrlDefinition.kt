@@ -25,4 +25,7 @@ object UrlDefinition {
 
     /** 亲职教育分类 */
     const val API_COURSE_INDEX = "/v2/qinzhi/index"
+
+    /** 同学圈列表 */
+    const val API_CIRCLE_PRODUCT = "/v2/circle/t_list"
 }

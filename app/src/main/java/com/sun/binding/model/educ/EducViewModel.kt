@@ -2,7 +2,7 @@ package com.sun.binding.model.educ
 
 import androidx.lifecycle.MutableLiveData
 import com.sun.binding.entity.EducEntity
-import com.sun.binding.mvvm.BaseViewModel
+import com.sun.binding.model.base.BaseViewModel
 import com.sun.binding.mvvm.binding.BindingField
 import com.sun.binding.mvvm.model.SnackbarModel
 import com.sun.binding.net.repository.CourseRepository

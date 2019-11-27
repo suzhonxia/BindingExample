@@ -10,11 +10,11 @@
 
         <variable
             name="adapter"
-            type="com.sun.binding.ui.educ.EducAdapter" />
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
 
         <variable
             name="itemDecoration"
-            type="com.sun.binding.widget.decoration.EducIndexItemDecoration" />
+            type="androidx.recyclerview.widget.RecyclerView.ItemDecoration" />
     </data>
 
     <LinearLayout
@@ -29,8 +29,7 @@
             android:gravity="center"
             android:text="@string/educ_tab"
             android:textColor="@color/app_text_color_black_light"
-            android:textSize="@dimen/sp_18"
-            android:textStyle="bold" />
+            android:textSize="@dimen/sp_20" />
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:layout_width="match_parent"

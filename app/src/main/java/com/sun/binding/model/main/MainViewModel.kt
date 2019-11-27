@@ -7,7 +7,7 @@ import com.sun.binding.constants.MainTab.TAB_MAIN_BOTTOM_CIRCLE
 import com.sun.binding.constants.MainTab.TAB_MAIN_BOTTOM_EDUC
 import com.sun.binding.constants.MainTab.TAB_MAIN_BOTTOM_HOMEPAGE
 import com.sun.binding.constants.MainTab.TAB_MAIN_BOTTOM_MINE
-import com.sun.binding.mvvm.BaseViewModel
+import com.sun.binding.model.base.BaseViewModel
 import com.sun.binding.mvvm.binding.BindingField
 import com.sun.binding.tools.util.event.Event
 

@@ -6,8 +6,7 @@ import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ToastUtils
-import com.google.android.material.snackbar.Snackbar
-import com.sun.binding.mvvm.BaseViewModel
+import com.sun.binding.model.base.BaseViewModel
 import com.sun.binding.tools.helper.ProgressDialogHelper
 import com.sun.binding.tools.helper.SnackbarHelper
 import com.sun.binding.tools.helper.XPopupDialogHelper
@@ -28,7 +27,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
     /** View 是否加载完成 */
     private var isPrepareView: Boolean = false
 
-    /** 是否直接加载(不适用懒加载) */
+    /** 是否直接加载(不使用懒加载) */
     protected var isSwiftLoad: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {

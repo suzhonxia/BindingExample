@@ -1,7 +1,7 @@
 package com.sun.binding.ui.base
 
 import android.os.Bundle
-import com.sun.binding.mvvm.BaseMvvmViewModel
+import com.sun.binding.model.base.BaseMvvmViewModel
 
 /**
  * Fragment 基类

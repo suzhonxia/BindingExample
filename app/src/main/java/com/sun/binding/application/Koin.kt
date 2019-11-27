@@ -6,6 +6,7 @@ import com.sun.binding.constants.NET_CACHE_FILE_SIZE
 import com.sun.binding.constants.NET_TIMEOUT_MS
 import com.sun.binding.constants.SP_KEY_COOKIES
 import com.sun.binding.entity.CookieEntity
+import com.sun.binding.model.circle.CircleProductViewModel
 import com.sun.binding.model.circle.CircleViewModel
 import com.sun.binding.model.educ.EducViewModel
 import com.sun.binding.model.home.HomeViewModel
@@ -117,4 +118,5 @@ val viewModelModule: Module = module {
     viewModel { MineViewModel(get()) }
     viewModel { EducViewModel(get()) }
     viewModel { CircleViewModel() }
+    viewModel { CircleProductViewModel(get()) }
 }

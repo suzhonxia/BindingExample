@@ -83,10 +83,20 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <!-- 文本样式 -->
+    <!-- 单行文本样式 -->
     <style name="app_single_line">
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
+    </style>
+
+    <!--  关注按钮样式  -->
+    <style name="app_focus_button">
+        <item name="android:layout_width">@dimen/dp_70</item>
+        <item name="android:layout_height">@dimen/dp_30</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/app_text_color_black_light</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:background">@drawable/app_focus_button_selector</item>
     </style>
 </resources>

@@ -18,8 +18,8 @@
     <color name="app_search_bg">#F1F1F1</color>
     <!-- 分隔线颜色 -->
     <color name="app_dividing_bg">#EBEBEB</color>
-    <!-- 点击水波纹颜色 -->
-    <color name="app_default_ripple">#EBEBEB</color>
+    <!--  深色背景色  -->
+    <color name="app_dark_window_bg">#E5E5E5</color>
 
     <!-- 字体颜色 - 黑色 -->
     <color name="app_text_color_black">#333333</color>

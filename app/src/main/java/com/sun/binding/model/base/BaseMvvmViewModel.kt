@@ -1,4 +1,4 @@
-package com.sun.binding.mvvm
+package com.sun.binding.model.base
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel

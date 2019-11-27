@@ -1,6 +1,6 @@
 package com.sun.binding.model.circle
 
-import com.sun.binding.mvvm.BaseViewModel
+import com.sun.binding.model.base.BaseViewModel
 
 class CircleViewModel : BaseViewModel() {
 }

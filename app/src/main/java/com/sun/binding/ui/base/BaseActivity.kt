@@ -6,9 +6,8 @@ import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ToastUtils
-import com.google.android.material.snackbar.Snackbar
 import com.sun.binding.R
-import com.sun.binding.mvvm.BaseViewModel
+import com.sun.binding.model.base.BaseViewModel
 import com.sun.binding.tools.helper.ProgressDialogHelper
 import com.sun.binding.tools.helper.SnackbarHelper
 import com.sun.binding.tools.helper.XPopupDialogHelper

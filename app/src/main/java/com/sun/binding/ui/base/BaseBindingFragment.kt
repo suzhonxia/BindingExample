@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.sun.binding.BR
-import com.sun.binding.mvvm.BaseMvvmViewModel
+import com.sun.binding.model.base.BaseMvvmViewModel
 
 /**
  * Fragment 基类

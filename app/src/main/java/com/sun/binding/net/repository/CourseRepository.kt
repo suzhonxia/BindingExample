@@ -14,4 +14,8 @@ class CourseRepository : BaseRepository() {
     suspend fun getEducIndex() = withContext(Dispatchers.IO) {
         mWebService.getEducIndex()
     }
+
+    suspend fun getCircleProductData(type: Int, page: Int) = withContext(Dispatchers.IO) {
+        mWebService.getCircleProductData(type, page)
+    }
 }
