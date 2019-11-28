@@ -27,18 +27,35 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            storeFile file('../keyStore/app_key.jks')
+            storePassword 'sun123456'
+            keyAlias = 'example'
+            keyPassword 'sun123456'
+        }
+        debug {
+            storeFile file('../keyStore/app_key.jks')
+            storePassword 'sun123456'
+            keyAlias = 'example'
+            keyPassword 'sun123456'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true // 开启混淆
             zipAlignEnabled true // 开启Zipalign 优化
             shrinkResources true // 移除无用的resource 文件
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
         debug {
             minifyEnabled false // 开启混淆
             zipAlignEnabled false // 开启Zipalign 优化
             shrinkResources false // 移除无用的resource 文件
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -99,15 +116,15 @@ dependencies {
     // v7
     implementation 'androidx.appcompat:appcompat:1.1.0'
     // design
-    implementation 'com.google.android.material:material:1.2.0-alpha01'
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
     // RecyclerView
-    implementation 'androidx.recyclerview:recyclerview:1.1.0-rc01'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     // 约束性布局
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
 
     // Lifecycle 拓展
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-rc01'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc01"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-rc02'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02"
     // WorkManager
     implementation "androidx.work:work-runtime-ktx:2.2.0"
 
@@ -131,9 +148,9 @@ dependencies {
     // MMKV 数据存储
     implementation 'com.tencent:mmkv:1.0.23'
     // Room
-    implementation 'androidx.room:room-ktx:2.2.1'
-    implementation 'androidx.room:room-runtime:2.2.1'
-    kapt  'androidx.room:room-compiler:2.2.1'
+    implementation 'androidx.room:room-ktx:2.2.2'
+    implementation 'androidx.room:room-runtime:2.2.2'
+    kapt  'androidx.room:room-compiler:2.2.2'
 
     // UtilCode
     implementation 'com.blankj:utilcodex:1.25.9'
