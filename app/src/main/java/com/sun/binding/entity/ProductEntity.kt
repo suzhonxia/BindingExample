@@ -17,17 +17,16 @@ data class ProductEntity(
     val focusStatus: Int = 0,
     val focus: Int = 0,
     val favourType: Int = 0,
-    val img_info: List<Int> = listOf(),
+    val img_info: List<Long> = listOf(),
+    val video_img_info: List<Long> = listOf(),
     val images: ProductImages = ProductImages(),
     val video_img: String = "",
     val distance: String = ""
-) {
-
-}
+)
 
 data class ProductImages(
     val count: Int = 0,
     val list: List<String> = listOf(),
-    val imageSize: List<Int> = listOf()
+    val imageSize: List<Long> = listOf()
 )
 

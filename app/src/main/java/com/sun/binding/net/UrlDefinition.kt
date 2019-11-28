@@ -17,6 +17,9 @@ object UrlDefinition {
     /** 服务器 HOST */
     val BASE_URL = if (api_toggle) API_HOST_RELEASE else API_HOST_TEST
 
+    /** user token */
+    val USER_TOKEN = if (api_toggle) "331eb283-7540-4adb-80f6-fa5ff6c3c82c" else "3d11d203-b845-4d70-9c3d-f7d3c15fa736"
+
     /** 获取个人信息 */
     const val API_USER_INFO = "/api/user/index"
 

@@ -19,7 +19,6 @@ import com.sun.binding.net.repository.CourseRepository
 import com.sun.binding.net.repository.HomeRepository
 import com.sun.binding.net.repository.UserRepository
 import com.sun.binding.tools.helper.MMKVHelper
-import com.sun.binding.tools.manager.AppUserManager
 import com.sun.binding.tools.util.showLog
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
@@ -60,7 +59,7 @@ val netModule: Module = module {
             })
             .addInterceptor(object : Interceptor {
                 private val appKey: String = "dajlkdjakldajkdl"
-                private val token: String = if (AppUserManager.getToken().isNullOrEmpty()) "3d11d203-b845-4d70-9c3d-f7d3c15fa736" else AppUserManager.getToken()!!
+                private val token: String = UrlDefinition.USER_TOKEN
                 private val userAgent: String = "JBKK/2019(Android ${BuildConfig.VERSION_NAME})/${BuildConfig.VERSION_CODE}"
 
                 override fun intercept(chain: Interceptor.Chain): Response {

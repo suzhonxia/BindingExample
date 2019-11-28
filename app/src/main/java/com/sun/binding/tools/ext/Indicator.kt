@@ -50,6 +50,7 @@ fun MagicIndicator.bindViewPager(context: Context, fm: FragmentManager, vp: View
         }
     }
     ViewPagerHelper.bind(this, vp)
+    vp.offscreenPageLimit = fragments.size
     vp.adapter = object : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getCount() = fragments.size
 

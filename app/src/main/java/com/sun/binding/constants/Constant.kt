@@ -13,7 +13,7 @@ const val MAIN_BANNER_TRANSFORM_INTERVAL_MS = 3000L
 const val NET_PAGE_START = 1
 
 /** 网络请求超时时间 */
-const val NET_TIMEOUT_MS = 3000L
+const val NET_TIMEOUT_MS = 30 * 1000L
 
 /** 网络请求缓存文件大小 */
 const val NET_CACHE_FILE_SIZE = 8L * 1024 * 1024
