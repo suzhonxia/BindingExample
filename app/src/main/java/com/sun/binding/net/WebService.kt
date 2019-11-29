@@ -28,6 +28,8 @@ interface WebService {
     @POST(UrlDefinition.API_CIRCLE_PRODUCT)
     suspend fun getCircleProductData(
         @Field("type") type: Int,
-        @Field("page") page: Int
+        @Field("page") page: Int,
+        @Field("lat") lat: Double = 0.0,
+        @Field("lng") lng: Double = 0.0
     ): NetResult<CircleEntity>
 }

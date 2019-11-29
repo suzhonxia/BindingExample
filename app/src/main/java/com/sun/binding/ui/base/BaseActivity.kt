@@ -33,13 +33,13 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
         return resources
     }
 
-    override fun startAnim() {
-        overridePendingTransition(R.anim.app_anim_left_in, R.anim.app_anim_right_out)
-    }
-
-    override fun finishAnim() {
-        overridePendingTransition(R.anim.app_anim_right_in, R.anim.app_anim_left_out)
-    }
+//    override fun startAnim() {
+//        overridePendingTransition(R.anim.app_anim_left_in, R.anim.app_anim_right_out)
+//    }
+//
+//    override fun finishAnim() {
+//        overridePendingTransition(R.anim.app_anim_right_in, R.anim.app_anim_left_out)
+//    }
 
     /**
      * 添加观察者

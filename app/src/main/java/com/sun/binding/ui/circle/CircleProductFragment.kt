@@ -1,12 +1,22 @@
 package com.sun.binding.ui.circle
 
+import android.Manifest
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
+import com.blankj.utilcode.constant.PermissionConstants
 import com.sun.binding.R
 import com.sun.binding.databinding.CircleProductFragmentBinding
+import com.sun.binding.entity.LocationEntity
 import com.sun.binding.model.circle.CircleProductViewModel
+import com.sun.binding.tools.helper.LocationHelper
+import com.sun.binding.tools.helper.PermissionHelper
+import com.sun.binding.tools.manager.AppUserManager
+import com.sun.binding.tools.tool.setCommonMode
+import com.sun.binding.tools.tool.setLocationMode
 import com.sun.binding.ui.base.BaseFragment
 import com.sun.binding.widget.decoration.CircleProductItemDecoration
+import com.sun.binding.widget.state.StateEnum
+import kotlinx.android.synthetic.main.circle_product_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -28,6 +38,13 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
 
     override val layoutResId: Int = R.layout.circle_product_fragment
 
+    /** 当前状态 */
+    private var viewState = StateEnum.CONTENT
+        set(value) {
+            field = value
+            statefulLayout.viewState = value
+        }
+
     /** 课程列表适配器 */
     private val circleProductAdapter: CircleProductAdapter = CircleProductAdapter(listOf())
 
@@ -40,8 +57,19 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
             itemDecoration = circleProductItemDecoration
         }
 
-        viewModel.type = arguments?.get("type") as? Int ?: 0
-        viewModel.refreshing.set(true)
+        viewModel.run {
+            setIntentData(arguments)
+
+            // 设置 StatefulLayout 模式
+            if (!needLocation()) {
+                statefulLayout.setCommonMode { refresh() }
+            } else {
+                statefulLayout.setLocationMode { refresh() }
+            }
+        }
+
+        // 刷新请求
+        refresh()
     }
 
     override fun initObserve() {
@@ -52,5 +80,33 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
                 circleProductAdapter.addData(it)
             }
         })
+    }
+
+    private fun refresh() {
+        if (!viewModel.needLocation()) {
+            viewModel.refreshing.set(true)
+        } else {
+            requestLocationPermission()
+        }
+    }
+
+    private fun requestLocationPermission() {
+        val action = {
+            if (AppUserManager.getLocation() != null) {
+                viewModel.refreshing.set(true)
+            } else {
+                LocationHelper.getInstance().startLocation(mContext) { latitude, longitude ->
+                    AppUserManager.saveLocation(LocationEntity(latitude, longitude))
+                    viewModel.refreshing.set(true)
+                }
+            }
+        }
+        if (!PermissionHelper.isGranted(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            viewState = StateEnum.ERROR
+            PermissionHelper.requestPermission(mContext, PermissionConstants.LOCATION) { action() }
+        } else {
+            viewState = StateEnum.CONTENT
+            action()
+        }
     }
 }

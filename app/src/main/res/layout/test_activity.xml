@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="content" />
+
+        <Button
+            android:id="@+id/btnLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="loading" />
+
+        <Button
+            android:id="@+id/btnEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="empty" />
+
+        <Button
+            android:id="@+id/btnError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error" />
+    </LinearLayout>
+
+    <com.sun.binding.widget.state.StatefulLayout
+        android:id="@+id/statefulLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:sfl_animateViewChanges="true"
+        app:sfl_applyNormalView="true"
+        app:sfl_viewState="loading">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="内容" />
+    </com.sun.binding.widget.state.StatefulLayout>
+</LinearLayout>

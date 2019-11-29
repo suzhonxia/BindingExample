@@ -1,7 +1,10 @@
 package com.sun.binding.tools.manager
 
+import com.blankj.utilcode.util.GsonUtils
+import com.sun.binding.constants.SP_KEY_LOCATION
 import com.sun.binding.constants.SP_KEY_TOKEN
 import com.sun.binding.db.BindingDatabase
+import com.sun.binding.entity.LocationEntity
 import com.sun.binding.entity.UserInfoEntity
 import com.sun.binding.tools.helper.MMKVHelper
 
@@ -23,6 +26,9 @@ object AppUserManager {
     }
 
     @JvmStatic
+    fun hasLogin(): Boolean = getUserInfo() != null && !getToken().isNullOrEmpty()
+
+    @JvmStatic
     fun getUserInfo(): UserInfoEntity? = BindingDatabase.getInstance().getUserInfoDao().getUserInfo()
 
     @JvmStatic
@@ -38,5 +44,16 @@ object AppUserManager {
     fun saveToken(token: String?) = MMKVHelper.saveString(SP_KEY_TOKEN, token ?: "")
 
     @JvmStatic
-    fun hasLogin(): Boolean = getUserInfo() != null && !getToken().isNullOrEmpty()
+    fun getLocation(): LocationEntity? {
+        return MMKVHelper.getString(SP_KEY_LOCATION, "").run {
+            if (isNotEmpty()) {
+                return GsonUtils.fromJson(this, LocationEntity::class.java)
+            } else {
+                null
+            }
+        }
+    }
+
+    @JvmStatic
+    fun saveLocation(location: LocationEntity) = MMKVHelper.saveString(SP_KEY_LOCATION, GsonUtils.toJson(location))
 }

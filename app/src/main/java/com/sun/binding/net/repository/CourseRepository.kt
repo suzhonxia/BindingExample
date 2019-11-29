@@ -1,6 +1,7 @@
 package com.sun.binding.net.repository
 
 import com.sun.binding.net.WebService
+import com.sun.binding.tools.manager.AppUserManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.koin.core.inject
@@ -16,6 +17,7 @@ class CourseRepository : BaseRepository() {
     }
 
     suspend fun getCircleProductData(type: Int, page: Int) = withContext(Dispatchers.IO) {
-        mWebService.getCircleProductData(type, page)
+        val location = AppUserManager.getLocation()
+        mWebService.getCircleProductData(type, page, location?.latitude ?: 0.0, location?.longitude ?: 0.0)
     }
 }
