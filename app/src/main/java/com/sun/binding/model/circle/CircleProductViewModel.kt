@@ -6,12 +6,13 @@ import com.sun.binding.constants.CircleTab
 import com.sun.binding.constants.NET_PAGE_START
 import com.sun.binding.entity.ProductEntity
 import com.sun.binding.model.base.BaseRefreshViewModel
+import com.sun.binding.model.base.task.LocationTarget
 import com.sun.binding.mvvm.binding.BindingField
 import com.sun.binding.mvvm.model.SnackbarModel
 import com.sun.binding.net.repository.CourseRepository
 import com.sun.binding.tools.ext.getStackTraceString
 
-class CircleProductViewModel(private val courseRepository: CourseRepository) : BaseRefreshViewModel() {
+class CircleProductViewModel(private val courseRepository: CourseRepository) : BaseRefreshViewModel(), LocationTarget {
 
     /** 类型 */
     var type = CircleTab.TAB_CIRCLE_ALL

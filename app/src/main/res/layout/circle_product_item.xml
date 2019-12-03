@@ -157,8 +157,10 @@
             android:drawableStart="@drawable/app_icon_favour"
             android:drawablePadding="@dimen/dp_2"
             android:gravity="center"
+            android:paddingStart="@dimen/dp_10"
             android:textColor="@color/app_text_color_gray_light"
             android:textSize="@dimen/sp_13"
+            tools:ignore="RtlSymmetry"
             tools:text="1.5万" />
     </LinearLayout>
 </LinearLayout>

@@ -16,10 +16,12 @@ import com.sun.binding.entity.*
 import com.sun.binding.model.home.HomeViewModel
 import com.sun.binding.mvvm.model.ProgressModel
 import com.sun.binding.tools.ext.showToast
+import com.sun.binding.tools.ext.start
 import com.sun.binding.tools.helper.GlideHelper
 import com.sun.binding.tools.manager.AppUserManager
 import com.sun.binding.tools.tool.getDrawable
 import com.sun.binding.ui.base.BaseFragment
+import com.sun.binding.ui.course.SuitCourseActivity
 import com.sun.binding.widget.decoration.GridSpaceItemDecoration
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -151,6 +153,9 @@ class HomeFragment : BaseFragment<HomeViewModel, HomeFragmentBinding>() {
 
             mBinding.tvSuitLabel.text = String.format("MagFx磁力片套装")
             GlideHelper.loadImage(mBinding.ivSuitCover, tao.image, R.drawable.app_placeholder_course_169.getDrawable())
+            mBinding.ivSuitCover.setOnClickListener {
+                start(SuitCourseActivity::class.java)
+            }
         }
     }
 

@@ -95,8 +95,7 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
             if (AppUserManager.getLocation() != null) {
                 viewModel.refreshing.set(true)
             } else {
-                LocationHelper.getInstance().startLocation(mContext) { latitude, longitude ->
-                    AppUserManager.saveLocation(LocationEntity(latitude, longitude))
+                viewModel.startLocation(mContext) {
                     viewModel.refreshing.set(true)
                 }
             }

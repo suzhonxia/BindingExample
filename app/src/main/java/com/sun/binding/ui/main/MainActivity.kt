@@ -38,7 +38,7 @@ class MainActivity : BaseActivity<MainViewModel, MainActivityBinding>() {
         // 初始化 MMKV
         MMKV.initialize(mContext)
         // 开始定位 获得坐标
-        startLocation()
+        viewModel.startLocation(mContext)
 
         // 配置 ViewPager 适配器
         mBinding.cvpMain.adapter = FragVpAdapter.newBuilder()
@@ -81,12 +81,6 @@ class MainActivity : BaseActivity<MainViewModel, MainActivityBinding>() {
             // 退出App
             super.onBackPressed()
             AppUtils.exitApp()
-        }
-    }
-
-    private fun startLocation() {
-        LocationHelper.getInstance().startLocation(mContext) { latitude, longitude ->
-            AppUserManager.saveLocation(LocationEntity(latitude, longitude))
         }
     }
 }

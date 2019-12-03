@@ -1,7 +1,9 @@
 package com.sun.binding.model.base
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.sun.binding.model.base.task.TaskProxy
 import com.sun.binding.mvvm.model.*
 import com.sun.binding.net.NetCallback
 import kotlinx.coroutines.*
@@ -22,6 +24,9 @@ abstract class BaseViewModel : BaseMvvmViewModel(), KoinComponent {
 
     /** 控制 Toast 显示 */
     val toastData = MutableLiveData<ToastModel>()
+
+    /** Task 代理实现 */
+    private val taskProxy: TaskProxy = TaskProxy
 
     /**
      * @param tryBlock 尝试执行的挂起代码块
@@ -57,5 +62,12 @@ abstract class BaseViewModel : BaseMvvmViewModel(), KoinComponent {
     override fun onCleared() {
         super.onCleared()
         viewModelScope.cancel()
+    }
+
+    /**
+     * 开始定位
+     */
+    fun startLocation(context: Context, savable: Boolean = true, block: (() -> Unit)? = null) {
+        taskProxy.startLocation(this, context, savable, block)
     }
 }
