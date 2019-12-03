@@ -6,13 +6,10 @@ import com.blankj.utilcode.util.AppUtils
 import com.sun.binding.R
 import com.sun.binding.constants.MAIN_BACK_PRESS_INTERVAL_MS
 import com.sun.binding.databinding.MainActivityBinding
-import com.sun.binding.entity.LocationEntity
 import com.sun.binding.model.main.MainViewModel
 import com.sun.binding.tools.ext.setMainColorStatusBar
 import com.sun.binding.tools.ext.setWhiteStatusBar
 import com.sun.binding.tools.ext.toToastMsg
-import com.sun.binding.tools.helper.LocationHelper
-import com.sun.binding.tools.manager.AppUserManager
 import com.sun.binding.tools.tool.FragVpAdapter
 import com.sun.binding.tools.tool.getString
 import com.sun.binding.tools.util.event.EventObserver

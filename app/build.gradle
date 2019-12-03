@@ -154,6 +154,8 @@ dependencies {
 
     // UtilCode
     implementation 'com.blankj:utilcodex:1.25.9'
+    // AutoSize
+    implementation 'me.jessyan:autosize:1.1.2'
 
     // SmartRefreshLayout
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
@@ -176,6 +178,8 @@ dependencies {
     implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
     // ExpandableTextView
     implementation 'com.github.MZCretin:ExpandableTextView:1.6.1'
+    // TitleBar
+    implementation 'com.hjq:titlebar:6.0'
 
     // AMap
     implementation 'com.amap.api:location:latest.integration'

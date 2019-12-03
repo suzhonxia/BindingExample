@@ -3,12 +3,14 @@ package com.sun.binding.application
 import android.annotation.SuppressLint
 import android.app.Application
 import com.blankj.utilcode.util.LogUtils
+import com.hjq.bar.TitleBar
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.sun.binding.BuildConfig
 import com.sun.binding.R
 import com.sun.binding.tools.manager.AppStackManager
 import com.sun.binding.widget.LoadMoreEmptyView
+import com.sun.binding.widget.TitleBarStyleImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -57,6 +59,9 @@ class ApplicationSolver(private val app: Application) : Runnable {
 
         // 初始化输出日志
         LogUtils.getConfig().isLogSwitch = BuildConfig.DEBUG
+
+        // TitleBar 设置Style
+        TitleBar.initStyle(TitleBarStyleImpl(app))
     }
 
     /**

@@ -2,10 +2,13 @@ package com.sun.binding.ui.base
 
 import android.content.res.Resources
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ToastUtils
+import com.hjq.bar.OnTitleBarListener
+import com.hjq.bar.TitleBar
 import com.sun.binding.R
 import com.sun.binding.model.base.BaseViewModel
 import com.sun.binding.tools.helper.ProgressDialogHelper
@@ -20,6 +23,12 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
         super.onCreate(savedInstanceState)
 
         observeData()
+    }
+
+    override fun setContentView(layoutResID: Int) {
+        super.setContentView(layoutResID)
+
+        initTitleBar()
     }
 
     override fun getResources(): Resources {
@@ -78,4 +87,33 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
             }
         })
     }
+
+    /**
+     * 初始化 TitleBar
+     */
+    private fun initTitleBar() {
+        getTitleBar()?.run {
+            setOnTitleBarListener(object : OnTitleBarListener {
+                override fun onLeftClick(v: View?) {
+                    leftClick()
+                }
+
+                override fun onRightClick(v: View?) {
+                    rightClick()
+                }
+
+                override fun onTitleClick(v: View?) {
+                    titleClick()
+                }
+            })
+        }
+    }
+
+    protected fun getTitleBar() = mBinding.root.findViewById(R.id.titleBar) as? TitleBar
+
+    protected fun leftClick() = onBackPressed()
+
+    protected fun rightClick() {}
+
+    protected fun titleClick() {}
 }
