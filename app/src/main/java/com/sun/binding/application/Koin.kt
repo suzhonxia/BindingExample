@@ -8,6 +8,7 @@ import com.sun.binding.constants.SP_KEY_COOKIES
 import com.sun.binding.entity.CookieEntity
 import com.sun.binding.model.circle.CircleProductViewModel
 import com.sun.binding.model.circle.CircleViewModel
+import com.sun.binding.model.course.SuitCourseViewModel
 import com.sun.binding.model.educ.EducViewModel
 import com.sun.binding.model.home.HomeViewModel
 import com.sun.binding.model.main.MainViewModel
@@ -118,4 +119,5 @@ val viewModelModule: Module = module {
     viewModel { EducViewModel(get()) }
     viewModel { CircleViewModel() }
     viewModel { CircleProductViewModel(get()) }
+    viewModel { SuitCourseViewModel(get()) }
 }

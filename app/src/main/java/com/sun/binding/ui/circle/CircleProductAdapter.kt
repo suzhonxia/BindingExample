@@ -9,6 +9,7 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.blankj.utilcode.util.SizeUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.ctetin.expandabletextviewlibrary.ExpandableTextView
 import com.sun.binding.R
 import com.sun.binding.entity.ProductEntity
 import com.sun.binding.tools.helper.ComputeHelper
@@ -23,6 +24,7 @@ class CircleProductAdapter(data: List<ProductEntity>?) : BaseQuickAdapter<Produc
         helper.setText(R.id.tvFocusAction, if (item?.focus == 0) "+ 关注" else "已关注")
         helper.getView<View>(R.id.tvFocusAction).isSelected = item?.focus == 1
 
+        helper.getView<ExpandableTextView>(R.id.tvProductContent).setContent(item?.intro ?: "")
         if (item != null) applyResourceLayout(helper, item) else {
             helper.setGone(R.id.videoLayout, false)
             helper.setGone(R.id.photoLayout, false)

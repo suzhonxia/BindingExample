@@ -20,4 +20,8 @@ class CourseRepository : BaseRepository() {
         val location = AppUserManager.getLocation()
         mWebService.getCircleProductData(type, page, location?.latitude ?: 0.0, location?.longitude ?: 0.0)
     }
+
+    suspend fun getSuitCourseData() = withContext(Dispatchers.IO) {
+        mWebService.getSuitCourseData()
+    }
 }

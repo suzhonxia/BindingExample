@@ -1,9 +1,6 @@
 package com.sun.binding.net
 
-import com.sun.binding.entity.CircleEntity
-import com.sun.binding.entity.EducEntity
-import com.sun.binding.entity.HomeEntity
-import com.sun.binding.entity.UserInfoEntity
+import com.sun.binding.entity.*
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -32,4 +29,7 @@ interface WebService {
         @Field("lat") lat: Double = 0.0,
         @Field("lng") lng: Double = 0.0
     ): NetResult<CircleEntity>
+
+    @POST(UrlDefinition.API_SUIT_COURSE)
+    suspend fun getSuitCourseData(): NetResult<List<SuitCourseEntity>>
 }

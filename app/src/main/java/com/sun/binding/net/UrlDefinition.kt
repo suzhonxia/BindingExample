@@ -31,4 +31,7 @@ object UrlDefinition {
 
     /** 同学圈列表 */
     const val API_CIRCLE_PRODUCT = "/v2/circle/t_list"
+
+    /** 磁力片套装课程列表 */
+    const val API_SUIT_COURSE = "/v2/box/index"
 }

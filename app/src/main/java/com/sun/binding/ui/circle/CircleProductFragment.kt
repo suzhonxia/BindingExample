@@ -6,9 +6,7 @@ import androidx.lifecycle.Observer
 import com.blankj.utilcode.constant.PermissionConstants
 import com.sun.binding.R
 import com.sun.binding.databinding.CircleProductFragmentBinding
-import com.sun.binding.entity.LocationEntity
 import com.sun.binding.model.circle.CircleProductViewModel
-import com.sun.binding.tools.helper.LocationHelper
 import com.sun.binding.tools.helper.PermissionHelper
 import com.sun.binding.tools.manager.AppUserManager
 import com.sun.binding.tools.tool.setCommonMode
