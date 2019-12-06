@@ -31,9 +31,9 @@ fun MagicIndicator.bindViewPager(context: Context, fm: FragmentManager, vp: View
 
             override fun getTitleView(context: Context?, index: Int): IPagerTitleView = CommonPagerTitleView(context).apply {
                 text = tabNames[index]
-                normalTextSize = SizeUtils.sp2px(16F)
+                normalTextSize = SizeUtils.sp2px(15F)
                 normalColor = ColorUtils.getColor(R.color.app_text_color_gray_light)
-                selectedTextSize = SizeUtils.sp2px(18F)
+                selectedTextSize = SizeUtils.sp2px(16F)
                 selectedColor = ColorUtils.getColor(R.color.app_text_color_black_light)
                 typeface = Typeface.defaultFromStyle(Typeface.BOLD)
                 setOnClickListener { vp.currentItem = index }

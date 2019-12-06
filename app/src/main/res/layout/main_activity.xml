@@ -36,7 +36,7 @@
                 android:layout_height="50dp"
                 android:background="@color/app_white"
                 android:bind_bnv_enable_animation="@{false}"
-                android:bind_bnv_icon_size="@{23}"
+                android:bind_bnv_icon_size="@{21}"
                 android:bind_bnv_item_selected_listener="@{viewModel.itemSelectedListener}"
                 android:bind_bnv_text_size="@{11}"
                 app:itemTextColor="@color/main_tab_selector_color"

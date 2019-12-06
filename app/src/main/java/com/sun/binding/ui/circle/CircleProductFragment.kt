@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.blankj.utilcode.constant.PermissionConstants
 import com.sun.binding.R
 import com.sun.binding.databinding.CircleProductFragmentBinding
+import com.sun.binding.entity.validLocation
 import com.sun.binding.model.circle.CircleProductViewModel
 import com.sun.binding.tools.helper.PermissionHelper
 import com.sun.binding.tools.manager.AppUserManager
@@ -90,7 +91,7 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
 
     private fun requestLocationPermission() {
         val action = {
-            if (AppUserManager.getLocation() != null) {
+            if (AppUserManager.getLocation().validLocation()) {
                 viewModel.refreshing.set(true)
             } else {
                 viewModel.startLocation(mContext) {
