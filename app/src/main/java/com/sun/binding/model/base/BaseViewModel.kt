@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sun.binding.model.base.task.TaskProxy
+import com.sun.binding.mvvm.binding.BindingField
 import com.sun.binding.mvvm.model.*
 import com.sun.binding.net.NetCallback
+import com.sun.binding.widget.state.StateEnum
 import kotlinx.coroutines.*
 import org.koin.core.KoinComponent
 
@@ -27,6 +29,9 @@ abstract class BaseViewModel : BaseMvvmViewModel(), KoinComponent {
 
     /** Task 代理实现 */
     private val taskProxy: TaskProxy = TaskProxy
+
+    /** 状态值 */
+    var viewState = BindingField(StateEnum.CONTENT)
 
     /**
      * @param tryBlock 尝试执行的挂起代码块
@@ -54,6 +59,16 @@ abstract class BaseViewModel : BaseMvvmViewModel(), KoinComponent {
      */
     fun launchOnIO(callback: NetCallback.() -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
+            val netCallback = NetCallback().also(callback)
+            tryCatch(netCallback.tryBlock, netCallback.catchBlock, netCallback.finallyBlock)
+        }
+    }
+
+    /**
+     * 在主线程中开启
+     */
+    fun launchOnMain(callback: NetCallback.() -> Unit) {
+        viewModelScope.launch(Dispatchers.Main) {
             val netCallback = NetCallback().also(callback)
             tryCatch(netCallback.tryBlock, netCallback.catchBlock, netCallback.finallyBlock)
         }

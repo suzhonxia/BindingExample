@@ -6,8 +6,10 @@ import com.sun.binding.R
 import com.sun.binding.databinding.SuitCourseActivityBinding
 import com.sun.binding.model.course.SuitCourseViewModel
 import com.sun.binding.tools.ext.setWhiteStatusBar
+import com.sun.binding.tools.tool.setCommonMode
 import com.sun.binding.ui.base.BaseActivity
 import com.sun.binding.widget.decoration.SuitIndexItemDecoration
+import com.sun.binding.widget.state.StateEnum
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -36,6 +38,10 @@ class SuitCourseActivity : BaseActivity<SuitCourseViewModel, SuitCourseActivityB
             itemDecoration = suitItemDecoration
         }
 
+        mBinding.statefulLayout.setCommonMode {
+            viewModel.viewState.set(StateEnum.LOADING)
+            viewModel.refreshing.set(true)
+        }
         viewModel.refreshing.set(true)
     }
 

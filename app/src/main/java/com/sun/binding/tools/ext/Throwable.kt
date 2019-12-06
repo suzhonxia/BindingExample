@@ -2,28 +2,18 @@
 
 package com.sun.binding.tools.ext
 
-import java.io.PrintWriter
-import java.io.StringWriter
-import java.net.UnknownHostException
+import com.sun.binding.R
+import com.sun.binding.tools.tool.getString
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 /**
  * 获取堆栈跟踪字符串
  */
-fun Throwable?.getStackTraceString() : String {
-    if (this == null) {
-        return ""
-    }
-    var t = this
-    while (t != null) {
-        if (t is UnknownHostException) {
-            return ""
-        }
-        t = t.cause
-    }
-
-    val sw = StringWriter()
-    val pw = PrintWriter(sw)
-    this.printStackTrace(pw)
-    pw.flush()
-    return sw.toString()
+fun Throwable?.getStackTraceString(): String {
+    return when (this) {
+        is SocketTimeoutException -> R.string.app_net_error_timeout
+        is ConnectException -> R.string.app_net_error_connect
+        else -> R.string.app_net_error_failed
+    }.getString()
 }

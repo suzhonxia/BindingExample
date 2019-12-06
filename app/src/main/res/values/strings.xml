@@ -12,4 +12,8 @@
     <string name="app_in_request">请求中…</string>
     <string name="app_in_loading">加载中…</string>
     <string name="app_smart_no_more">没有更多数据了</string>
+
+    <string name="app_net_error_timeout">连接超时，请稍后再试！</string>
+    <string name="app_net_error_connect">连接失败，请稍后再试！</string>
+    <string name="app_net_error_failed">网络故障，请稍后再试！</string>
 </resources>
