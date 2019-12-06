@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:textColor="@color/app_text_color_gray"
-            android:textSize="11sp"
+            android:textSize="@dimen/sp_12"
             tools:ignore="SmallSp"
             tools:text="200/2000" />
 
@@ -21,8 +21,8 @@
             android:id="@+id/pbPercent"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_marginTop="2dp"
+            android:layout_height="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_2"
             android:progressDrawable="@drawable/home_percent_bg"
             tools:max="100"
             tools:progress="60" />

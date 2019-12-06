@@ -14,10 +14,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="2dp"
-        android:paddingRight="2dp"
-        tools:layout_height="54dp"
-        tools:layout_width="78dp">
+        android:paddingLeft="@dimen/dp_2"
+        android:paddingRight="@dimen/dp_2"
+        tools:layout_height="@dimen/dp_54"
+        tools:layout_width="@dimen/dp_78">
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,20 +28,20 @@
             android:singleLine="true"
             android:text="@{nav.num}"
             android:textColor="@color/app_text_color_black_light"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_18"
             tools:text="0" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/dp_14"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
             android:singleLine="true"
             android:text="@{nav.txt + `(` + nav.unit + `)`}"
             android:textColor="@color/app_text_color_gray_light"
-            android:textSize="12sp"
+            android:textSize="@dimen/sp_12"
             tools:text="团队(人)" />
     </LinearLayout>
 </layout>

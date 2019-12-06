@@ -5,5 +5,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scaleType="centerCrop"
-    app:riv_corner_radius="5dp"
+    app:riv_corner_radius="@dimen/dp_5"
     tools:ignore="ContentDescription" />

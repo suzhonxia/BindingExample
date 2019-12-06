@@ -19,7 +19,7 @@
             android:id="@+id/cvpMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="@dimen/dp_50"
             android:bind_vp_currentItem="@{viewModel.currentItem}"
             android:bind_vp_offscreenPageLimit="@{5}"
             android:bind_vp_smoothScroll="@{false}"
@@ -33,7 +33,7 @@
             <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
                 android:id="@+id/bnvMain"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dp_50"
                 android:background="@color/app_white"
                 android:bind_bnv_enable_animation="@{false}"
                 android:bind_bnv_icon_size="@{21}"
@@ -46,16 +46,16 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="8dp"
+            android:layout_height="@dimen/dp_8"
             android:layout_alignBottom="@id/cvpMain"
             android:background="@drawable/app_top_shadow" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/dp_8"
             android:bind_onClick="@{viewModel.onSubmitTabClick}"
             android:src="@drawable/main_tab_submit"
             tools:ignore="ContentDescription" />

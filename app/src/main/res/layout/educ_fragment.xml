@@ -29,7 +29,7 @@
             android:gravity="center"
             android:text="@string/educ_tab"
             android:textColor="@color/app_text_color_black_light"
-            android:textSize="@dimen/sp_20" />
+            android:textSize="@dimen/sp_18" />
 
         <com.sun.binding.widget.state.StatefulLayout
             android:layout_width="match_parent"

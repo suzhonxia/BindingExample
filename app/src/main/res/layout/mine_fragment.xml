@@ -37,13 +37,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/app_color_main"
-                    android:paddingBottom="20dp">
+                    android:paddingBottom="@dimen/dp_20">
 
                     <ImageView
                         android:id="@+id/ivUserAvatar"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="25dp"
+                        android:layout_width="@dimen/dp_70"
+                        android:layout_height="@dimen/dp_70"
+                        android:layout_marginTop="@dimen/dp_25"
                         android:bind_iv_img_circle="@{true}"
                         android:bind_iv_img_default="@{@drawable/app_user_default_avatar}"
                         android:bind_iv_img_url="@{viewModel.userInfoData.avatar}"
@@ -56,8 +56,8 @@
 
                     <ImageView
                         android:id="@+id/ivUserGender"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
                         android:bind_visibility="@{(viewModel.userInfoData.gender == 1 || viewModel.userInfoData.gender == 2)}"
                         android:contentDescription="@null"
                         android:src="@{viewModel.userInfoData.gender == 1 ? @drawable/app_user_boy_white : @drawable/app_user_girl_white}"
@@ -69,9 +69,9 @@
                         android:id="@+id/tvUserName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_15"
+                        android:layout_marginRight="@dimen/dp_15"
                         android:ellipsize="end"
                         android:gravity="center"
                         android:includeFontPadding="false"
@@ -79,7 +79,7 @@
                         android:singleLine="true"
                         android:text="@{viewModel.userInfoData.nickname}"
                         android:textColor="@color/app_text_color_black_light"
-                        android:textSize="17sp"
+                        android:textSize="@dimen/sp_17"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ivUserGender"
@@ -89,10 +89,10 @@
                         android:id="@+id/tvUserIdentity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/dp_10"
                         android:text="@{`学院ID：` + viewModel.userInfoData.user_id}"
                         android:textColor="@color/app_text_color_black_light"
-                        android:textSize="13sp"
+                        android:textSize="@dimen/sp_13"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvUserName"
@@ -100,11 +100,11 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"
-                        android:minWidth="210dp"
+                        android:layout_height="@dimen/dp_30"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_15"
+                        android:layout_marginRight="@dimen/dp_15"
+                        android:minWidth="@dimen/dp_210"
                         android:orientation="horizontal"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -120,11 +120,11 @@
                             android:gravity="center"
                             android:text="@{viewModel.userInfoData.focus_num + ` 关注`}"
                             android:textColor="@color/app_text_color_black_light"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/sp_14"
                             tools:text="12 关注" />
 
                         <View
-                            android:layout_width="1dp"
+                            android:layout_width="@dimen/dp_1"
                             android:layout_height="match_parent" />
 
                         <TextView
@@ -137,7 +137,7 @@
                             android:gravity="center"
                             android:text="@{viewModel.userInfoData.fans_num + ` 粉丝`}"
                             android:textColor="@color/app_text_color_black_light"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/sp_14"
                             tools:text="36 粉丝" />
                     </LinearLayout>
 
@@ -147,11 +147,11 @@
                         android:layout_height="wrap_content"
                         android:bind_view_click="@{viewModel.onUserInfoClick}"
                         android:drawableStart="@drawable/mine_user_info_edit"
-                        android:drawablePadding="4dp"
-                        android:padding="15dp"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:padding="@dimen/dp_15"
                         android:text="编辑资料"
                         android:textColor="@color/app_text_color_black_light"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/sp_15"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="HardcodedText" />
@@ -162,21 +162,21 @@
                     android:layout_height="wrap_content"
                     android:background="@color/app_window_bg"
                     android:bind_visibility="@{viewModel.userInfoData.shop != null &amp;&amp; viewModel.userInfoData.shop.isShow == 1}"
-                    android:paddingBottom="16dp">
+                    android:paddingBottom="@dimen/dp_16">
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="@dimen/dp_20"
                         android:background="@color/app_color_main" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginRight="@dimen/dp_15"
                         android:background="@drawable/mine_shop_shape"
                         android:orientation="vertical"
-                        android:padding="10dp">
+                        android:padding="@dimen/dp_10">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -185,21 +185,21 @@
                             android:drawableEnd="@drawable/app_right_arrow_gray"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:paddingLeft="5dp"
-                            android:paddingTop="10dp"
-                            android:paddingRight="5dp"
-                            android:paddingBottom="10dp"
+                            android:paddingLeft="@dimen/dp_5"
+                            android:paddingTop="@dimen/dp_10"
+                            android:paddingRight="@dimen/dp_5"
+                            android:paddingBottom="@dimen/dp_10"
                             android:singleLine="true"
                             android:text="@{viewModel.userInfoData.nickname + `的店铺`}"
                             android:textColor="@color/app_text_color_black"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/sp_15"
                             tools:text="XXX的店铺" />
 
                         <LinearLayout
                             android:id="@+id/shopNavContainer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="@dimen/dp_5"
                             android:bind_mine_shop_nav="@{viewModel.userInfoData.shop == null ? null : viewModel.userInfoData.shop.nav}"
                             android:orientation="horizontal" />
                     </LinearLayout>
@@ -216,14 +216,14 @@
                         android:layout_weight="1"
                         android:bind_view_click="@{viewModel.onMenuClick}"
                         android:drawableTop="@drawable/mine_icon_collected"
-                        android:drawablePadding="6dp"
+                        android:drawablePadding="@dimen/dp_6"
                         android:gravity="center"
-                        android:paddingTop="18dp"
-                        android:paddingBottom="18dp"
+                        android:paddingTop="@dimen/dp_18"
+                        android:paddingBottom="@dimen/dp_18"
                         android:tag="@{mineConstant.MINE_COLLECTED_MENU}"
                         android:text="收藏的课程"
                         android:textColor="@color/app_text_color_black_light"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/sp_14"
                         tools:ignore="HardcodedText" />
 
                     <TextView
@@ -232,14 +232,14 @@
                         android:layout_weight="1"
                         android:bind_view_click="@{viewModel.onMenuClick}"
                         android:drawableTop="@drawable/mine_icon_product"
-                        android:drawablePadding="6dp"
+                        android:drawablePadding="@dimen/dp_6"
                         android:gravity="center"
-                        android:paddingTop="18dp"
-                        android:paddingBottom="18dp"
+                        android:paddingTop="@dimen/dp_18"
+                        android:paddingBottom="@dimen/dp_18"
                         android:tag="@{mineConstant.MINE_PRODUCT_MENU}"
                         android:text="我的作品"
                         android:textColor="@color/app_text_color_black_light"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/sp_14"
                         tools:ignore="HardcodedText" />
 
                     <TextView
@@ -248,20 +248,20 @@
                         android:layout_weight="1"
                         android:bind_view_click="@{viewModel.onMenuClick}"
                         android:drawableTop="@drawable/mine_icon_asset"
-                        android:drawablePadding="6dp"
+                        android:drawablePadding="@dimen/dp_6"
                         android:gravity="center"
-                        android:paddingTop="18dp"
-                        android:paddingBottom="18dp"
+                        android:paddingTop="@dimen/dp_18"
+                        android:paddingBottom="@dimen/dp_18"
                         android:tag="@{mineConstant.MINE_ASSET_MENU}"
                         android:text="我的教具"
                         android:textColor="@color/app_text_color_black_light"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/sp_14"
                         tools:ignore="HardcodedText" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_height="@dimen/dp_15"
                     android:background="@color/app_window_bg" />
 
                 <com.sun.binding.widget.CustomItemView

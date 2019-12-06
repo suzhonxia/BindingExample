@@ -4,6 +4,8 @@ import android.graphics.Color
 import android.text.SpannableStringBuilder
 import com.blankj.utilcode.util.SpanUtils
 import com.stx.xhb.xbanner.entity.SimpleBannerInfo
+import com.sun.binding.R
+import com.sun.binding.tools.tool.getColor
 
 data class HomeEntity(
     val banner: List<BannerEntity>?,
@@ -41,7 +43,7 @@ data class GaoEntity(
         val indexOf = title.indexOf(keyword)
         return SpanUtils()
             .append(title.substring(0, indexOf))
-            .append(keyword).setForegroundColor(Color.parseColor("#FC650D"))
+            .append(keyword).setForegroundColor(R.color.app_color_main.getColor())
             .append(title.substring(indexOf + keyword.length))
             .create()
     }
