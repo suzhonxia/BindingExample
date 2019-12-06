@@ -4,8 +4,6 @@
 
     <data>
 
-        <import type="com.sun.binding.widget.state.StateMode" />
-
         <variable
             name="viewModel"
             type="com.sun.binding.model.course.SuitCourseViewModel" />
@@ -33,7 +31,7 @@
         <com.sun.binding.widget.state.StatefulLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:bind_sfl_mode="@{StateMode.common}"
+            android:bind_sfl_mode="@{com.sun.binding.widget.state.StateMode.common}"
             android:bind_sfl_retry="@{viewModel.retry}"
             android:bind_sfl_state="@{viewModel.viewState}">
 

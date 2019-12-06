@@ -33,6 +33,9 @@ abstract class BaseViewModel : BaseMvvmViewModel(), KoinComponent {
     /** 状态值 */
     var viewState = BindingField(StateEnum.CONTENT)
 
+    /** 重试 Action */
+    open var retry = {}
+
     /**
      * @param tryBlock 尝试执行的挂起代码块
      * @param catchBlock 捕获异常的代码块 "协程对Retrofit的实现在失败、异常时没有onFailure的回调而是直接已Throwable的形式抛出"
@@ -74,15 +77,15 @@ abstract class BaseViewModel : BaseMvvmViewModel(), KoinComponent {
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelScope.cancel()
-    }
-
     /**
      * 开始定位
      */
     fun startLocation(context: Context, savable: Boolean = true, block: (() -> Unit)? = null) {
         taskProxy.startLocation(this, context, savable, block)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
     }
 }

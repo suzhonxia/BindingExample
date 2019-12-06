@@ -20,8 +20,10 @@ class SuitCourseViewModel(private val courseRepository: CourseRepository) : Base
     /** 列表数据 */
     val suitCourseList = MutableLiveData<List<SuitCourseEntity>>()
 
-    /** 重试 Action */
-    val retry = { retry() }
+    override var retry = {
+        viewState.set(StateEnum.LOADING)
+        refreshing.set(true)
+    }
 
     private fun getSuitCourse() {
         launchOnMain {
@@ -47,10 +49,5 @@ class SuitCourseViewModel(private val courseRepository: CourseRepository) : Base
                 refreshing.set(false)
             }
         }
-    }
-
-    private fun retry() {
-        viewState.set(StateEnum.LOADING)
-        refreshing.set(true)
     }
 }
