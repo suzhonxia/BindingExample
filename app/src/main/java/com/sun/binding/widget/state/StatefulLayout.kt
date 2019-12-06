@@ -36,10 +36,10 @@ class StatefulLayout @JvmOverloads constructor(context: Context, attrs: Attribut
     var listener: StateListener? = null
 
     /** 状态切换是否使用动画 */
-    private var animateLayoutChanges: Boolean = false
+    private var animateLayoutChanges: Boolean = true
 
     /** 是否使用默认视图 */
-    private var applyNormalView: Boolean = false
+    private var applyNormalView: Boolean = true
 
     /** 当前状态 */
     var viewState: StateEnum = StateEnum.CONTENT
