@@ -22,7 +22,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp_16"
         android:textColor="@color/app_text_color_gray_light"
-        android:textSize="@dimen/sp_16"
+        android:textSize="@dimen/sp_15"
         tools:text="咦！怎么把网络搞丢了~" />
 
     <TextView
@@ -34,7 +34,7 @@
         android:background="@drawable/app_shape_positive_action_bg"
         android:gravity="center"
         android:textColor="@color/app_text_color_black_light"
-        android:textSize="@dimen/sp_16"
+        android:textSize="@dimen/sp_14"
         tools:text="重试" />
 
     <Space
