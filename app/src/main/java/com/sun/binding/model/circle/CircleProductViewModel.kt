@@ -8,9 +8,11 @@ import com.sun.binding.entity.ProductEntity
 import com.sun.binding.model.base.BaseRefreshViewModel
 import com.sun.binding.model.base.task.LocationTarget
 import com.sun.binding.mvvm.binding.BindingField
-import com.sun.binding.mvvm.model.SnackbarModel
 import com.sun.binding.net.repository.CourseRepository
 import com.sun.binding.tools.ext.getStackTraceString
+import com.sun.binding.tools.ext.toSnackbarMsg
+import com.sun.binding.tools.util.event.Event
+import com.sun.binding.widget.state.StateEnum
 
 class CircleProductViewModel(private val courseRepository: CourseRepository) : BaseRefreshViewModel(), LocationTarget {
 
@@ -41,9 +43,18 @@ class CircleProductViewModel(private val courseRepository: CourseRepository) : B
     /** 作品列表数据 */
     val circleProductList = MutableLiveData<List<ProductEntity>>()
 
+    /** 重试 retry */
+    val retryTarget = MutableLiveData<Event<Unit>>()
+
     /** 设置 Intent 数据 */
     fun setIntentData(bundle: Bundle?) {
         type = bundle?.get("type") as? Int ?: 0
+    }
+
+    /** 重试 or 去开启 */
+    override var retry = {
+        viewState.set(StateEnum.LOADING)
+        retryTarget.postValue(Event(Unit))
     }
 
     /** 请求同学圈作品列表数据 */
@@ -53,11 +64,23 @@ class CircleProductViewModel(private val courseRepository: CourseRepository) : B
             tryBlock {
                 val result = courseRepository.getCircleProductData(type, pageFlag)
                 if (result.checkResponseCode()) {
-                    circleProductList.postValue(result.data.course)
+                    val course = result.data.course
+                    if (course.isNullOrEmpty()) {
+                        if (circleProductList.value.isNullOrEmpty()) {
+                            viewState.set(StateEnum.EMPTY)
+                        }
+                    } else {
+                        viewState.set(StateEnum.CONTENT)
+                        circleProductList.postValue(course)
+                    }
                 }
             }
             catchBlock { e ->
-                snackbarData.postValue(SnackbarModel(e.getStackTraceString()))
+                if (circleProductList.value.isNullOrEmpty()) {
+                    viewState.set(StateEnum.ERROR)
+                } else {
+                    snackbarData.value = e.getStackTraceString().toSnackbarMsg()
+                }
             }
             finallyBlock {
                 refreshing.set(false)

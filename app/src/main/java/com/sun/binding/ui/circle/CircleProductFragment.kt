@@ -37,13 +37,6 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
 
     override val layoutResId: Int = R.layout.circle_product_fragment
 
-    /** 当前状态 */
-    private var viewState = StateEnum.CONTENT
-        set(value) {
-            field = value
-            statefulLayout.viewState = value
-        }
-
     /** 课程列表适配器 */
     private val circleProductAdapter: CircleProductAdapter = CircleProductAdapter(listOf())
 
@@ -58,13 +51,6 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
 
         viewModel.run {
             setIntentData(arguments)
-
-            // 设置 StatefulLayout 模式
-            if (!needLocation()) {
-                statefulLayout.setCommonMode { refresh() }
-            } else {
-                statefulLayout.setLocationMode { refresh() }
-            }
         }
 
         // 刷新请求
@@ -72,13 +58,18 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
     }
 
     override fun initObserve() {
-        viewModel.circleProductList.observe(this, Observer {
-            if (viewModel.isRefreshFlag()) {
-                circleProductAdapter.setNewData(it)
-            } else {
-                circleProductAdapter.addData(it)
-            }
-        })
+        viewModel.run {
+            circleProductList.observe(this@CircleProductFragment, Observer {
+                if (isRefreshFlag()) {
+                    circleProductAdapter.setNewData(it)
+                } else {
+                    circleProductAdapter.addData(it)
+                }
+            })
+            retryTarget.observe(this@CircleProductFragment, Observer {
+                refresh()
+            })
+        }
     }
 
     private fun refresh() {
@@ -100,10 +91,10 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
             }
         }
         if (!PermissionHelper.isGranted(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-            viewState = StateEnum.ERROR
+            viewModel.viewState.set(StateEnum.ERROR)
             PermissionHelper.requestPermission(mContext, PermissionConstants.LOCATION) { action() }
         } else {
-            viewState = StateEnum.CONTENT
+            viewModel.viewState.set(StateEnum.CONTENT)
             action()
         }
     }

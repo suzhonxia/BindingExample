@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="com.sun.binding.widget.state.StateMode" />
+
         <variable
             name="viewModel"
             type="com.sun.binding.model.circle.CircleProductViewModel" />
@@ -18,11 +20,11 @@
     </data>
 
     <com.sun.binding.widget.state.StatefulLayout
-        android:id="@+id/statefulLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:sfl_applyNormalView="true"
-        app:sfl_viewState="content">
+        android:bind_sfl_mode="@{viewModel.needLocation() ? StateMode.location : StateMode.common}"
+        android:bind_sfl_retry="@{viewModel.retry}"
+        android:bind_sfl_state="@{viewModel.viewState}">
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:layout_width="match_parent"
