@@ -55,8 +55,8 @@ class StatefulLayout @JvmOverloads constructor(context: Context, attrs: Attribut
     init {
         val inflater = LayoutInflater.from(context)
         val a = context.obtainStyledAttributes(attrs, R.styleable.StatefulLayout)
-        animateLayoutChanges = a.getBoolean(R.styleable.StatefulLayout_sfl_animateViewChanges, false)
-        applyNormalView = a.getBoolean(R.styleable.StatefulLayout_sfl_applyNormalView, false)
+        animateLayoutChanges = a.getBoolean(R.styleable.StatefulLayout_sfl_animateViewChanges, animateLayoutChanges)
+        applyNormalView = a.getBoolean(R.styleable.StatefulLayout_sfl_applyNormalView, applyNormalView)
 
         val loadingViewResId = a.getResourceId(R.styleable.StatefulLayout_sfl_loadingView, -1)
         if (loadingViewResId > -1) {

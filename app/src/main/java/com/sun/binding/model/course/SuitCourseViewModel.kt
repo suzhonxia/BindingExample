@@ -20,6 +20,9 @@ class SuitCourseViewModel(private val courseRepository: CourseRepository) : Base
     /** 列表数据 */
     val suitCourseList = MutableLiveData<List<SuitCourseEntity>>()
 
+    /** 重试 Action */
+    val retry = { retry() }
+
     private fun getSuitCourse() {
         launchOnMain {
             tryBlock {
@@ -44,5 +47,10 @@ class SuitCourseViewModel(private val courseRepository: CourseRepository) : Base
                 refreshing.set(false)
             }
         }
+    }
+
+    private fun retry() {
+        viewState.set(StateEnum.LOADING)
+        refreshing.set(true)
     }
 }

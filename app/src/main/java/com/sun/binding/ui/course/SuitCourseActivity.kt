@@ -38,10 +38,6 @@ class SuitCourseActivity : BaseActivity<SuitCourseViewModel, SuitCourseActivityB
             itemDecoration = suitItemDecoration
         }
 
-        mBinding.statefulLayout.setCommonMode {
-            viewModel.viewState.set(StateEnum.LOADING)
-            viewModel.refreshing.set(true)
-        }
         viewModel.refreshing.set(true)
     }
 
