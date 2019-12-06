@@ -49,7 +49,7 @@ class CircleProductViewModel(private val courseRepository: CourseRepository) : B
     /** 请求同学圈作品列表数据 */
     private fun getCircleProductData(isRefresh: Boolean) {
         if (isRefresh) pageFlag = NET_PAGE_START
-        launchOnIO {
+        launchOnMain {
             tryBlock {
                 val result = courseRepository.getCircleProductData(type, pageFlag)
                 if (result.checkResponseCode()) {

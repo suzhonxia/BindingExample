@@ -21,7 +21,7 @@ class EducViewModel(private val courseRepository: CourseRepository) : BaseViewMo
 
     /** 请求亲职教育一级列表数据 */
     private fun getEducData() {
-        launchOnIO {
+        launchOnMain {
             tryBlock {
                 val result = courseRepository.getEducIndex()
                 if (result.checkResponseCode()) {

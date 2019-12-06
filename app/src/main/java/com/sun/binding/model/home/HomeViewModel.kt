@@ -41,7 +41,7 @@ class HomeViewModel(private val homeRepository: HomeRepository) : BaseViewModel(
      * 获取首页聚合数据
      */
     private fun requestHomeData() {
-        launchOnIO {
+        launchOnMain {
             tryBlock {
                 val result = homeRepository.getHomeIndex()
                 if (result.checkResponseCode()) {
