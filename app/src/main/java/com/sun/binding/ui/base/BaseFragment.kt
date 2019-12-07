@@ -9,7 +9,6 @@ import com.blankj.utilcode.util.ToastUtils
 import com.sun.binding.model.base.BaseViewModel
 import com.sun.binding.tools.helper.ProgressDialogHelper
 import com.sun.binding.tools.helper.SnackbarHelper
-import com.sun.binding.tools.helper.XPopupDialogHelper
 
 /**
  * Fragment 基类
@@ -78,13 +77,6 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
      * 添加观察者
      */
     private fun observeData() {
-        viewModel.dialogData.observe(this, Observer { dialog ->
-            if (dialog == null || !dialog.show) {
-                XPopupDialogHelper.dismiss(dialog)
-            } else {
-                XPopupDialogHelper.show(mContext, dialog)
-            }
-        })
         viewModel.snackbarData.observe(this, Observer {
             SnackbarHelper.show(mBinding.root, it)
         })

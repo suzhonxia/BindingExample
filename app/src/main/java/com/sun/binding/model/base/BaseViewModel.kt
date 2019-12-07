@@ -12,8 +12,6 @@ import kotlinx.coroutines.*
 import org.koin.core.KoinComponent
 
 abstract class BaseViewModel : BaseMvvmViewModel(), KoinComponent {
-    /** 弹窗显示数据  */
-    val dialogData = MutableLiveData<DialogModel>()
 
     /** Snackbar 控制 */
     val snackbarData = MutableLiveData<SnackbarModel>()
