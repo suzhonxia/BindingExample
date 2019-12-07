@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sun.binding.model.educ.EducCourseViewModel" />
+
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
+
+        <variable
+            name="itemDecoration"
+            type="androidx.recyclerview.widget.RecyclerView.ItemDecoration" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:bind_tb_title="@{viewModel.title}"
+            app:lineVisible="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_46"
+            android:background="@color/app_white"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:bind_onClick="@{viewModel.sortSelector.clickAction}">
+
+                <TextView
+                    style="@style/app_single_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableEnd="@{viewModel.sortSelector.drawable}"
+                    android:drawablePadding="@dimen/dp_4"
+                    android:gravity="center"
+                    android:text="@{viewModel.sortSelector.name}"
+                    android:textColor="@{viewModel.sortSelector.textColor}"
+                    android:textSize="@dimen/sp_15"
+                    tools:text="排序" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:bind_onClick="@{viewModel.categorySelector.clickAction}">
+
+                <TextView
+                    style="@style/app_single_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableEnd="@{viewModel.categorySelector.drawable}"
+                    android:drawablePadding="@dimen/dp_4"
+                    android:gravity="center"
+                    android:text="@{viewModel.categorySelector.name}"
+                    android:textColor="@{viewModel.categorySelector.textColor}"
+                    android:textSize="@dimen/sp_15"
+                    tools:text="分类" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:bind_onClick="@{viewModel.ageSelector.clickAction}">
+
+                <TextView
+                    style="@style/app_single_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableEnd="@{viewModel.ageSelector.drawable}"
+                    android:drawablePadding="@dimen/dp_4"
+                    android:gravity="center"
+                    android:text="@{viewModel.ageSelector.name}"
+                    android:textColor="@{viewModel.ageSelector.textColor}"
+                    android:textSize="@dimen/sp_15"
+                    tools:text="年龄" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <com.sun.binding.widget.state.StatefulLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:bind_sfl_mode="@{com.sun.binding.widget.state.StateMode.common}"
+            android:bind_sfl_retry="@{viewModel.retry}"
+            android:bind_sfl_state="@{viewModel.viewState}">
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:bind_smart_loadMore="@={viewModel.refreshConfig.loadMore}"
+                android:bind_smart_loadMore_enable="@{viewModel.refreshConfig.loadMoreEnable}"
+                android:bind_smart_onLoadMore="@{viewModel.refreshConfig.onLoadMore}"
+                android:bind_smart_onRefresh="@{viewModel.refreshConfig.onRefresh}"
+                android:bind_smart_refresh_enable="@{viewModel.refreshConfig.refreshEnable}"
+                android:bind_smart_refreshing="@={viewModel.refreshConfig.refreshing}">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:bind_rv_adapter="@{adapter}"
+                    android:bind_rv_item_decoration="@{itemDecoration}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </com.sun.binding.widget.state.StatefulLayout>
+    </LinearLayout>
+</layout>

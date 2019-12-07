@@ -29,12 +29,12 @@
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:bind_smart_loadMore="@={viewModel.loadMore}"
-            android:bind_smart_loadMore_enable="@{viewModel.loadMoreEnable}"
-            android:bind_smart_onLoadMore="@{viewModel.onLoadMore}"
-            android:bind_smart_onRefresh="@{viewModel.onRefresh}"
-            android:bind_smart_refresh_enable="@{viewModel.refreshEnable}"
-            android:bind_smart_refreshing="@={viewModel.refreshing}">
+            android:bind_smart_loadMore="@={viewModel.refreshConfig.loadMore}"
+            android:bind_smart_loadMore_enable="@{viewModel.refreshConfig.loadMoreEnable}"
+            android:bind_smart_onLoadMore="@{viewModel.refreshConfig.onLoadMore}"
+            android:bind_smart_onRefresh="@{viewModel.refreshConfig.onRefresh}"
+            android:bind_smart_refresh_enable="@{viewModel.refreshConfig.refreshEnable}"
+            android:bind_smart_refreshing="@={viewModel.refreshConfig.refreshing}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"

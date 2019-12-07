@@ -76,6 +76,11 @@
             android:name=".ui.course.SuitCourseActivity"
             android:configChanges="screenSize"
             android:screenOrientation="portrait" />
+        <!--亲职教育课程列表-->
+        <activity
+            android:name=".ui.educ.EducCourseActivity"
+            android:configChanges="screenSize"
+            android:screenOrientation="portrait" />
         <!--自测界面-->
         <activity
             android:name=".ui.main.TestActivity"

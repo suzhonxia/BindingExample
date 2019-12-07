@@ -67,7 +67,7 @@
                             android:layout_marginStart="@dimen/dp_10"
                             android:text="@{viewModel.title}"
                             android:textColor="@color/app_text_color_black_light"
-                            android:textSize="@dimen/sp_18"
+                            android:textSize="@dimen/sp_17"
                             tools:ignore="HardcodedText"
                             tools:text="MagFX 机变酷卡" />
                     </LinearLayout>

@@ -5,17 +5,15 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.constant.PermissionConstants
 import com.sun.binding.R
+import com.sun.binding.constants.KeyConstant
 import com.sun.binding.databinding.CircleProductFragmentBinding
 import com.sun.binding.entity.validLocation
 import com.sun.binding.model.circle.CircleProductViewModel
 import com.sun.binding.tools.helper.PermissionHelper
 import com.sun.binding.tools.manager.AppUserManager
-import com.sun.binding.tools.tool.setCommonMode
-import com.sun.binding.tools.tool.setLocationMode
 import com.sun.binding.ui.base.BaseFragment
 import com.sun.binding.widget.decoration.CircleProductItemDecoration
 import com.sun.binding.widget.state.StateEnum
-import kotlinx.android.synthetic.main.circle_product_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -29,7 +27,7 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
          * @return 首页 Fragment
          */
         fun newInstance(type: Int): CircleProductFragment {
-            return CircleProductFragment().apply { arguments = bundleOf("type" to type) }
+            return CircleProductFragment().apply { arguments = bundleOf(KeyConstant.KEY_TYPE to type) }
         }
     }
 
@@ -74,7 +72,7 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
 
     private fun refresh() {
         if (!viewModel.needLocation()) {
-            viewModel.refreshing.set(true)
+            viewModel.refreshConfig.refreshing.set(true)
         } else {
             requestLocationPermission()
         }
@@ -83,10 +81,10 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
     private fun requestLocationPermission() {
         val action = {
             if (AppUserManager.getLocation().validLocation()) {
-                viewModel.refreshing.set(true)
+                viewModel.refreshConfig.refreshing.set(true)
             } else {
                 viewModel.startLocation(mContext) {
-                    viewModel.refreshing.set(true)
+                    viewModel.refreshConfig.refreshing.set(true)
                 }
             }
         }

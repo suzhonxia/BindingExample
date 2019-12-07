@@ -2,8 +2,11 @@ package com.sun.binding.ui.educ
 
 import androidx.lifecycle.Observer
 import com.sun.binding.R
+import com.sun.binding.constants.KeyConstant.KEY_ID
+import com.sun.binding.constants.KeyConstant.KEY_TITLE
 import com.sun.binding.databinding.EducFragmentBinding
 import com.sun.binding.model.educ.EducViewModel
+import com.sun.binding.tools.ext.start
 import com.sun.binding.ui.base.BaseFragment
 import com.sun.binding.widget.decoration.EducIndexItemDecoration
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -35,7 +38,12 @@ class EducFragment : BaseFragment<EducViewModel, EducFragmentBinding>() {
 
     override fun initView() {
         mBinding.run {
-            adapter = educAdapter
+            adapter = educAdapter.apply {
+                setOnItemClickListener { _, _, position ->
+                    val educEntity = educAdapter.data[position]
+                    start(EducCourseActivity::class.java, mapOf(KEY_ID to educEntity.id, KEY_TITLE to educEntity.name))
+                }
+            }
             itemDecoration = educItemDecoration
         }
 

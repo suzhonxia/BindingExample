@@ -19,6 +19,8 @@ import com.sun.binding.tools.ext.orTrue
  * View DataBinding 适配器
  */
 
+private const val interval = 300
+
 /**
  * 设置点击事件
  *
@@ -28,7 +30,7 @@ import com.sun.binding.tools.ext.orTrue
  */
 @BindingAdapter("android:bind_view_click", "android:bind_onClick_throttle", requireAll = false)
 fun setViewClick(v: View, click: ((View) -> Unit)?, throttle: Int?) {
-    val interval = throttle ?: 1000
+    val interval = throttle ?: interval
     v.setOnClickListener {
         val lastTime = (v.getTag(R.id.data_binding_view_click_tag) as? Long) ?: 0L
         val currentTime = System.currentTimeMillis()
@@ -48,7 +50,7 @@ fun setViewClick(v: View, click: ((View) -> Unit)?, throttle: Int?) {
  */
 @BindingAdapter("android:bind_onClick", "android:bind_onClick_throttle", requireAll = false)
 fun setViewOnClick(v: View, click: ((View) -> Unit)?, throttle: Int?) {
-    val interval = throttle ?: 1000
+    val interval = throttle ?: interval
     v.setOnClickListener {
         val lastTime = (v.getTag(R.id.data_binding_view_click_tag) as? Long) ?: 0L
         val currentTime = System.currentTimeMillis()
@@ -67,7 +69,7 @@ fun setViewOnClick(v: View, click: ((View) -> Unit)?, throttle: Int?) {
  */
 @BindingAdapter("android:bind_onClick", "android:bind_onClick_throttle", requireAll = false)
 fun setViewOnClick(v: View, click: (() -> Unit)?, throttle: Int?) {
-    val interval = throttle ?: 1000
+    val interval = throttle ?: interval
     v.setOnClickListener {
         val lastTime = (v.getTag(R.id.data_binding_view_click_tag) as? Long) ?: 0L
         val currentTime = System.currentTimeMillis()
@@ -86,7 +88,7 @@ fun setViewOnClick(v: View, click: (() -> Unit)?, throttle: Int?) {
  */
 @BindingAdapter("android:bind_onClick", "android:bind_onClick_item", "android:bind_onClick_throttle", requireAll = false)
 fun <T> setViewOnClick(v: View, click: ((View, T) -> Unit)?, item: T, throttle: Int?) {
-    val interval = throttle ?: 1000
+    val interval = throttle ?: interval
     v.setOnClickListener {
         val lastTime = (v.getTag(R.id.data_binding_view_click_tag) as? Long) ?: 0L
         val currentTime = System.currentTimeMillis()
@@ -105,7 +107,7 @@ fun <T> setViewOnClick(v: View, click: ((View, T) -> Unit)?, item: T, throttle: 
  */
 @BindingAdapter("android:bind_onClick", "android:bind_onClick_item", "android:bind_onClick_throttle", requireAll = false)
 fun <T> setViewOnClick(v: View, click: ViewItemClickListener<T>?, item: T, throttle: Int?) {
-    val interval = throttle ?: 1000
+    val interval = throttle ?: interval
     v.setOnClickListener {
         val lastTime = (v.getTag(R.id.data_binding_view_click_tag) as? Long) ?: 0L
         val currentTime = System.currentTimeMillis()
@@ -131,7 +133,7 @@ interface ViewItemClickListener<T> {
  */
 @BindingAdapter("android:bind_onClick", "android:bind_onClick_item", "android:bind_onClick_throttle", requireAll = false)
 fun <T> setViewOnClick(v: View, click: ((T) -> Unit)?, item: T, throttle: Int?) {
-    val interval = throttle ?: 1000
+    val interval = throttle ?: interval
     v.setOnClickListener {
         val lastTime = (v.getTag(R.id.data_binding_view_click_tag) as? Long) ?: 0L
         val currentTime = System.currentTimeMillis()
@@ -150,7 +152,7 @@ fun <T> setViewOnClick(v: View, click: ((T) -> Unit)?, item: T, throttle: Int?) 
  */
 @BindingAdapter("android:bind_onClick", "android:bind_onClick_throttle", requireAll = false)
 fun setViewOnClick(v: View, listener: View.OnClickListener?, throttle: Int?) {
-    val interval = throttle ?: 1000
+    val interval = throttle ?: interval
     v.setOnClickListener {
         val lastTime = (v.getTag(R.id.data_binding_view_click_tag) as? Long) ?: 0L
         val currentTime = System.currentTimeMillis()
@@ -169,7 +171,7 @@ fun setViewOnClick(v: View, listener: View.OnClickListener?, throttle: Int?) {
  */
 @BindingAdapter("android:bind_onClick", "android:bind_onClick_throttle", requireAll = false)
 fun setViewOnClick(v: View, listener: ViewClickListener?, throttle: Int?) {
-    val interval = throttle ?: 1000
+    val interval = throttle ?: interval
     v.setOnClickListener {
         val lastTime = (v.getTag(R.id.data_binding_view_click_tag) as? Long) ?: 0L
         val currentTime = System.currentTimeMillis()
