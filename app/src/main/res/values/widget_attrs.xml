@@ -49,4 +49,9 @@
         <attr name="sfl_animateViewChanges" format="boolean" />
         <attr name="sfl_applyNormalView" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="MaxHeightLayout">
+        <attr name="mhl_HeightRatio" format="reference|float" />
+        <attr name="mhl_HeightDimen" format="reference|dimension" />
+    </declare-styleable>
 </resources>

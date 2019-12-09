@@ -15,12 +15,27 @@ interface WebService {
     @POST(UrlDefinition.API_USER_INFO)
     suspend fun getUserInfo(): NetResult<UserInfoEntity>
 
+    /**
+     * 首页 index
+     */
     @POST(UrlDefinition.API_HOME_INDEX)
     suspend fun getHomeIndex(): NetResult<HomeEntity>
 
+    /**
+     * 亲职教育 index
+     */
     @POST(UrlDefinition.API_COURSE_INDEX)
     suspend fun getEducIndex(): NetResult<List<EducEntity>>
 
+    /**
+     * 亲职教育筛选
+     */
+    @POST(UrlDefinition.API_EDUC_COURSE_OPTION)
+    suspend fun getEducCourseOption(): NetResult<EducOptionEntity>
+
+    /**
+     * 同学圈列表
+     */
     @FormUrlEncoded
     @POST(UrlDefinition.API_CIRCLE_PRODUCT)
     suspend fun getCircleProductData(
@@ -30,6 +45,9 @@ interface WebService {
         @Field("lng") lng: Double = 0.0
     ): NetResult<CircleEntity>
 
+    /**
+     * 磁力片套装课程列表
+     */
     @POST(UrlDefinition.API_SUIT_COURSE)
     suspend fun getSuitCourseData(): NetResult<List<SuitCourseEntity>>
 }
