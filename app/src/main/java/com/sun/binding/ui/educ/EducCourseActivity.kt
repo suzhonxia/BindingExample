@@ -54,9 +54,9 @@ class EducCourseActivity : BaseActivity<EducCourseViewModel, EducCourseActivityB
                 sortWindow = generateWindow(educOption.sort, sortSelector).apply {
                     selectedOption.observe(mContext, Observer {
                         if (it != null) {
-                            setHighlight(sortSelector, it.name)
+                            sortSelector.updateStyle(true, it.name)
                         } else {
-                            setNormal(sortSelector, optionList?.get(0)?.name ?: "排序")
+                            categorySelector.updateStyle(false, optionList?.get(0)?.name ?: "排序")
                         }
                     })
                 }
@@ -66,12 +66,12 @@ class EducCourseActivity : BaseActivity<EducCourseViewModel, EducCourseActivityB
                     viewModel.queryNormalCategory()?.let { selectedOption.value = it }
                     selectedOption.observe(mContext, Observer {
                         if (it != null) {
-                            setHighlight(categorySelector, it.name)
+                            categorySelector.updateStyle(true, it.name)
                             if (this@EducCourseActivity::ageWindow.isInitialized) {
                                 ageWindow.updateSelectedOption(null)
                             }
                         } else {
-                            setNormal(categorySelector, optionList?.get(0)?.name ?: "分类")
+                            categorySelector.updateStyle(false, optionList?.get(0)?.name ?: "分类")
                         }
                     })
                 }
@@ -80,9 +80,9 @@ class EducCourseActivity : BaseActivity<EducCourseViewModel, EducCourseActivityB
                 ageWindow = generateWindow(educOption.age, ageSelector).apply {
                     selectedOption.observe(mContext, Observer {
                         if (it != null) {
-                            setHighlight(ageSelector, it.name)
+                            ageSelector.updateStyle(true, it.name)
                         } else {
-                            setNormal(ageSelector, optionList?.get(0)?.name ?: "年龄段")
+                            ageSelector.updateStyle(false, optionList?.get(0)?.name ?: "年龄段")
                         }
                     })
                 }
@@ -92,10 +92,10 @@ class EducCourseActivity : BaseActivity<EducCourseViewModel, EducCourseActivityB
             categorySelector.clickAction.set { categoryWindow.show() }
             ageSelector.clickAction.set { ageWindow.show() }
 
-            setNormal(sortSelector, educOption.sort[0].name)
-            setNormal(categorySelector, educOption.mukuai[0].name)
-            setNormal(ageSelector, educOption.age[0].name)
-            viewModel.queryNormalCategory()?.let { setHighlight(categorySelector, it.name) }
+            sortSelector.updateStyle(false, educOption.sort[0].name)
+            categorySelector.updateStyle(false, educOption.mukuai[0].name)
+            ageSelector.updateStyle(false, educOption.age[0].name)
+            viewModel.queryNormalCategory()?.let { categorySelector.updateStyle(true, it.name) }
         }
     }
 
@@ -108,18 +108,4 @@ class EducCourseActivity : BaseActivity<EducCourseViewModel, EducCourseActivityB
             }, {
                 selector.expanded = false
             })) as AttachOptionPopupWindow
-
-    private fun setHighlight(selector: SelectorEntity, text: String) {
-        selector.run {
-            highlight = true
-            name.set(text)
-        }
-    }
-
-    private fun setNormal(selector: SelectorEntity, text: String) {
-        selector.run {
-            highlight = false
-            name.set(text)
-        }
-    }
 }

@@ -52,4 +52,9 @@ data class SelectorEntity(
             }
         )
     }
+
+    fun updateStyle(highlight: Boolean, name: String) {
+        this.highlight = highlight
+        this.name.set(name)
+    }
 }
