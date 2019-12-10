@@ -36,7 +36,10 @@ data class RefreshConfig(
     /** 标记 - 是否正在加载更多 */
     var loadMore: BindingField<Boolean> = BindingField(false),
     /** 加载更多回调 */
-    var onLoadMore: (() -> Unit)? = null
+    var onLoadMore: (() -> Unit)? = null,
+
+    /** 没有更多了 */
+    var noMore: BindingField<Boolean> = BindingField(false)
 ) {
 
     /**

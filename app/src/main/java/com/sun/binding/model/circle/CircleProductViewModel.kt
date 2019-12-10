@@ -21,6 +21,11 @@ class CircleProductViewModel(private val courseRepository: CourseRepository) : B
     /** 类型 */
     var type = CircleTab.TAB_CIRCLE_ALL
 
+    /** 获取 Intent 数据 */
+    override fun obtainIntentData(bundle: Bundle?) {
+        type = bundle?.get(KeyConstant.KEY_TYPE) as? Int ?: 0
+    }
+
     /** 是否需要定位 */
     fun needLocation() = type == CircleTab.TAB_CIRCLE_NEARBY
 
@@ -35,11 +40,6 @@ class CircleProductViewModel(private val courseRepository: CourseRepository) : B
 
     /** 重试 retry */
     val retryTarget = MutableLiveData<Event<Unit>>()
-
-    /** 设置 Intent 数据 */
-    fun setIntentData(bundle: Bundle?) {
-        type = bundle?.get(KeyConstant.KEY_TYPE) as? Int ?: 0
-    }
 
     /** 重试 or 去开启 */
     override var retry = {
@@ -58,8 +58,11 @@ class CircleProductViewModel(private val courseRepository: CourseRepository) : B
                     if (course.isNullOrEmpty()) {
                         if (circleProductList.value.isNullOrEmpty()) {
                             viewState.set(StateEnum.EMPTY)
+                        } else {
+                            refreshConfig.noMore.set(true)
                         }
                     } else {
+                        refreshConfig.noMore.set(false)
                         viewState.set(StateEnum.CONTENT)
                         circleProductList.postValue(course)
                     }

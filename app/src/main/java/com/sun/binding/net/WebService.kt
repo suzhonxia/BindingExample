@@ -34,6 +34,18 @@ interface WebService {
     suspend fun getEducCourseOption(): NetResult<EducOptionEntity>
 
     /**
+     * 亲职教育课程列表
+     */
+    @FormUrlEncoded
+    @POST(UrlDefinition.API_EDUC_COURSE_DATA)
+    suspend fun getEducCourseData(
+        @Field("sort") sortId: Int = 0,
+        @Field("mid") categoryId: Int = 0,
+        @Field("age") ageId: Int = 0,
+        @Field("page") page: Int
+    ): NetResult<List<CourseEntity>>
+
+    /**
      * 同学圈列表
      */
     @FormUrlEncoded

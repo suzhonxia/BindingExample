@@ -109,6 +109,7 @@
             <com.scwang.smartrefresh.layout.SmartRefreshLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:bind_smart_noMore="@{viewModel.refreshConfig.noMore}"
                 android:bind_smart_loadMore="@={viewModel.refreshConfig.loadMore}"
                 android:bind_smart_loadMore_enable="@{viewModel.refreshConfig.loadMoreEnable}"
                 android:bind_smart_onLoadMore="@{viewModel.refreshConfig.onLoadMore}"
@@ -121,7 +122,10 @@
                     android:layout_height="match_parent"
                     android:bind_rv_adapter="@{adapter}"
                     android:bind_rv_item_decoration="@{itemDecoration}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    android:paddingStart="@dimen/dp_5"
+                    android:paddingEnd="@dimen/dp_5"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2" />
             </com.scwang.smartrefresh.layout.SmartRefreshLayout>
         </com.sun.binding.widget.state.StatefulLayout>
     </LinearLayout>

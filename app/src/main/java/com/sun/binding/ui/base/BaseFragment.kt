@@ -69,6 +69,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
     private fun lazyInitView() {
         if (!isInitData && isVisibleToUser && isPrepareView) {
             isInitData = true
+            viewModel.obtainIntentData(arguments)
             initView()
         }
     }

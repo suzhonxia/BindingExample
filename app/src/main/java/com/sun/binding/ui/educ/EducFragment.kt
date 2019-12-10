@@ -31,7 +31,7 @@ class EducFragment : BaseFragment<EducViewModel, EducFragmentBinding>() {
     override val layoutResId: Int = R.layout.educ_fragment
 
     /** 亲职教育列表适配器 */
-    private val educAdapter: EducAdapter = EducAdapter(listOf())
+    private val educAdapter: EducAdapter = EducAdapter(mutableListOf())
 
     /** 亲职教育列表 item 装饰 */
     private val educItemDecoration: EducIndexItemDecoration = EducIndexItemDecoration()

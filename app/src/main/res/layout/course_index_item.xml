@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/course_index_item_bg">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/ivCourseCover"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp_21"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_corner_radius="@dimen/dp_5"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvCourseName"
+        style="@style/app_single_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_21"
+        android:paddingLeft="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12"
+        android:textColor="@color/app_text_color_black_light"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintTop_toBottomOf="@id/ivCourseCover"
+        tools:text="小房子多彩" />
+
+    <TextView
+        android:id="@+id/tvCoursePieces"
+        style="@style/app_single_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        android:paddingLeft="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12"
+        android:textColor="@color/app_text_color_gray_light"
+        android:textSize="@dimen/sp_13"
+        app:layout_constraintTop_toBottomOf="@id/tvCourseName"
+        tools:text="16PCS" />
+
+    <TextView
+        android:id="@+id/tvCourseLearned"
+        style="@style/app_single_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        android:paddingLeft="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12"
+        android:textColor="@color/app_text_color_gray_light"
+        android:textSize="@dimen/sp_13"
+        app:layout_constraintTop_toBottomOf="@id/tvCoursePieces"
+        tools:text="156人学习过" />
+
+    <ImageView
+        android:id="@+id/ivCourseCheckbox"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginBottom="@dimen/dp_12"
+        android:padding="@dimen/dp_8"
+        android:src="@drawable/course_check_box_selector"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="ContentDescription"
+        tools:visibility="visible" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_20"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCourseLearned" />
+</androidx.constraintlayout.widget.ConstraintLayout>

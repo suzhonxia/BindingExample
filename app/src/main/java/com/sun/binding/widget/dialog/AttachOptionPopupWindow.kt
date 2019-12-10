@@ -58,7 +58,9 @@ class AttachOptionPopupWindow @JvmOverloads constructor(
 
     fun updateSelectedOption(optionEntity: OptionEntity?) {
         selectedOption.value = optionEntity
-        optionAdapter.notifyDataSetChanged()
+        if (this::optionAdapter.isInitialized) {
+            optionAdapter.notifyDataSetChanged()
+        }
     }
 
     override fun show(): BasePopupView {

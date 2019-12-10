@@ -19,6 +19,10 @@ class CourseRepository : BaseRepository() {
     suspend fun getEducCourseOption() = withContext(Dispatchers.IO) {
         mWebService.getEducCourseOption()
     }
+    
+    suspend fun getEducCourseData(sortId: Int, categoryId: Int, ageId: Int, page: Int) = withContext(Dispatchers.IO) {
+        mWebService.getEducCourseData(sortId, categoryId, ageId, page)
+    }
 
     suspend fun getCircleProductData(type: Int, page: Int) = withContext(Dispatchers.IO) {
         val location = AppUserManager.getLocation()

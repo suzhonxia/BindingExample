@@ -32,6 +32,9 @@ object UrlDefinition {
     /** 亲职教育筛选 */
     const val API_EDUC_COURSE_OPTION = "/v2/qinzhi/shai"
 
+    /** 亲职教育课程列表 */
+    const val API_EDUC_COURSE_DATA = "/v2/qinzhi/course"
+
     /** 同学圈列表 */
     const val API_CIRCLE_PRODUCT = "/v2/circle/t_list"
 

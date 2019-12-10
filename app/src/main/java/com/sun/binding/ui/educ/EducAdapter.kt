@@ -10,7 +10,7 @@ import com.sun.binding.tools.tool.getDrawable
 /**
  * 亲职教育 Adapter
  */
-class EducAdapter(data: List<EducEntity>?) : BaseQuickAdapter<EducEntity, BaseViewHolder>(R.layout.educ_index_item, data) {
+class EducAdapter(data: MutableList<EducEntity>?) : BaseQuickAdapter<EducEntity, BaseViewHolder>(R.layout.educ_index_item, data) {
     override fun convert(helper: BaseViewHolder, item: EducEntity?) {
         GlideHelper.loadImage(helper.getView(R.id.ivBackdrop), item?.image, R.drawable.educ_index_item_backdrop.getDrawable())
         GlideHelper.loadImage(helper.getView(R.id.ivEducCover), item?.icon, R.drawable.app_placeholder_course.getDrawable())

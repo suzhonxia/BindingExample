@@ -22,6 +22,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
         super.onCreate(savedInstanceState)
 
         observeData()
+        viewModel.obtainIntentData(intent.extras)
     }
 
     override fun setContentView(layoutResID: Int) {

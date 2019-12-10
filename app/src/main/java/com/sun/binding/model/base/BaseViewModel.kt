@@ -1,11 +1,15 @@
 package com.sun.binding.model.base
 
 import android.content.Context
+import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sun.binding.model.base.task.TaskProxy
 import com.sun.binding.mvvm.binding.BindingField
-import com.sun.binding.mvvm.model.*
+import com.sun.binding.mvvm.model.ProgressModel
+import com.sun.binding.mvvm.model.SnackbarModel
+import com.sun.binding.mvvm.model.ToastModel
+import com.sun.binding.mvvm.model.UiCloseModel
 import com.sun.binding.net.NetCallback
 import com.sun.binding.widget.state.StateEnum
 import kotlinx.coroutines.*
@@ -74,6 +78,9 @@ abstract class BaseViewModel : BaseMvvmViewModel(), KoinComponent {
             tryCatch(netCallback.tryBlock, netCallback.catchBlock, netCallback.finallyBlock)
         }
     }
+
+    /** 获取 Intent 数据 */
+    open fun obtainIntentData(bundle: Bundle?) {}
 
     /**
      * 开始定位

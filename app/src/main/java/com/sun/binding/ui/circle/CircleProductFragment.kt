@@ -47,10 +47,6 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
             itemDecoration = circleProductItemDecoration
         }
 
-        viewModel.run {
-            setIntentData(arguments)
-        }
-
         // 刷新请求
         refresh()
     }
