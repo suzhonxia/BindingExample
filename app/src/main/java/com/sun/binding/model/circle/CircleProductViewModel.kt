@@ -38,9 +38,6 @@ class CircleProductViewModel(private val courseRepository: CourseRepository) : B
     /** 作品列表数据 */
     val circleProductList = MutableLiveData<List<ProductEntity>>()
 
-    /** 重试 retry */
-    val retryTarget = MutableLiveData<Event<Unit>>()
-
     /** 重试 or 去开启 */
     override var retry = {
         viewState.set(StateEnum.LOADING)

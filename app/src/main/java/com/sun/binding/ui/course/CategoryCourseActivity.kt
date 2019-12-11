@@ -1,49 +1,48 @@
-package com.sun.binding.ui.educ
+package com.sun.binding.ui.course
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.SizeUtils
 import com.lxj.xpopup.XPopup
 import com.sun.binding.R
-import com.sun.binding.databinding.EducCourseActivityBinding
+import com.sun.binding.databinding.CategoryCourseActivityBinding
+import com.sun.binding.entity.CategoryOptionEntity
 import com.sun.binding.entity.CourseConfigEntity
-import com.sun.binding.entity.EducOptionEntity
 import com.sun.binding.entity.OptionEntity
 import com.sun.binding.entity.SelectorEntity
-import com.sun.binding.model.educ.EducCourseViewModel
+import com.sun.binding.model.course.CategoryCourseViewModel
 import com.sun.binding.tools.ext.setWhiteStatusBar
 import com.sun.binding.tools.ext.showToast
 import com.sun.binding.ui.base.BaseActivity
-import com.sun.binding.ui.course.CourseAdapter
 import com.sun.binding.widget.decoration.GridSpaceItemDecoration
 import com.sun.binding.widget.dialog.AttachOptionPopupWindow
 import com.sun.binding.widget.state.StateEnum
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
- * 亲职教育 课程列表
+ * 课程分类 课程列表
  */
-class EducCourseActivity : BaseActivity<EducCourseViewModel, EducCourseActivityBinding>() {
-    override val viewModel: EducCourseViewModel by viewModel()
+class CategoryCourseActivity : BaseActivity<CategoryCourseViewModel, CategoryCourseActivityBinding>() {
+    override val viewModel: CategoryCourseViewModel by viewModel()
 
     /** 排序弹出层 */
-    private lateinit var sortWindow: AttachOptionPopupWindow
+    private lateinit var orderWindow: AttachOptionPopupWindow
 
     /** 分类弹出层 */
     private lateinit var categoryWindow: AttachOptionPopupWindow
 
-    /** 年龄弹出层 */
-    private lateinit var ageWindow: AttachOptionPopupWindow
+    /** 筛选弹出层 */
+    private lateinit var filterWindow: AttachOptionPopupWindow
 
     /** 课程列表适配器 */
-    private val educCourseAdapter = CourseAdapter(mutableListOf(), CourseConfigEntity(hasPart = false, singleLine = false))
+    private val categoryCourseAdapter = CourseAdapter(mutableListOf(), CourseConfigEntity())
 
     /** 列表 item 装饰 */
     private val courseItemDecoration = GridSpaceItemDecoration(SizeUtils.dp2px(10F), true)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.educ_course_activity)
+        setContentView(R.layout.category_course_activity)
         setWhiteStatusBar()
 
         initView()
@@ -51,9 +50,9 @@ class EducCourseActivity : BaseActivity<EducCourseViewModel, EducCourseActivityB
 
     private fun initView() {
         mBinding.run {
-            adapter = educCourseAdapter.apply {
+            adapter = categoryCourseAdapter.apply {
                 setOnItemClickListener { _, _, position ->
-                    "跳转到课程详情 id = ${educCourseAdapter.data[position]}".showToast()
+                    "跳转到课程详情 id = ${categoryCourseAdapter.data[position]}".showToast()
                 }
             }
             itemDecoration = courseItemDecoration
@@ -64,75 +63,63 @@ class EducCourseActivity : BaseActivity<EducCourseViewModel, EducCourseActivityB
 
     override fun initObserve() {
         viewModel.run {
-            educOption.observe(mContext, Observer {
+            categoryOption.observe(mContext, Observer {
                 applySelectWindow(it)
             })
-            educCourseList.observe(mContext, Observer {
+            categoryCourseList.observe(mContext, Observer {
                 if (isRefreshFlag()) {
-                    educCourseAdapter.setNewData(it)
+                    categoryCourseAdapter.setNewData(it)
                 } else {
-                    educCourseAdapter.addData(it)
+                    categoryCourseAdapter.addData(it)
                 }
             })
         }
     }
 
-    private fun applySelectWindow(educOption: EducOptionEntity) {
+    private fun applySelectWindow(categoryOption: CategoryOptionEntity) {
+        val orderList = categoryOption.getOrderList()
+        val categoryList = categoryOption.getCategoryList()
+
         viewModel.run {
-            if (!this@EducCourseActivity::sortWindow.isInitialized) {
-                sortWindow = generateWindow(educOption.sort, sortSelector).apply {
+            if (!this@CategoryCourseActivity::orderWindow.isInitialized) {
+                orderWindow = generateWindow(orderList, orderSelector).apply {
                     selectedOption.observe(mContext, Observer {
                         if (it != null) {
                             // 观察到数据变化，进行列表数据请求
                             refresh()
 
-                            sortSelector.updateStyleAndData(true, it.name, it.id)
+                            orderSelector.updateStyleAndData(true, it.name, it.key)
                         } else {
-                            sortSelector.updateStyleAndData(false, optionList?.get(0)?.name ?: "排序", 0)
+                            orderSelector.updateStyleAndData(true, optionList?.get(0)?.name ?: "排序", "")
                         }
                     })
                 }
             }
-            if (!this@EducCourseActivity::categoryWindow.isInitialized) {
-                categoryWindow = generateWindow(educOption.mukuai, categorySelector).apply {
+            if (!this@CategoryCourseActivity::categoryWindow.isInitialized) {
+                categoryWindow = generateWindow(categoryList, categorySelector).apply {
                     selectedOption.observe(mContext, Observer {
                         if (it != null) {
-                            // 2.1.2 观察到数据变化，则进行列表数据请求(一般初始化进来就会调用一次)
+                            // 观察到数据变化，进行列表数据请求
                             refresh()
 
                             categorySelector.updateStyleAndData(true, it.name, it.id)
-                            // 每次选择类别，都需要重置年龄段数据
-                            if (this@EducCourseActivity::ageWindow.isInitialized) {
-                                ageWindow.updateSelectedOption(null)
-                            }
                         } else {
-                            categorySelector.updateStyleAndData(false, optionList?.get(0)?.name ?: "分类", 0)
+                            categorySelector.updateStyleAndData(true, optionList?.get(0)?.name ?: "分类", 0)
                         }
                     })
                 }
             }
-            if (!this@EducCourseActivity::ageWindow.isInitialized) {
-                ageWindow = generateWindow(educOption.age, ageSelector).apply {
-                    selectedOption.observe(mContext, Observer {
-                        if (it != null) {
-                            // 观察到数据变化，进行列表数据请求
-                            refresh()
+//            if (!this@CategoryCourseActivity::filterWindow.isInitialized) {
+//                filterWindow = generateWindow()
+//            }
 
-                            ageSelector.updateStyleAndData(true, it.name, it.id)
-                        } else {
-                            ageSelector.updateStyleAndData(false, optionList?.get(0)?.name ?: "年龄段", 0)
-                        }
-                    })
-                }
-            }
-
-            sortSelector.clickAction.set { sortWindow.show() }
+            orderSelector.clickAction.set { orderWindow.show() }
             categorySelector.clickAction.set { categoryWindow.show() }
-            ageSelector.clickAction.set { ageWindow.show() }
+//            filterSelector.clickAction.set { filterWindow.show() }
 
-            sortSelector.updateStyleAndData(false, educOption.sort[0].name, 0)
-            categorySelector.updateStyleAndData(false, educOption.mukuai[0].name, 0)
-            ageSelector.updateStyleAndData(false, educOption.age[0].name, 0)
+            orderSelector.updateStyleAndData(false, orderList[0].name, "")
+            categorySelector.updateStyleAndData(false, categoryList[0].name, 0)
+//            filterSelector.updateStyleAndData(false, educOption.age[0].name, "")
 
             // 2. 是否有选中的分类id
             viewModel.queryNormalCategory()?.let {

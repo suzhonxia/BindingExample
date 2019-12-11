@@ -40,4 +40,10 @@ object UrlDefinition {
 
     /** 磁力片套装课程列表 */
     const val API_SUIT_COURSE = "/v2/box/index"
+
+    /** 课程分类筛选 */
+    const val API_CATEGORY_COURSE_OPTION = "/v2/course/select"
+
+    /** 课程分类课程列表 */
+    const val API_CATEGORY_COURSE_DATA = "/v2/course/list"
 }

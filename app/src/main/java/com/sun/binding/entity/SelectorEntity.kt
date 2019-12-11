@@ -9,6 +9,7 @@ import com.sun.binding.tools.tool.getDrawable
 
 data class SelectorEntity(
     var selectedId: Int = 0,
+    var selectedData: String = "",
     var name: BindingField<String> = BindingField(""),
     var clickAction: BindingField<() -> Unit> = BindingField(),
     var textColor: BindingField<Int> = BindingField(R.color.app_text_color_gray_light.getColor()),
@@ -57,5 +58,11 @@ data class SelectorEntity(
         this.highlight = highlight
         this.name.set(name)
         this.selectedId = selectedId
+    }
+
+    fun updateStyleAndData(highlight: Boolean, name: String, selectedData: String) {
+        this.highlight = highlight
+        this.name.set(name)
+        this.selectedData = selectedData
     }
 }

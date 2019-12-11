@@ -11,6 +11,7 @@ import com.sun.binding.mvvm.model.SnackbarModel
 import com.sun.binding.mvvm.model.ToastModel
 import com.sun.binding.mvvm.model.UiCloseModel
 import com.sun.binding.net.NetCallback
+import com.sun.binding.tools.util.event.Event
 import com.sun.binding.widget.state.StateEnum
 import kotlinx.coroutines.*
 import org.koin.core.KoinComponent
@@ -34,6 +35,9 @@ abstract class BaseViewModel : BaseMvvmViewModel(), KoinComponent {
 
     /** 状态值 */
     var viewState = BindingField(StateEnum.CONTENT)
+
+    /** 重试 retry */
+    open val retryTarget = MutableLiveData<Event<Unit>>()
 
     /** 重试 Action */
     open var retry = {}

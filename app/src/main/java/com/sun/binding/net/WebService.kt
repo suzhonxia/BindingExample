@@ -62,4 +62,20 @@ interface WebService {
      */
     @POST(UrlDefinition.API_SUIT_COURSE)
     suspend fun getSuitCourseData(): NetResult<List<SuitCourseEntity>>
+
+    /**
+     * 课程分类筛选
+     */
+    @POST(UrlDefinition.API_CATEGORY_COURSE_OPTION)
+    suspend fun getCategoryCourseOption(): NetResult<CategoryOptionEntity>
+
+    /**
+     * 课程分类课程列表
+     */
+    @FormUrlEncoded
+    @POST(UrlDefinition.API_CATEGORY_COURSE_DATA)
+    suspend fun getCategoryCourseData(
+        @Field("data") data: String,
+        @Field("page") page: Int
+    ): NetResult<List<CourseEntity>>
 }

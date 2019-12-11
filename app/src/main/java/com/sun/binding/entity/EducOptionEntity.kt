@@ -8,5 +8,6 @@ data class EducOptionEntity(
 
 data class OptionEntity(
     val id: Int = 0,
+    val key: String = "",
     val name: String = ""
 )

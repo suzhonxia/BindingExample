@@ -11,6 +11,7 @@ import com.blankj.utilcode.util.SizeUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.sun.binding.R
+import com.sun.binding.constants.KeyConstant.KEY_ID
 import com.sun.binding.databinding.HomeFragmentBinding
 import com.sun.binding.entity.*
 import com.sun.binding.model.home.HomeViewModel
@@ -21,6 +22,7 @@ import com.sun.binding.tools.helper.GlideHelper
 import com.sun.binding.tools.manager.AppUserManager
 import com.sun.binding.tools.tool.getDrawable
 import com.sun.binding.ui.base.BaseFragment
+import com.sun.binding.ui.course.CategoryCourseActivity
 import com.sun.binding.ui.course.SuitCourseActivity
 import com.sun.binding.widget.decoration.GridSpaceItemDecoration
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -137,7 +139,10 @@ class HomeFragment : BaseFragment<HomeViewModel, HomeFragmentBinding>() {
             mBinding.rvCourseCategory.adapter = object : BaseQuickAdapter<CategoryEntity, BaseViewHolder>(R.layout.home_category_item, categoryList) {
                 override fun convert(helper: BaseViewHolder, item: CategoryEntity?) {
                     GlideHelper.loadImage(helper.getView(R.id.ivCategory), item?.image, R.drawable.app_placeholder_course_169.getDrawable())
-                    helper.itemView.setOnClickListener { "课程分类 : ${helper.layoutPosition}".showToast() }
+                }
+            }.apply {
+                setOnItemClickListener { _, _, position ->
+                    start(CategoryCourseActivity::class.java, mapOf(KEY_ID to categoryList[position].id))
                 }
             }
         }

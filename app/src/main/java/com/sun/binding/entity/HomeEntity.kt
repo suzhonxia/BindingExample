@@ -25,7 +25,7 @@ data class BannerEntity(
 }
 
 data class CategoryEntity(
-    val id: Int?,
+    val id: Int,
     val image: String?,
     val name: String?
 )

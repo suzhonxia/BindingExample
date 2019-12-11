@@ -48,10 +48,10 @@
         <!--屏幕适配-->
         <meta-data
             android:name="design_width_in_dp"
-            android:value="360"/>
+            android:value="360" />
         <meta-data
             android:name="design_height_in_dp"
-            android:value="640"/>
+            android:value="640" />
 
         <!--欢迎界面-->
         <activity
@@ -79,6 +79,11 @@
         <!--亲职教育课程列表-->
         <activity
             android:name=".ui.educ.EducCourseActivity"
+            android:configChanges="screenSize"
+            android:screenOrientation="portrait" />
+        <!--课程分类课程列表-->
+        <activity
+            android:name=".ui.course.CategoryCourseActivity"
             android:configChanges="screenSize"
             android:screenOrientation="portrait" />
         <!--自测界面-->

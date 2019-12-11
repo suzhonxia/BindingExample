@@ -32,4 +32,12 @@ class CourseRepository : BaseRepository() {
     suspend fun getSuitCourseData() = withContext(Dispatchers.IO) {
         mWebService.getSuitCourseData()
     }
+
+    suspend fun getCategoryCourseOption() = withContext(Dispatchers.IO) {
+        mWebService.getCategoryCourseOption()
+    }
+
+    suspend fun getCategoryCourseData(data: String, page: Int) = withContext(Dispatchers.IO) {
+        mWebService.getCategoryCourseData(data, page)
+    }
 }
