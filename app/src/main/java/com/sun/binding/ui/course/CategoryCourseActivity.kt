@@ -6,15 +6,13 @@ import com.blankj.utilcode.util.SizeUtils
 import com.lxj.xpopup.XPopup
 import com.sun.binding.R
 import com.sun.binding.databinding.CategoryCourseActivityBinding
-import com.sun.binding.entity.CategoryOptionEntity
-import com.sun.binding.entity.CourseConfigEntity
-import com.sun.binding.entity.OptionEntity
-import com.sun.binding.entity.SelectorEntity
+import com.sun.binding.entity.*
 import com.sun.binding.model.course.CategoryCourseViewModel
 import com.sun.binding.tools.ext.setWhiteStatusBar
 import com.sun.binding.tools.ext.showToast
 import com.sun.binding.ui.base.BaseActivity
 import com.sun.binding.widget.decoration.GridSpaceItemDecoration
+import com.sun.binding.widget.dialog.AttachFilterPopupWindow
 import com.sun.binding.widget.dialog.AttachOptionPopupWindow
 import com.sun.binding.widget.state.StateEnum
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -32,7 +30,7 @@ class CategoryCourseActivity : BaseActivity<CategoryCourseViewModel, CategoryCou
     private lateinit var categoryWindow: AttachOptionPopupWindow
 
     /** 筛选弹出层 */
-    private lateinit var filterWindow: AttachOptionPopupWindow
+    private lateinit var filterWindow: AttachFilterPopupWindow
 
     /** 课程列表适配器 */
     private val categoryCourseAdapter = CourseAdapter(mutableListOf(), CourseConfigEntity())
@@ -79,6 +77,7 @@ class CategoryCourseActivity : BaseActivity<CategoryCourseViewModel, CategoryCou
     private fun applySelectWindow(categoryOption: CategoryOptionEntity) {
         val orderList = categoryOption.getOrderList()
         val categoryList = categoryOption.getCategoryList()
+        val filterList = categoryOption.getFilterList(viewModel.queryNormalCategory())
 
         viewModel.run {
             if (!this@CategoryCourseActivity::orderWindow.isInitialized) {
@@ -109,17 +108,28 @@ class CategoryCourseActivity : BaseActivity<CategoryCourseViewModel, CategoryCou
                     })
                 }
             }
-//            if (!this@CategoryCourseActivity::filterWindow.isInitialized) {
-//                filterWindow = generateWindow()
-//            }
+            if (!this@CategoryCourseActivity::filterWindow.isInitialized) {
+                filterWindow = generateFilterWindow(filterList, filterSelector).apply {
+                    //                    selectedOption.observe(mContext, Observer {
+//                        if (it != null) {
+//                            // 观察到数据变化，进行列表数据请求
+//                            refresh()
+//
+//                            categorySelector.updateStyleAndData(true, it.name, it.id)
+//                        } else {
+//                            categorySelector.updateStyleAndData(true, optionList?.get(0)?.name ?: "分类", 0)
+//                        }
+//                    })
+                }
+            }
 
             orderSelector.clickAction.set { orderWindow.show() }
             categorySelector.clickAction.set { categoryWindow.show() }
-//            filterSelector.clickAction.set { filterWindow.show() }
+            filterSelector.clickAction.set { filterWindow.show() }
 
             orderSelector.updateStyleAndData(false, orderList[0].name, "")
             categorySelector.updateStyleAndData(false, categoryList[0].name, 0)
-//            filterSelector.updateStyleAndData(false, educOption.age[0].name, "")
+            filterSelector.updateStyleAndData(false, "筛选", "")
 
             // 2. 是否有选中的分类id
             viewModel.queryNormalCategory()?.let {
@@ -139,6 +149,17 @@ class CategoryCourseActivity : BaseActivity<CategoryCourseViewModel, CategoryCou
                     { selector.expanded = true },
                     { selector.expanded = false })
             ) as AttachOptionPopupWindow
+
+    // 创建筛选弹出层
+    private fun generateFilterWindow(filterList: MutableList<FilterEntity>, selector: SelectorEntity) =
+        XPopup.Builder(mContext)
+            .atView(mBinding.optionLayout)
+            .asCustom(
+                AttachFilterPopupWindow(mContext,
+                    { selector.expanded = true },
+                    { selector.expanded = false }
+                ).apply { this.filterList = filterList }
+            ) as AttachFilterPopupWindow
 
     private fun refresh() {
         viewModel.run {

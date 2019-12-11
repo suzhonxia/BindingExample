@@ -180,6 +180,8 @@ dependencies {
     implementation 'com.github.MZCretin:ExpandableTextView:1.6.1'
     // TitleBar
     implementation 'com.hjq:titlebar:6.0'
+    // FlexboxLayout
+    implementation 'com.google.android:flexbox:2.0.0'
 
     // AMap
     implementation 'com.amap.api:location:latest.integration'

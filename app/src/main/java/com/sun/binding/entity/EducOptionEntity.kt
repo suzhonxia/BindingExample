@@ -9,5 +9,6 @@ data class EducOptionEntity(
 data class OptionEntity(
     val id: Int = 0,
     val key: String = "",
-    val name: String = ""
+    val name: String = "",
+    var isSelected: Boolean = false
 )
