@@ -27,7 +27,7 @@
             android:id="@+id/titleBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:bind_tb_title="@{viewModel.title}"
+            android:bind_tb_title="@{`课程列表`}"
             app:lineVisible="false" />
 
         <LinearLayout
@@ -109,9 +109,9 @@
             <com.scwang.smartrefresh.layout.SmartRefreshLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:bind_smart_noMore="@{viewModel.refreshConfig.noMore}"
                 android:bind_smart_loadMore="@={viewModel.refreshConfig.loadMore}"
                 android:bind_smart_loadMore_enable="@{viewModel.refreshConfig.loadMoreEnable}"
+                android:bind_smart_noMore="@{viewModel.refreshConfig.noMore}"
                 android:bind_smart_onLoadMore="@{viewModel.refreshConfig.onLoadMore}"
                 android:bind_smart_onRefresh="@{viewModel.refreshConfig.onRefresh}"
                 android:bind_smart_refresh_enable="@{viewModel.refreshConfig.refreshEnable}"

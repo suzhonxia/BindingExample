@@ -21,13 +21,9 @@ class EducCourseViewModel(private val courseRepository: CourseRepository) : Base
     /** id */
     private var educId = 0
 
-    /** 显示标题 */
-    var title = BindingField<CharSequence>("课程列表")
-
     /** 获取 Intent 数据 */
     override fun obtainIntentData(bundle: Bundle?) {
         educId = bundle?.get(KeyConstant.KEY_ID) as? Int ?: educId
-        title.set(bundle?.get(KeyConstant.KEY_TITLE) as? String ?: title.get())
     }
 
     /** 排序 */
