@@ -116,7 +116,7 @@ class CategoryCourseViewModel(private val courseRepository: CourseRepository) : 
         data["cid"] = categorySelector.selectedId
         if (filterSelector.selectedData.isNotEmpty()) {
             try {
-                data.putAll(GsonUtils.fromJson(filterSelector.selectedData, GsonUtils.getMapType(String::class.java, String::class.java)))
+                data.putAll(GsonUtils.fromJson(filterSelector.selectedData, GsonUtils.getMapType(String::class.java, GsonUtils.getArrayType(String::class.java))))
             } catch (e: Exception) {
                 e.printStackTrace()
             }

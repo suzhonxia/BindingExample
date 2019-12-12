@@ -11,6 +11,7 @@ import com.sun.binding.entity.validLocation
 import com.sun.binding.model.circle.CircleProductViewModel
 import com.sun.binding.tools.helper.PermissionHelper
 import com.sun.binding.tools.manager.AppUserManager
+import com.sun.binding.tools.util.event.EventObserver
 import com.sun.binding.ui.base.BaseFragment
 import com.sun.binding.widget.decoration.CircleProductItemDecoration
 import com.sun.binding.widget.state.StateEnum
@@ -60,7 +61,7 @@ class CircleProductFragment private constructor() : BaseFragment<CircleProductVi
                     circleProductAdapter.addData(it)
                 }
             })
-            retryTarget.observe(this@CircleProductFragment, Observer {
+            retryTarget.observe(this@CircleProductFragment, EventObserver {
                 refresh()
             })
         }

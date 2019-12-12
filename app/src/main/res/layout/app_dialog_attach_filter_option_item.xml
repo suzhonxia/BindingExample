@@ -11,5 +11,5 @@
     android:paddingEnd="@dimen/dp_16"
     android:paddingBottom="@dimen/dp_6"
     android:textColor="@color/app_text_color_black_light"
-    android:textSize="@dimen/sp_14"
+    android:textSize="@dimen/sp_13"
     tools:text="基础必学" />

@@ -9,8 +9,8 @@ data class CategoryOptionEntity(
 
     fun getCategoryList() = select.map { it.toOptionEntity() }.toMutableList()
 
-    fun getFilterList(normalCategory: OptionEntity?) =
-        (select.firstOrNull { normalCategory?.id == it.cid } ?: select[0]).select.map { it.toFilterEntity() }.toMutableList()
+    fun getFilterList(categoryOption: OptionEntity?) =
+        (select.firstOrNull { categoryOption?.id == it.cid } ?: select[0]).select.map { it.toFilterEntity() }.toMutableList()
 }
 
 data class CategoryOrderEntity(

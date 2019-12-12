@@ -10,6 +10,7 @@ import com.sun.binding.entity.*
 import com.sun.binding.model.course.CategoryCourseViewModel
 import com.sun.binding.tools.ext.setWhiteStatusBar
 import com.sun.binding.tools.ext.showToast
+import com.sun.binding.tools.util.event.EventObserver
 import com.sun.binding.ui.base.BaseActivity
 import com.sun.binding.widget.decoration.GridSpaceItemDecoration
 import com.sun.binding.widget.dialog.AttachFilterPopupWindow
@@ -101,6 +102,8 @@ class CategoryCourseActivity : BaseActivity<CategoryCourseViewModel, CategoryCou
                             // 观察到数据变化，进行列表数据请求
                             refresh()
 
+                            // 更新筛选框数据
+                            filterWindow.filterList = categoryOption.getFilterList(categoryOption.getCategoryList().firstOrNull { element -> element.id == it.id })
                             categorySelector.updateStyleAndData(true, it.name, it.id)
                         } else {
                             categorySelector.updateStyleAndData(true, optionList?.get(0)?.name ?: "分类", 0)
@@ -110,16 +113,12 @@ class CategoryCourseActivity : BaseActivity<CategoryCourseViewModel, CategoryCou
             }
             if (!this@CategoryCourseActivity::filterWindow.isInitialized) {
                 filterWindow = generateFilterWindow(filterList, filterSelector).apply {
-                    //                    selectedOption.observe(mContext, Observer {
-//                        if (it != null) {
-//                            // 观察到数据变化，进行列表数据请求
-//                            refresh()
-//
-//                            categorySelector.updateStyleAndData(true, it.name, it.id)
-//                        } else {
-//                            categorySelector.updateStyleAndData(true, optionList?.get(0)?.name ?: "分类", 0)
-//                        }
-//                    })
+                    submitTarget.observe(mContext, EventObserver {
+                        // 观察到筛选选项有变化，进行列表数据请求
+                        refresh()
+
+                        filterSelector.updateStyleAndData(it, "筛选", filterWindow.getSelectData())
+                    })
                 }
             }
 

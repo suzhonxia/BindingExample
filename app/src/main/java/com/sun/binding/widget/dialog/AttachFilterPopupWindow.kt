@@ -5,8 +5,10 @@ import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.SizeUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -14,6 +16,8 @@ import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.impl.PartShadowPopupView
 import com.sun.binding.R
 import com.sun.binding.entity.FilterEntity
+import com.sun.binding.entity.OptionEntity
+import com.sun.binding.tools.util.event.Event
 
 /**
  * 依附于某个 View 的下拉筛选弹窗
@@ -26,7 +30,13 @@ class AttachFilterPopupWindow @JvmOverloads constructor(
 
     override fun getImplLayoutId(): Int = R.layout.app_dialog_attach_filter
 
+    // 选中的选项数据(一次性)
+    private val onceSelectOption: MutableList<OptionEntity> = mutableListOf()
+
     private lateinit var filterAdapter: BaseQuickAdapter<FilterEntity, BaseViewHolder>
+
+    /** 提交事件(重置 and 确定按钮点击触发) */
+    var submitTarget = MutableLiveData<Event<Boolean>>()
 
     var filterList: MutableList<FilterEntity>? = null
         set(value) {
@@ -35,6 +45,22 @@ class AttachFilterPopupWindow @JvmOverloads constructor(
                 filterAdapter.setNewData(value)
             }
         }
+
+    fun getSelectData(): String {
+        val data = mutableMapOf<String, List<String>>()
+        filterList?.forEach { filter ->
+            val key = filter.flag
+            val value = mutableListOf<String>().also {
+                filter.optionList.forEach { option ->
+                    if (option.isSelected) {
+                        it.add(option.id.toString())
+                    }
+                }
+            }
+            data[key] = value
+        }
+        return GsonUtils.toJson(data)
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -59,6 +85,7 @@ class AttachFilterPopupWindow @JvmOverloads constructor(
                                     bottomMargin = SizeUtils.dp2px(10F)
                                 }
                                 setOnClickListener {
+                                    notifySelectData(optionBean)
                                     optionBean.isSelected = !optionBean.isSelected
                                     setBackgroundResource(if (optionBean.isSelected) R.drawable.app_shape_positive_bg else R.drawable.app_shape_negative_bg)
                                 }
@@ -83,8 +110,37 @@ class AttachFilterPopupWindow @JvmOverloads constructor(
             })
         }
 
-        findViewById<View>(R.id.tvReset).setOnClickListener { }
-        findViewById<View>(R.id.tvConfirm).setOnClickListener { }
+        findViewById<View>(R.id.tvReset).setOnClickListener { resetSelect() }
+        findViewById<View>(R.id.tvConfirm).setOnClickListener { submitSelectData() }
+    }
+
+    private fun notifySelectData(optionBean: OptionEntity) {
+        if (!onceSelectOption.contains(optionBean)) {
+            onceSelectOption.add(optionBean)
+        } else {
+            onceSelectOption.remove(optionBean)
+        }
+    }
+
+    private fun resetSelect() {
+        filterList?.map { filter ->
+            filter.optionList.map { option ->
+                option.isSelected = false
+            }
+        }
+        filterAdapter.notifyDataSetChanged()
+        submitTarget.value = Event(false)
+        dismissWithClear()
+    }
+
+    private fun submitSelectData() {
+        submitTarget.value = Event(true)
+        dismissWithClear()
+    }
+
+    private fun dismissWithClear() {
+        onceSelectOption.clear()
+        dismiss()
     }
 
     override fun show(): BasePopupView {
@@ -95,5 +151,13 @@ class AttachFilterPopupWindow @JvmOverloads constructor(
     override fun dismiss() {
         onDismiss?.invoke()
         super.dismiss()
+        if (onceSelectOption.isNotEmpty()) {
+            onceSelectOption.forEach { option ->
+                option.isSelected = !option.isSelected
+            }
+
+            onceSelectOption.clear()
+            filterAdapter.notifyDataSetChanged()
+        }
     }
 }
