@@ -79,7 +79,7 @@ class AttachFilterPopupWindow @JvmOverloads constructor(
                         optionContainer.addView(View.inflate(context, R.layout.app_dialog_attach_filter_option_item, null).apply {
                             findViewById<TextView>(R.id.tvOption).run {
                                 text = optionBean.name
-                                setBackgroundResource(if (optionBean.isSelected) R.drawable.app_shape_positive_bg else R.drawable.app_shape_negative_bg)
+                                setBackgroundResource(if (optionBean.isSelected) R.drawable.course_layer_list_option_selected else R.drawable.app_shape_negative_bg)
                                 layoutParams = MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
                                     leftMargin = SizeUtils.dp2px(15F)
                                     bottomMargin = SizeUtils.dp2px(10F)
@@ -87,7 +87,7 @@ class AttachFilterPopupWindow @JvmOverloads constructor(
                                 setOnClickListener {
                                     notifySelectData(optionBean)
                                     optionBean.isSelected = !optionBean.isSelected
-                                    setBackgroundResource(if (optionBean.isSelected) R.drawable.app_shape_positive_bg else R.drawable.app_shape_negative_bg)
+                                    setBackgroundResource(if (optionBean.isSelected) R.drawable.course_layer_list_option_selected else R.drawable.app_shape_negative_bg)
                                 }
                             }
                         })
