@@ -44,6 +44,11 @@ class MineViewModel(private val userRepository: UserRepository) : BaseViewModel(
         (v.tag as? String)?.let { toastData.postValue(it.toToastMsg()) }
     }
 
+    /** item 点击事件 */
+    fun onItemClick(v: View) {
+        (v.tag as? String)?.let { toastData.postValue(it.toToastMsg()) }
+    }
+
     /**
      * 获取用户隐私信息
      */

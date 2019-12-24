@@ -268,6 +268,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:bind_visibility="@{viewModel.userInfoData.award != null &amp;&amp; !viewModel.userInfoData.award.amt.equals(`none`)}"
+                    android:onClick="@{viewModel::onItemClick}"
+                    android:tag="@{mineConstant.MINE_BOUNTY_MENU}"
                     app:iconRes="@drawable/mine_icon_bounty"
                     app:labelText="我的学习奖励金"
                     app:lineMargin="true"
@@ -278,6 +280,8 @@
                 <com.sun.binding.widget.CustomItemView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{viewModel::onItemClick}"
+                    android:tag="@{mineConstant.MINE_COURSE_MENU}"
                     app:iconRes="@drawable/mine_icon_course"
                     app:labelText="老用户课程通道"
                     app:lineMargin="true" />
@@ -292,6 +296,8 @@
                 <com.sun.binding.widget.CustomItemView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{viewModel::onItemClick}"
+                    android:tag="@{mineConstant.MINE_TICKET_MENU}"
                     app:iconRes="@drawable/mine_icon_ticket"
                     app:labelText="我的余额券"
                     app:lineMargin="true" />
@@ -299,6 +305,8 @@
                 <com.sun.binding.widget.CustomItemView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{viewModel::onItemClick}"
+                    android:tag="@{mineConstant.MINE_INFO_MENU}"
                     app:iconRes="@drawable/mine_icon_info"
                     app:labelText="信息补充"
                     app:lineMargin="true" />
@@ -306,6 +314,8 @@
                 <com.sun.binding.widget.CustomItemView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{viewModel::onItemClick}"
+                    android:tag="@{mineConstant.MINE_ABOUT_MENU}"
                     app:iconRes="@drawable/mine_icon_about"
                     app:labelText="关于我们"
                     app:lineMargin="true" />
@@ -313,6 +323,8 @@
                 <com.sun.binding.widget.CustomItemView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{viewModel::onItemClick}"
+                    android:tag="@{mineConstant.MINE_SETUP_MENU}"
                     app:iconRes="@drawable/mine_icon_setup"
                     app:labelText="设置"
                     app:showLine="false" />
