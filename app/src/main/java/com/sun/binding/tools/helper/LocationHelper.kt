@@ -1,11 +1,8 @@
 package com.sun.binding.tools.helper
 
-import android.Manifest
 import android.content.Context
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
-import com.blankj.utilcode.constant.PermissionConstants
-import com.blankj.utilcode.util.Utils
 
 /**
  * 高得地图 SDK 封装

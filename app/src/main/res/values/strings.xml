@@ -8,6 +8,7 @@
 
     <string name="search_text">搜索</string>
 
+    <string name="app_cancel_text">取消</string>
     <string name="app_press_again_to_exit">再次返回退出</string>
     <string name="app_in_request">请求中…</string>
     <string name="app_in_loading">加载中…</string>

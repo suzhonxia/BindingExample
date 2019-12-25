@@ -2,14 +2,15 @@ package com.sun.binding.ui.course
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseViewHolder
 import com.sun.binding.R
 import com.sun.binding.databinding.SuitCourseActivityBinding
+import com.sun.binding.entity.SuitCourseEntity
 import com.sun.binding.model.course.SuitCourseViewModel
 import com.sun.binding.tools.ext.setWhiteStatusBar
-import com.sun.binding.tools.tool.setCommonMode
 import com.sun.binding.ui.base.BaseActivity
 import com.sun.binding.widget.decoration.SuitIndexItemDecoration
-import com.sun.binding.widget.state.StateEnum
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -45,5 +46,11 @@ class SuitCourseActivity : BaseActivity<SuitCourseViewModel, SuitCourseActivityB
         viewModel.suitCourseList.observe(this, Observer {
             suitAdapter.setNewData(it)
         })
+    }
+}
+
+internal class SuitCourseAdapter(data: List<SuitCourseEntity>?) : BaseQuickAdapter<SuitCourseEntity, BaseViewHolder>(R.layout.course_suit_index_item, data) {
+    override fun convert(helper: BaseViewHolder, item: SuitCourseEntity?) {
+        helper.setText(R.id.tvSuitName, item?.name)
     }
 }

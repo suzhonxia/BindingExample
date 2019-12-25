@@ -24,7 +24,7 @@ class TitleBarStyleImpl(context: Context) : BaseTitleBarStyle(context) {
 
     override fun getLeftColor(): Int = R.color.app_text_color_black_light
 
-    override fun getLeftSize(): Float = Utils.getApp().resources.getDimension(R.dimen.dp_24)
+    override fun getLeftSize(): Float = Utils.getApp().resources.getDimension(R.dimen.sp_15)
 
     override fun getLeftBackground(): Drawable =
         SelectorDrawable.Builder()
@@ -35,7 +35,7 @@ class TitleBarStyleImpl(context: Context) : BaseTitleBarStyle(context) {
 
     override fun getRightColor(): Int = R.color.app_text_color_black_light
 
-    override fun getRightSize(): Float = Utils.getApp().resources.getDimension(R.dimen.dp_24)
+    override fun getRightSize(): Float = Utils.getApp().resources.getDimension(R.dimen.sp_15)
 
     override fun getRightBackground(): Drawable = leftBackground
 

@@ -182,6 +182,8 @@ dependencies {
     implementation 'com.hjq:titlebar:6.0'
     // FlexboxLayout
     implementation 'com.google.android:flexbox:2.0.0'
+    // Matisse
+    implementation 'com.zhihu.android:matisse:0.5.3-beta3'
 
     // AMap
     implementation 'com.amap.api:location:latest.integration'

@@ -10,6 +10,7 @@ import com.sun.binding.model.circle.CircleProductViewModel
 import com.sun.binding.model.circle.CircleViewModel
 import com.sun.binding.model.course.CategoryCourseViewModel
 import com.sun.binding.model.course.SuitCourseViewModel
+import com.sun.binding.model.course.TaskSubmitViewModel
 import com.sun.binding.model.educ.EducCourseViewModel
 import com.sun.binding.model.educ.EducViewModel
 import com.sun.binding.model.home.HomeViewModel
@@ -124,4 +125,5 @@ val viewModelModule: Module = module {
     viewModel { SuitCourseViewModel(get()) }
     viewModel { EducCourseViewModel(get()) }
     viewModel { CategoryCourseViewModel(get()) }
+    viewModel { TaskSubmitViewModel() }
 }

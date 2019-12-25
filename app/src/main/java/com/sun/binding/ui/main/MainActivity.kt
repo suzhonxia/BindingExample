@@ -9,12 +9,14 @@ import com.sun.binding.databinding.MainActivityBinding
 import com.sun.binding.model.main.MainViewModel
 import com.sun.binding.tools.ext.setMainColorStatusBar
 import com.sun.binding.tools.ext.setWhiteStatusBar
+import com.sun.binding.tools.ext.start
 import com.sun.binding.tools.ext.toToastMsg
 import com.sun.binding.tools.tool.FragVpAdapter
 import com.sun.binding.tools.tool.getString
 import com.sun.binding.tools.util.event.EventObserver
 import com.sun.binding.ui.base.BaseActivity
 import com.sun.binding.ui.circle.CircleFragment
+import com.sun.binding.ui.course.TaskSubmitActivity
 import com.sun.binding.ui.educ.EducFragment
 import com.sun.binding.ui.home.HomeFragment
 import com.sun.binding.ui.mine.MineFragment
@@ -62,7 +64,7 @@ class MainActivity : BaseActivity<MainViewModel, MainActivityBinding>() {
             })
 
             submitTarget.observe(this@MainActivity, EventObserver {
-                toastData.postValue("跳转到发布页面".toToastMsg())
+                start(TaskSubmitActivity::class.java)
             })
         }
     }

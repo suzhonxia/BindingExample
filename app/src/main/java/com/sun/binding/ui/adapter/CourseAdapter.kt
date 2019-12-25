@@ -1,4 +1,4 @@
-package com.sun.binding.ui.course
+package com.sun.binding.ui.adapter
 
 import android.widget.TextView
 import com.blankj.utilcode.util.SizeUtils

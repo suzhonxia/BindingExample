@@ -86,11 +86,26 @@
             android:name=".ui.course.CategoryCourseActivity"
             android:configChanges="screenSize"
             android:screenOrientation="portrait" />
+        <!--课程作业提交页面-->
+        <activity
+            android:name=".ui.course.TaskSubmitActivity"
+            android:configChanges="screenSize"
+            android:screenOrientation="portrait" />
         <!--自测界面-->
         <activity
             android:name=".ui.main.TestActivity"
             android:configChanges="screenSize"
             android:screenOrientation="portrait" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.sun.binding.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/app_file_provider_paths_public" />
+        </provider>
 
         <!--高得地图start-->
         <service android:name="com.amap.api.location.APSService" />

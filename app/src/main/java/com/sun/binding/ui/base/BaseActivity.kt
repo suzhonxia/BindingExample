@@ -104,9 +104,9 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseBind
 
     protected fun getTitleBar() = mBinding.root.findViewById(R.id.titleBar) as? TitleBar
 
-    protected fun leftClick() = onBackPressed()
+    protected open fun leftClick() = onBackPressed()
 
-    protected fun rightClick() {}
+    protected open fun rightClick() = Unit
 
-    protected fun titleClick() {}
+    protected open fun titleClick() = Unit
 }

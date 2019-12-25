@@ -90,6 +90,17 @@
         <item name="android:singleLine">true</item>
     </style>
 
+    <style name="app_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/app_text_color_black_light</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+    <style name="app_label.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <!--  关注按钮样式  -->
     <style name="app_focus_button">
         <item name="android:layout_width">@dimen/dp_70</item>

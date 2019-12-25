@@ -11,6 +11,7 @@ import com.sun.binding.model.course.CategoryCourseViewModel
 import com.sun.binding.tools.ext.setWhiteStatusBar
 import com.sun.binding.tools.ext.showToast
 import com.sun.binding.tools.util.event.EventObserver
+import com.sun.binding.ui.adapter.CourseAdapter
 import com.sun.binding.ui.base.BaseActivity
 import com.sun.binding.widget.decoration.GridSpaceItemDecoration
 import com.sun.binding.widget.dialog.AttachFilterPopupWindow

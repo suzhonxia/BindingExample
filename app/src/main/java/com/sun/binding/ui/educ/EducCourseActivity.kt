@@ -14,7 +14,7 @@ import com.sun.binding.model.educ.EducCourseViewModel
 import com.sun.binding.tools.ext.setWhiteStatusBar
 import com.sun.binding.tools.ext.showToast
 import com.sun.binding.ui.base.BaseActivity
-import com.sun.binding.ui.course.CourseAdapter
+import com.sun.binding.ui.adapter.CourseAdapter
 import com.sun.binding.widget.decoration.GridSpaceItemDecoration
 import com.sun.binding.widget.dialog.AttachOptionPopupWindow
 import com.sun.binding.widget.state.StateEnum
