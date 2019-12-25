@@ -55,8 +55,6 @@ class TaskSubmitActivity : BaseActivity<TaskSubmitViewModel, TaskSubmitActivityB
         setWhiteStatusBar()
 
         initView()
-
-        AppFileManager.test()
     }
 
     override fun rightClick() {

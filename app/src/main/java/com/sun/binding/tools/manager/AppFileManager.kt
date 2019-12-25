@@ -1,8 +1,9 @@
 package com.sun.binding.tools.manager
 
-import android.content.Context
+import android.os.Build
 import android.os.Environment
 import android.os.Environment.DIRECTORY_PICTURES
+import androidx.annotation.RequiresApi
 import com.blankj.utilcode.util.EncryptUtils
 import com.blankj.utilcode.util.Utils
 import com.sun.binding.tools.ext.estimate
@@ -48,15 +49,16 @@ object AppFileManager {
                 targetPath.isNullOrBlank().estimate(UUID.randomUUID().toString(), EncryptUtils.encryptMD5ToString(targetPath)) +
                 ".jpg"
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun test() {
         // 内部存储
-        val filesDir = Utils.getApp().filesDir //路径：/data/data/包名/files
         val cacheDir = Utils.getApp().cacheDir //路径：/data/data/包名/cache
-        val dir = Utils.getApp().getDir("abc", Context.MODE_PRIVATE) //路径：/data/data/包名/app_abc
+        val filesDir = Utils.getApp().filesDir //路径：/data/data/包名/files
 
         // 外部存储
         val externalCacheDir = Utils.getApp().externalCacheDir //路径：/sdcard/Android/data/包名/cache
         val externalFilesDir = Utils.getApp().getExternalFilesDir(DIRECTORY_PICTURES) //路径：/sdcard/Android/data/包名/files
+        val mediaDirs = Utils.getApp().externalMediaDirs// 路径：/sdcard/Android/media/com.sun.binding
 
         // 外部存储(过时)
         Environment.getExternalStorageDirectory()
